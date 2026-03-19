@@ -10,6 +10,27 @@ st.set_page_config(
     page_icon="🔮",
     layout="centered"
 )
+st.markdown("""
+    <style>
+    /* เปลี่ยนพื้นหลังเป็นม่วงเข้มเกือบดำ */
+    .stApp {
+        background-color: #0B0114;
+    }
+    /* ปรับแต่งปุ่มให้เป็นทองพรีเมียมเงาๆ */
+    div.stButton > button {
+        background: linear-gradient(45deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+        color: #1A0B2E !important;
+        font-weight: bold;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0px 4px 15px rgba(212, 175, 55, 0.4);
+    }
+    /* หัวข้อสีทองสว่าง */
+    h1, h2, h3 {
+        color: #FCF6BA !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
 
 # -----------------------------
 # Language state
