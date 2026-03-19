@@ -20,7 +20,7 @@ if "lang" not in st.session_state:
 
 def tr(th_text: str, en_text: str) -> str:
     return th_text if st.session_state.lang == "th" else en_text
-รอคุณกับเจ้าหน้าที่ให้เสร็จก่อน ส่งโค๊ตเยอะ
+
 
 # -----------------------------
 # Query params language switch
