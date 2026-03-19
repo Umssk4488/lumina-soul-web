@@ -10,6 +10,7 @@ st.set_page_config(
     page_icon="🔮",
     layout="centered"
 )
+
 st.markdown("""
     <style>
     /* เปลี่ยนพื้นหลังเป็นม่วงเข้มเกือบดำ */
