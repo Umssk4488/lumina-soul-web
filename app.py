@@ -3,7 +3,7 @@ import requests
 from datetime import datetime
 
 # -----------------------------
-# 1. Page Config (Luxury Branding)
+# Page config
 # -----------------------------
 st.set_page_config(
     page_title="LUMINA SOUL",
@@ -12,141 +12,348 @@ st.set_page_config(
 )
 
 # -----------------------------
-# 2. Language State
+# Language state
 # -----------------------------
 if "lang" not in st.session_state:
     st.session_state.lang = "th"
 
+
 def tr(th_text: str, en_text: str) -> str:
     return th_text if st.session_state.lang == "th" else en_text
 
+
 # -----------------------------
-# 3. CSS (PROFESSIONAL LUXURY DARK)
+# Query params language switch
+# -----------------------------
+query_params = st.query_params
+if "lang" in query_params:
+    qp_lang = str(query_params["lang"]).lower()
+    if qp_lang in ["th", "en"]:
+        st.session_state.lang = qp_lang
+
+
+# -----------------------------
+# CSS
 # -----------------------------
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Prompt:wght@300;400;600&family=Montserrat:wght@300;700&display=swap');
+html, body, [class*="css"] {
+    color: #2f1f38 !important;
+}
 
-/* พื้นหลังกาแล็กซีแบบมืดลึก */
 .stApp {
-    background: radial-gradient(circle at top, #1a0b33, #05020a);
-    color: #ffffff !important;
+    background-image: linear-gradient(135deg, #fdfcfb 0%, #e7d7fb 38%, #fdfbfb 68%, #fff2ec 100%);
+    color: #2f1f38 !important;
 }
 
-/* ล้างค่าเริ่มต้นของ Streamlit ที่ทำให้รวน */
-h1, h2, h3, h4, h5, h6, p, div, span {
-    font-family: 'Prompt', sans-serif;
-    color: #ffffff !important;
+p, span, div, label, li, small {
+    color: #2f1f38 !important;
 }
 
-/* ชื่อแบรนด์สีทองหรูหรา (ปรับขนาดให้ไม่เบียด) */
-.brand-title {
-    font-family: 'Cinzel', serif;
-    font-size: clamp(2rem, 6vw, 3.2rem);
-    text-align: center;
-    background: linear-gradient(135deg, #fbf5b7 0%, #aa771c 50%, #f1da36 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    font-weight: 700;
-    letter-spacing: 3px;
-    margin: 20px 0 5px 0;
+h1, h2, h3, h4, h5, h6 {
+    margin: 0 !important;
 }
 
-.brand-subtitle {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;
-    text-align: center;
-    color: #c5a3ff !important;
-    letter-spacing: 2px;
-    margin-bottom: 30px;
-}
-
-/* กล่องเนื้อหาแบบกระจกฝ้า (Glassmorphism) */
-.content-card {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(15px);
-    border-radius: 20px;
-    padding: 25px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    margin-bottom: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-}
-
-/* ปุ่มทองแบบมืออาชีพ */
 div.stButton > button:first-child,
 div[data-testid="stFormSubmitButton"] > button {
-    background: linear-gradient(135deg, #aa771c 0%, #f1da36 100%) !important;
-    color: #000 !important;
-    border: none !important;
-    border-radius: 50px !important;
-    padding: 0.8rem 2rem !important;
-    font-weight: 700 !important;
-    font-size: 1.1rem !important;
-    width: 100% !important;
-    box-shadow: 0 8px 20px rgba(170, 119, 28, 0.3) !important;
-}
-
-/* ปรับแต่งช่องกรอกข้อมูล */
-.stTextInput input, .stTextArea textarea, .stNumberInput input, div[data-baseweb="select"] {
-    background-color: rgba(255, 255, 255, 0.07) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+    background: linear-gradient(to right, #ba68c8 0%, #f06292 100%) !important;
     color: white !important;
-    border-radius: 12px !important;
+    border: none !important;
+    border-radius: 25px !important;
+    padding: 0.78rem 1.3rem !important;
+    font-weight: 700 !important;
+    font-size: 1.02rem !important;
+    transition: 0.25s all ease !important;
+    box-shadow: 0 6px 18px rgba(186, 104, 200, 0.28) !important;
+    width: 100% !important;
+    margin-top: 10px !important;
 }
 
-/* ตัวสลับภาษา */
-.lang-box {
-    text-align: right;
+div.stButton > button:first-child:hover,
+div[data-testid="stFormSubmitButton"] > button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(186, 104, 200, 0.38);
+    color: white !important;
+}
+
+.stTextInput > div > div > input,
+.stNumberInput > div > div > input,
+.stTextArea textarea,
+.stSelectbox div[data-baseweb="select"] > div {
+    border-radius: 14px !important;
+    border: 1px solid #d9cfe6 !important;
+    background-color: rgba(255,255,255,0.94) !important;
+    color: #2f1f38 !important;
+    -webkit-text-fill-color: #2f1f38 !important;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: #8d7b9a !important;
+    opacity: 1 !important;
+    -webkit-text-fill-color: #8d7b9a !important;
+}
+
+label, .stMarkdown, .stTextInput label, .stNumberInput label, .stSelectbox label, .stTextArea label {
+    color: #4a3557 !important;
+}
+
+div[data-baseweb="select"] * {
+    color: #2f1f38 !important;
+}
+
+.stAlert {
+    border-radius: 14px !important;
+    border: none !important;
+}
+
+.hero-header-box {
+    position: relative;
+}
+
+.hero-title-wrap {
+    text-align: left;
+    margin-top: 6px;
+    margin-bottom: 12px;
+}
+
+.hero-brand {
+    font-size: 3.0rem;
+    font-weight: 800;
+    line-height: 1.02;
+    color: #3f234f !important;
+    letter-spacing: -1px;
     margin-bottom: 10px;
 }
-.lang-link {
-    text-decoration: none;
-    color: rgba(255,255,255,0.5);
-    font-size: 12px;
-    font-weight: bold;
-    margin-left: 10px;
-}
-.lang-link.active {
-    color: #f1da36;
-    border-bottom: 2px solid #f1da36;
+
+.hero-subtitle {
+    font-size: 2.0rem;
+    font-weight: 700;
+    line-height: 1.22;
+    color: #3f234f !important;
 }
 
-/* ซ่อนเมนูรกๆ ของ Streamlit */
-#MainMenu, footer, header {visibility: hidden;}
+.top-floating-lang {
+    position: absolute;
+    top: -33px;
+    right: 0;
+    z-index: 10;
+    display: flex;
+    gap: 8px;
+}
+
+.lang-chip {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    height: 28px;
+    padding: 0 10px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.88);
+    color: #6e4a7d !important;
+    text-decoration: none !important;
+    font-size: 12px;
+    font-weight: 700;
+    border: 1px solid rgba(186, 104, 200, 0.18);
+    box-shadow: 0 4px 14px rgba(186, 104, 200, 0.12);
+    backdrop-filter: blur(8px);
+    transition: all 0.22s ease;
+}
+
+.lang-chip:hover {
+    background: rgba(255,255,255,0.98);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(186, 104, 200, 0.18);
+}
+
+.lang-chip.active {
+    background: linear-gradient(to right, #ba68c8, #f06292);
+    color: white !important;
+    border: none;
+    box-shadow: 0 0 12px rgba(186, 104, 200, 0.35);
+}
+
+.hero-card {
+    background: rgba(255,255,255,0.58) !important;
+    backdrop-filter: blur(6px);
+    padding: 20px 18px !important;
+    border-radius: 24px !important;
+    box-shadow: 0 8px 24px rgba(126, 87, 194, 0.10) !important;
+    margin-top: 10px !important;
+    margin-bottom: 16px !important;
+}
+
+.glow-box {
+    background: linear-gradient(135deg, rgba(214,228,255,0.95), rgba(234,223,255,0.95)) !important;
+    border-radius: 18px !important;
+    padding: 18px !important;
+    box-shadow: 0 6px 20px rgba(126, 87, 194, 0.10) !important;
+    margin-top: 8px !important;
+    margin-bottom: 18px !important;
+}
+
+.result-card {
+    background: rgba(255,255,255,0.85) !important;
+    padding: 22px !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 28px rgba(126, 87, 194, 0.12) !important;
+    margin-top: 10px !important;
+    margin-bottom: 12px !important;
+    color: #2f1f38 !important;
+}
+
+.mini-card {
+    background: rgba(255,255,255,0.80) !important;
+    padding: 16px !important;
+    border-radius: 18px !important;
+    box-shadow: 0 4px 16px rgba(126, 87, 194, 0.10) !important;
+    margin-bottom: 12px !important;
+    color: #2f1f38 !important;
+}
+
+.stat-card {
+    background: rgba(255,255,255,0.78) !important;
+    padding: 14px 12px !important;
+    border-radius: 18px !important;
+    text-align: center !important;
+    box-shadow: 0 4px 14px rgba(126, 87, 194, 0.08) !important;
+    margin-bottom: 10px !important;
+    min-height: 120px;
+}
+
+.review-card {
+    background: rgba(255,255,255,0.78) !important;
+    padding: 16px !important;
+    border-radius: 18px !important;
+    box-shadow: 0 4px 14px rgba(126, 87, 194, 0.08) !important;
+    margin-bottom: 12px !important;
+}
+
+.center-text {
+    text-align: center !important;
+    color: #5a3d5c !important;
+}
+
+.soft-note {
+    color: #6b5876 !important;
+    font-size: 0.95rem !important;
+}
+
+.cta-note {
+    text-align: center;
+    color: #6e4a7d !important;
+    font-size: 0.95rem;
+    margin-top: 6px;
+    margin-bottom: 8px;
+}
+
+.premium-btn a {
+    display: block;
+    text-align: center;
+    padding: 14px 18px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 14px;
+    background: linear-gradient(135deg, #ff4d8d, #7b61ff);
+    color: white !important;
+    box-shadow: 0 8px 20px rgba(123, 97, 255, 0.3);
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.premium-btn a:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 12px 28px rgba(123, 97, 255, 0.4);
+}
+
+hr {
+    border: none !important;
+    border-top: 1px solid rgba(126, 87, 194, 0.15) !important;
+}
+
+* {
+    -webkit-text-fill-color: inherit;
+}
+
+@media (max-width: 768px) {
+    .hero-brand {
+        font-size: 2.25rem !important;
+        line-height: 1.02 !important;
+        letter-spacing: -0.4px !important;
+        margin-bottom: 12px !important;
+    }
+
+    .hero-subtitle {
+        font-size: 1.15rem !important;
+        line-height: 1.32 !important;
+        font-weight: 700 !important;
+    }
+
+    .hero-card {
+        padding: 16px 14px !important;
+        border-radius: 20px !important;
+    }
+
+    .glow-box {
+        padding: 15px !important;
+        border-radius: 16px !important;
+    }
+
+    .result-card, .mini-card, .stat-card, .review-card {
+        border-radius: 16px !important;
+    }
+
+    .soft-note {
+        font-size: 0.92rem !important;
+    }
+
+    .top-floating-lang {
+        top: -33px;
+        right: 0;
+        gap: 6px;
+    }
+
+    .lang-chip {
+        min-width: 34px;
+        height: 24px;
+        padding: 0 8px;
+        font-size: 11px;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    html, body, .stApp {
+        color: #2f1f38 !important;
+        background-color: transparent !important;
+    }
+
+    p, span, div, label, li, small {
+        color: #2f1f38 !important;
+    }
+
+    .result-card, .mini-card, .stat-card, .review-card, .hero-card, .glow-box {
+        color: #2f1f38 !important;
+        background: rgba(255,255,255,0.88) !important;
+    }
+
+    .stTextInput > div > div > input,
+    .stNumberInput > div > div > input,
+    .stTextArea textarea,
+    .stSelectbox div[data-baseweb="select"] > div {
+        background-color: rgba(255,255,255,0.95) !important;
+        color: #2f1f38 !important;
+        -webkit-text-fill-color: #2f1f38 !important;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        color: #8d7b9a !important;
+        -webkit-text-fill-color: #8d7b9a !important;
+    }
+}
 </style>
 """, unsafe_allow_html=True)
-
-# -----------------------------
-# 4. Content Header
-# -----------------------------
-
-# ส่วนสลับภาษา
-st.markdown(f"""
-<div class="lang-box">
-    <a href="?lang=th" class="lang-link {'active' if st.session_state.lang == 'th' else ''}">TH</a>
-    <a href="?lang=en" class="lang-link {'active' if st.session_state.lang == 'en' else ''}">EN</a>
-</div>
-""", unsafe_allow_html=True)
-
-# ชื่อแบรนด์และคำเปรย
-st.markdown('<div class="brand-title">LUMINA SOUL</div>', unsafe_allow_html=True)
-st.markdown(f'<div class="brand-subtitle">{tr("พื้นที่สะท้อนชีวิต | ถอดรหัสลับพลังงานวันเกิด", "Soul Reflection | Decode Your Energy")}</div>', unsafe_allow_html=True)
-
-# แสดงภาพ Banner (ถ้าภาพไม่ขึ้น ลองตรวจสอบ path หรือใช้ภาพในเครื่อง)
-st.image("https://r.jina.ai/i/993685f67b4f4664871e48f766e4a215", use_container_width=True)
-
-st.write("---")
-
-# ส่วนที่เหลือของเนื้อหา (ใส่ในกล่อง content-card เพื่อความสวยงาม)
-st.markdown(f"""
-<div class="content-card">
-    <p style="text-align: center;">{tr("ยินดีต้อนรับสู่พื้นที่แห่งการตื่นรู้และเยียวยาใจ ผ่านสัญญาณจาก Oversoul", "Welcome to a space of awakening and healing through Oversoul guidance.")}</p>
-</div>
-""", unsafe_allow_html=True)
-
-
-# -----------------------------
-# นำ GOOGLE_SCRIPT_URL = "..." และฟังก์ชันต่างๆ มาวางต่อตรงนี้ได้เลยค่ะ
 
 # -----------------------------
 # Google Sheets endpoint
