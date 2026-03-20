@@ -10,7 +10,7 @@ st.set_page_config(
     page_icon="🔮",
     layout="centered"
 )
-st.image("https://r.jina.ai/i/993685f67b4f4664871e48f766e4a215", use_container_width=True)
+st.image("banner.jpg.png", use_container_width=True)
 
 # -----------------------------
 # Language state
