@@ -1097,3 +1097,28 @@ st.markdown(
     f"<p style='text-align: center; font-size: 0.82rem; color: #888;'>© 2026 LUMINA SOUL | {tr('พื้นที่สะท้อนชีวิตและการตื่นรู้', 'A space for reflection and awakening')}</p>",
     unsafe_allow_html=True
 )
+st.markdown("""
+    <style>
+    /* บังคับพื้นหลังเป็นม่วงเข้มเกือบดำ */
+    .stApp {
+        background-color: #0B0114 !important;
+    }
+    /* ปรับปุ่มเป็นทองพรีเมียมเงา */
+    div.stButton > button {
+        background: linear-gradient(45deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C) !important;
+        color: #1A0B2E !important;
+        font-weight: bold !important;
+        border: none !important;
+        border-radius: 12px !important;
+        box-shadow: 0px 4px 15px rgba(212, 175, 55, 0.4) !important;
+    }
+    /* หัวข้อสีทองสว่าง */
+    h1, h2, h3 {
+        color: #FCF6BA !important;
+    }
+    /* ตัวหนังสือทั่วไปเป็นสีขาว */
+    .stApp p, .stApp span {
+        color: #FFFFFF !important;
+    }
+    </style>
+    """, unsafe_allow_html=True)
