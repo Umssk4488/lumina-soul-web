@@ -10,7 +10,7 @@ st.set_page_config(
     page_icon="🔮",
     layout="centered"
 )
-st.image("banner.jpg.png", use_container_width=True)
+st.image("banner.jpg.png", use_container_width=500)
 
 # -----------------------------
 # Language state
