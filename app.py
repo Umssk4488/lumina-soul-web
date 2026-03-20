@@ -33,9 +33,6 @@ if "lang" in query_params:
 
 
 # -----------------------------
-# CSS
-# -----------------------------
-# -----------------------------
 # CSS (GLOWING LIGHT-BRINGER EDITION)
 # -----------------------------
 st.markdown("""
@@ -80,18 +77,17 @@ h1, h2, h3, h4, h5, h6, p, span, label, div {
     margin-top: 5px !important;
 }
 
-/* 4. Glowing Aura Containers (No hard borders, just light) */
+/* 4. Glowing Aura Containers */
 .hero-card, .glow-box, .result-card, .mini-card, .stat-card, .review-card {
     background: rgba(255, 255, 255, 0.03) !important;
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: none !important; /* Remove borders */
+    border: none !important;
     border-radius: 28px !important;
     padding: 30px !important;
-    /* Neon Aura Glow */
     box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.6),
-                0 0 25px 2px rgba(123, 97, 255, 0.2), /* Cyan/Purple Aura */
-                0 0 10px 1px rgba(255, 77, 141, 0.1) !important; /* Magenta Aura */
+                0 0 25px 2px rgba(123, 97, 255, 0.2),
+                0 0 10px 1px rgba(255, 77, 141, 0.1) !important;
     transition: all 0.4s ease;
 }
 
@@ -102,7 +98,6 @@ h1, h2, h3, h4, h5, h6, p, span, label, div {
                 0 0 15px 2px rgba(255, 77, 141, 0.3) !important;
 }
 
-/* Hover effects for cards */
 .hero-card:hover, .result-card:hover, .stat-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 20px 60px 0 rgba(0, 0, 0, 0.7),
@@ -127,12 +122,6 @@ div[data-testid="stFormSubmitButton"] > button {
     margin-top: 20px !important;
 }
 
-div.stButton > button:first-child:hover {
-    transform: translateY(-4px) scale(1.03);
-    box-shadow: 0 15px 45px rgba(255, 110, 180, 0.6),
-                0 0 30px rgba(138, 111, 255, 0.5) !important;
-}
-
 /* 6. Form Inputs & Selectbox */
 .stTextInput > div > div > input,
 .stNumberInput > div > div > input,
@@ -144,15 +133,6 @@ div.stButton > button:first-child:hover {
     color: #ffffff !important;
     -webkit-text-fill-color: #ffffff !important;
     padding: 12px 18px !important;
-    transition: border 0.3s ease;
-}
-
-/* Glowing input focus */
-.stTextInput > div > div > input:focus,
-.stNumberInput > div > div > input:focus,
-.stTextArea textarea:focus {
-    border: 1px solid rgba(138, 111, 255, 0.6) !important;
-    box-shadow: 0 0 15px rgba(138, 111, 255, 0.3) !important;
 }
 
 /* 7. Language Switcher */
@@ -160,7 +140,6 @@ div.stButton > button:first-child:hover {
     background: rgba(255, 255, 255, 0.05) !important;
     color: #ffffff !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
 }
 
 .lang-chip.active {
@@ -175,6 +154,11 @@ footer {visibility: hidden;}
 header {visibility: hidden;}
 </style>
 """, unsafe_allow_html=True)
+
+# -----------------------------
+# Hero Banner Image
+# -----------------------------
+st.image("https://r.jina.ai/i/993685f67b4f4664871e48f766e4a215", use_container_width=True)
 
 # -----------------------------
 # Google Sheets endpoint
