@@ -35,146 +35,322 @@ if "lang" in query_params:
 # -----------------------------
 # CSS
 # -----------------------------
-# -----------------------------
-# CSS (PREMIUM DARK LUXURY EDITION)
-# -----------------------------
 st.markdown("""
 <style>
-/* 1. Import Premium Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Prompt:wght@300;400;600&display=swap');
+html, body, [class*="css"] {
+    color: #2f1f38 !important;
+}
 
-/* 2. Global Styling & Background */
 .stApp {
-    background: radial-gradient(circle at top right, #2d1b4d, #0f051d 60%, #05020a);
-    color: #ffffff !important;
-    font-family: 'Prompt', sans-serif;
+    background-image: linear-gradient(135deg, #fdfcfb 0%, #e7d7fb 38%, #fdfbfb 68%, #fff2ec 100%);
+    color: #2f1f38 !important;
 }
 
-/* 3. Typography & Luxury Gold Gradient */
-h1, h2, h3, h4, h5, h6, p, span, label, div {
-    font-family: 'Prompt', sans-serif;
-    color: #ffffff !important;
+p, span, div, label, li, small {
+    color: #2f1f38 !important;
 }
 
-.hero-brand {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 3.5rem !important;
-    font-weight: 800;
-    background: linear-gradient(135deg, #FFD700 0%, #FDB931 50%, #D4AF37 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    letter-spacing: -1.5px;
-    filter: drop-shadow(0 2px 10px rgba(212, 175, 55, 0.3));
-    margin-bottom: 5px !important;
-    text-transform: uppercase;
+h1, h2, h3, h4, h5, h6 {
+    margin: 0 !important;
 }
 
-.hero-subtitle {
-    font-size: 1.3rem !important;
-    color: #c5a3ff !important;
-    font-weight: 300 !important;
-    letter-spacing: 1.5px;
-    margin-top: 5px !important;
-}
-
-/* 4. Glassmorphism Containers */
-.hero-card, .glow-box, .result-card, .mini-card, .stat-card, .review-card {
-    background: rgba(255, 255, 255, 0.04) !important;
-    backdrop-filter: blur(15px) saturate(160%);
-    -webkit-backdrop-filter: blur(15px) saturate(160%);
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    border-radius: 24px !important;
-    padding: 25px !important;
-    box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.5) !important;
-    transition: transform 0.3s ease;
-}
-
-.glow-box {
-    border: 1px solid rgba(123, 97, 255, 0.3) !important;
-    background: linear-gradient(135deg, rgba(123, 97, 255, 0.1), rgba(255, 77, 141, 0.1)) !important;
-}
-
-/* 5. Interactive Buttons */
 div.stButton > button:first-child,
 div[data-testid="stFormSubmitButton"] > button {
-    background: linear-gradient(135deg, #7b61ff 0%, #ff4d8d 100%) !important;
+    background: linear-gradient(to right, #ba68c8 0%, #f06292 100%) !important;
     color: white !important;
     border: none !important;
-    border-radius: 50px !important;
-    padding: 1rem 2rem !important;
-    font-weight: 600 !important;
-    font-size: 1.1rem !important;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-    box-shadow: 0 8px 25px rgba(123, 97, 255, 0.4) !important;
-    margin-top: 15px !important;
+    border-radius: 25px !important;
+    padding: 0.78rem 1.3rem !important;
+    font-weight: 700 !important;
+    font-size: 1.02rem !important;
+    transition: 0.25s all ease !important;
+    box-shadow: 0 6px 18px rgba(186, 104, 200, 0.28) !important;
+    width: 100% !important;
+    margin-top: 10px !important;
 }
 
-div.stButton > button:first-child:hover {
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 15px 35px rgba(255, 77, 141, 0.5) !important;
+div.stButton > button:first-child:hover,
+div[data-testid="stFormSubmitButton"] > button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(186, 104, 200, 0.38);
+    color: white !important;
 }
 
-/* 6. Form Inputs & Selectbox */
 .stTextInput > div > div > input,
 .stNumberInput > div > div > input,
 .stTextArea textarea,
 .stSelectbox div[data-baseweb="select"] > div {
-    background-color: rgba(255, 255, 255, 0.06) !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    border-radius: 16px !important;
-    color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-    padding: 10px 15px !important;
+    border-radius: 14px !important;
+    border: 1px solid #d9cfe6 !important;
+    background-color: rgba(255,255,255,0.94) !important;
+    color: #2f1f38 !important;
+    -webkit-text-fill-color: #2f1f38 !important;
 }
 
-input::placeholder, textarea::placeholder {
-    color: rgba(255, 255, 255, 0.4) !important;
+input::placeholder,
+textarea::placeholder {
+    color: #8d7b9a !important;
+    opacity: 1 !important;
+    -webkit-text-fill-color: #8d7b9a !important;
 }
 
-/* 7. Language Switcher */
+label, .stMarkdown, .stTextInput label, .stNumberInput label, .stSelectbox label, .stTextArea label {
+    color: #4a3557 !important;
+}
+
+div[data-baseweb="select"] * {
+    color: #2f1f38 !important;
+}
+
+.stAlert {
+    border-radius: 14px !important;
+    border: none !important;
+}
+
+.hero-header-box {
+    position: relative;
+}
+
+.hero-title-wrap {
+    text-align: left;
+    margin-top: 6px;
+    margin-bottom: 12px;
+}
+
+.hero-brand {
+    font-size: 3.0rem;
+    font-weight: 800;
+    line-height: 1.02;
+    color: #3f234f !important;
+    letter-spacing: -1px;
+    margin-bottom: 10px;
+}
+
+.hero-subtitle {
+    font-size: 2.0rem;
+    font-weight: 700;
+    line-height: 1.22;
+    color: #3f234f !important;
+}
+
 .top-floating-lang {
     position: absolute;
-    top: -40px;
+    top: -33px;
     right: 0;
+    z-index: 10;
     display: flex;
-    gap: 10px;
+    gap: 8px;
 }
 
 .lang-chip {
-    background: rgba(255, 255, 255, 0.08) !important;
-    color: #ffffff !important;
-    border: 1px solid rgba(255, 255, 255, 0.15) !important;
-    padding: 6px 16px !important;
-    border-radius: 100px !important;
-    font-size: 13px;
-    font-weight: 600;
-    backdrop-filter: blur(5px);
-    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 38px;
+    height: 28px;
+    padding: 0 10px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.88);
+    color: #6e4a7d !important;
+    text-decoration: none !important;
+    font-size: 12px;
+    font-weight: 700;
+    border: 1px solid rgba(186, 104, 200, 0.18);
+    box-shadow: 0 4px 14px rgba(186, 104, 200, 0.12);
+    backdrop-filter: blur(8px);
+    transition: all 0.22s ease;
+}
+
+.lang-chip:hover {
+    background: rgba(255,255,255,0.98);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 18px rgba(186, 104, 200, 0.18);
 }
 
 .lang-chip.active {
-    background: linear-gradient(135deg, #7b61ff, #ff4d8d) !important;
-    border: none !important;
-    box-shadow: 0 4px 15px rgba(123, 97, 255, 0.4);
+    background: linear-gradient(to right, #ba68c8, #f06292);
+    color: white !important;
+    border: none;
+    box-shadow: 0 0 12px rgba(186, 104, 200, 0.35);
 }
 
-/* 8. Responsive Design (Mobile Optimizations) */
-@media (max-width: 768px) {
-    .hero-brand { font-size: 2.2rem !important; }
-    .hero-subtitle { font-size: 1.1rem !important; }
-    .hero-card, .result-card { padding: 18px !important; }
+.hero-card {
+    background: rgba(255,255,255,0.58) !important;
+    backdrop-filter: blur(6px);
+    padding: 20px 18px !important;
+    border-radius: 24px !important;
+    box-shadow: 0 8px 24px rgba(126, 87, 194, 0.10) !important;
+    margin-top: 10px !important;
+    margin-bottom: 16px !important;
 }
 
-/* Extra touch: Remove default Streamlit elements for cleaner look */
-#MainMenu {visibility: hidden;}
-footer {visibility: hidden;}
-header {visibility: hidden;}
+.glow-box {
+    background: linear-gradient(135deg, rgba(214,228,255,0.95), rgba(234,223,255,0.95)) !important;
+    border-radius: 18px !important;
+    padding: 18px !important;
+    box-shadow: 0 6px 20px rgba(126, 87, 194, 0.10) !important;
+    margin-top: 8px !important;
+    margin-bottom: 18px !important;
+}
+
+.result-card {
+    background: rgba(255,255,255,0.85) !important;
+    padding: 22px !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 28px rgba(126, 87, 194, 0.12) !important;
+    margin-top: 10px !important;
+    margin-bottom: 12px !important;
+    color: #2f1f38 !important;
+}
+
+.mini-card {
+    background: rgba(255,255,255,0.80) !important;
+    padding: 16px !important;
+    border-radius: 18px !important;
+    box-shadow: 0 4px 16px rgba(126, 87, 194, 0.10) !important;
+    margin-bottom: 12px !important;
+    color: #2f1f38 !important;
+}
+
+.stat-card {
+    background: rgba(255,255,255,0.78) !important;
+    padding: 14px 12px !important;
+    border-radius: 18px !important;
+    text-align: center !important;
+    box-shadow: 0 4px 14px rgba(126, 87, 194, 0.08) !important;
+    margin-bottom: 10px !important;
+    min-height: 120px;
+}
+
+.review-card {
+    background: rgba(255,255,255,0.78) !important;
+    padding: 16px !important;
+    border-radius: 18px !important;
+    box-shadow: 0 4px 14px rgba(126, 87, 194, 0.08) !important;
+    margin-bottom: 12px !important;
+}
+
+.center-text {
+    text-align: center !important;
+    color: #5a3d5c !important;
+}
+
+.soft-note {
+    color: #6b5876 !important;
+    font-size: 0.95rem !important;
+}
+
+.cta-note {
+    text-align: center;
+    color: #6e4a7d !important;
+    font-size: 0.95rem;
+    margin-top: 6px;
+    margin-bottom: 8px;
+}
+
+.premium-btn a {
+    display: block;
+    text-align: center;
+    padding: 14px 18px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 14px;
+    background: linear-gradient(135deg, #ff4d8d, #7b61ff);
+    color: white !important;
+    box-shadow: 0 8px 20px rgba(123, 97, 255, 0.3);
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.premium-btn a:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 12px 28px rgba(123, 97, 255, 0.4);
+}
 
 hr {
-    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
-    margin: 2rem 0 !important;
+    border: none !important;
+    border-top: 1px solid rgba(126, 87, 194, 0.15) !important;
+}
+
+* {
+    -webkit-text-fill-color: inherit;
+}
+
+@media (max-width: 768px) {
+    .hero-brand {
+        font-size: 2.25rem !important;
+        line-height: 1.02 !important;
+        letter-spacing: -0.4px !important;
+        margin-bottom: 12px !important;
+    }
+
+    .hero-subtitle {
+        font-size: 1.15rem !important;
+        line-height: 1.32 !important;
+        font-weight: 700 !important;
+    }
+
+    .hero-card {
+        padding: 16px 14px !important;
+        border-radius: 20px !important;
+    }
+
+    .glow-box {
+        padding: 15px !important;
+        border-radius: 16px !important;
+    }
+
+    .result-card, .mini-card, .stat-card, .review-card {
+        border-radius: 16px !important;
+    }
+
+    .soft-note {
+        font-size: 0.92rem !important;
+    }
+
+    .top-floating-lang {
+        top: -33px;
+        right: 0;
+        gap: 6px;
+    }
+
+    .lang-chip {
+        min-width: 34px;
+        height: 24px;
+        padding: 0 8px;
+        font-size: 11px;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    html, body, .stApp {
+        color: #2f1f38 !important;
+        background-color: transparent !important;
+    }
+
+    p, span, div, label, li, small {
+        color: #2f1f38 !important;
+    }
+
+    .result-card, .mini-card, .stat-card, .review-card, .hero-card, .glow-box {
+        color: #2f1f38 !important;
+        background: rgba(255,255,255,0.88) !important;
+    }
+
+    .stTextInput > div > div > input,
+    .stNumberInput > div > div > input,
+    .stTextArea textarea,
+    .stSelectbox div[data-baseweb="select"] > div {
+        background-color: rgba(255,255,255,0.95) !important;
+        color: #2f1f38 !important;
+        -webkit-text-fill-color: #2f1f38 !important;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        color: #8d7b9a !important;
+        -webkit-text-fill-color: #8d7b9a !important;
+    }
 }
 </style>
 """, unsafe_allow_html=True)
