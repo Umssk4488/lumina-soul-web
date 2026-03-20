@@ -19,28 +19,26 @@ if "lang" in query_params:
     if qp_lang in ["th", "en"]:
         st.session_state.lang = qp_lang
 
-# 4. CSS - THEME: MIDNIGHT PURPLE & GOLD PREMIUM
+# 4. CSS - THEME: PREMIUM SOFT LUXE (ม่วงละมุนตัดทองพรีเมียม)
 st.markdown("""
 <style>
-/* บังคับพื้นหลังม่วงเข้มเกือบดำ */
+/* กลับไปใช้พื้นหลังม่วงชมพูละมุนแบบที่คุณอุ้มชอบ */
 .stApp {
-    background-color: #0B0114 !important;
-    background-image: none !important;
+    background-image: linear-gradient(135deg, #fdfcfb 0%, #e7d7fb 38%, #fdfbfb 68%, #fff2ec 100%) !important;
 }
 
-/* ตัวหนังสือทั่วไปทั้งหมดเป็นสีขาว */
+/* ตัวหนังสือทั่วไปใช้สีม่วงเข้ม (อ่านง่ายและดูแพง) */
 p, span, div, label, li, small, [class*="css"] {
-    color: #FFFFFF !important;
+    color: #3f234f !important;
 }
 
-/* หัวข้อสีทองประกาย */
+/* หัวข้อสีม่วงเข้มเหลือบทอง */
 h1, h2, h3, h4, h5, h6, .hero-brand, .hero-subtitle {
-    color: #FCF6BA !important;
-    margin: 0 !important;
-    text-shadow: 0px 0px 12px rgba(212, 175, 55, 0.5) !important;
+    color: #3f234f !important;
+    text-shadow: 1px 1px 2px rgba(212, 175, 55, 0.3) !important;
 }
 
-/* ปุ่มทองเงาวาวพรีเมียม */
+/* ปุ่มกดเปลี่ยนเป็น "สีทองเงาวาว" เพื่อความพรีเมียม */
 div.stButton > button:first-child,
 div[data-testid="stFormSubmitButton"] > button {
     background: linear-gradient(45deg, #BF953F 0%, #FCF6BA 50%, #B38728 100%) !important;
@@ -49,45 +47,36 @@ div[data-testid="stFormSubmitButton"] > button {
     border-radius: 25px !important;
     padding: 0.78rem 1.3rem !important;
     font-weight: 700 !important;
-    transition: 0.25s all ease !important;
-    box-shadow: 0 6px 18px rgba(212, 175, 55, 0.4) !important;
+    box-shadow: 0 6px 15px rgba(186, 104, 200, 0.2) !important;
     width: 100% !important;
 }
 
-div.stButton > button:first-child:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 22px rgba(252, 246, 186, 0.6) !important;
-}
-
-/* การ์ดและกล่องข้อความ Glassmorphism */
+/* กล่องข้อความแบบ Glassmorphism (ดูโปร่งใส แพงๆ) */
 .hero-card, .glow-box, .result-card, .mini-card, .stat-card, .review-card {
-    background: rgba(255, 255, 255, 0.05) !important;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(212, 175, 55, 0.2) !important;
-    border-radius: 20px !important;
-    color: #FFFFFF !important;
+    background: rgba(255, 255, 255, 0.7) !important;
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(186, 104, 200, 0.2) !important;
+    border-radius: 24px !important;
+    box-shadow: 0 8px 24px rgba(126, 87, 194, 0.08) !important;
 }
 
-/* ช่องกรอกข้อมูลโทนมืด */
+/* ช่องกรอกข้อมูลให้ดูสะอาดตา */
 input, textarea, [data-baseweb="select"] > div {
-    background-color: rgba(255, 255, 255, 0.1) !important;
-    color: white !important;
-    border: 1px solid rgba(212, 175, 55, 0.4) !important;
-    border-radius: 12px !important;
+    border-radius: 14px !important;
+    border: 1px solid #d9cfe6 !important;
+    background-color: rgba(255,255,255,0.9) !important;
 }
 
-/* ปรับแต่งปุ่มสลับภาษา */
+/* ปุ่มสลับภาษา */
 .lang-chip {
-    background: rgba(255, 255, 255, 0.1) !important;
-    color: #FCF6BA !important;
-    border: 1px solid #BF953F !important;
+    background: rgba(255,255,255,0.8) !important;
+    color: #6e4a7d !important;
+    border: 1px solid rgba(186, 104, 200, 0.18) !important;
 }
 .lang-chip.active {
-    background: #BF953F !important;
-    color: #1A0B2E !important;
+    background: linear-gradient(to right, #ba68c8, #f06292) !important;
+    color: white !important;
 }
-
-.hero-header-box { position: relative; }
 </style>
 """, unsafe_allow_html=True)
 
