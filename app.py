@@ -3,152 +3,152 @@ import requests
 from datetime import datetime
 
 # -----------------------------
-# Page config
+# 1. Page Config (Luxury Branding)
 # -----------------------------
 st.set_page_config(
-    page_title="LUMINA SOUL",
+    page_title="LUMINA SOUL | Soul Decoding",
     page_icon="🔮",
-    layout="centered"
+    layout="centered",
+    initial_sidebar_state="collapsed"
 )
 
 # -----------------------------
-# Language state
+# 2. Language State Management
 # -----------------------------
 if "lang" not in st.session_state:
     st.session_state.lang = "th"
 
-
 def tr(th_text: str, en_text: str) -> str:
     return th_text if st.session_state.lang == "th" else en_text
 
-
-# -----------------------------
-# Query params language switch
-# -----------------------------
+# Language Switch Logic
 query_params = st.query_params
 if "lang" in query_params:
     qp_lang = str(query_params["lang"]).lower()
     if qp_lang in ["th", "en"]:
         st.session_state.lang = qp_lang
 
-
 # -----------------------------
-# CSS (GLOWING LIGHT-BRINGER EDITION)
+# 3. CSS (GLOWING METALLIC GOLD & LUXURY DARK)
 # -----------------------------
 st.markdown("""
 <style>
-/* 1. Import Premium Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Prompt:wght@300;400;600&display=swap');
+/* Import Premium Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Prompt:wght@200;300;400;600&family=Montserrat:wght@300;700&display=swap');
 
-/* 2. Global Styling & Glowing Background */
+/* Main Background - Deep Cosmic Aura */
 .stApp {
     background: radial-gradient(circle at 20% 20%, rgba(123, 97, 255, 0.15), transparent 40%),
                 radial-gradient(circle at 80% 80%, rgba(255, 77, 141, 0.15), transparent 40%),
                 radial-gradient(circle at top, #1a0b33, #05020a);
+    background-attachment: fixed;
     color: #ffffff !important;
-    font-family: 'Prompt', sans-serif;
 }
 
-/* 3. Typography & Text Glow */
+/* Typography */
 h1, h2, h3, h4, h5, h6, p, span, label, div {
     font-family: 'Prompt', sans-serif;
-    color: #ffffff !important;
 }
 
+/* Metallic Gold Brand Title */
 .hero-brand {
-    font-family: 'Montserrat', sans-serif;
-    font-size: 3.8rem !important;
-    font-weight: 800;
-    background: linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #FFDF00 100%);
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.5rem, 8vw, 4rem) !important;
+    font-weight: 700;
+    text-align: center;
+    background: linear-gradient(to bottom, #fbf5b7 0%, #aa771c 26%, #f1da36 50%, #664810 51%, #c1a919 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    letter-spacing: -2px;
-    filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));
-    margin-bottom: 5px !important;
+    filter: drop-shadow(0 0 20px rgba(170, 119, 28, 0.5));
+    letter-spacing: 5px;
+    margin: 10px 0 0 0 !important;
     text-transform: uppercase;
 }
 
 .hero-subtitle {
-    font-size: 1.4rem !important;
-    color: #e0ceff !important;
-    font-weight: 300 !important;
-    letter-spacing: 2px;
-    text-shadow: 0 0 10px rgba(224, 206, 255, 0.5);
-    margin-top: 5px !important;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem !important;
+    text-align: center;
+    color: #c5a3ff !important;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 25px !important;
+    font-weight: 300;
+    text-shadow: 0 0 10px rgba(197, 163, 255, 0.3);
 }
 
-/* 4. Glowing Aura Containers */
+/* Glowing Glass Containers */
 .hero-card, .glow-box, .result-card, .mini-card, .stat-card, .review-card {
     background: rgba(255, 255, 255, 0.03) !important;
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     border: none !important;
     border-radius: 28px !important;
-    padding: 30px !important;
+    padding: 35px !important;
     box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.6),
-                0 0 25px 2px rgba(123, 97, 255, 0.2),
+                0 0 25px 2px rgba(123, 97, 255, 0.2), 
                 0 0 10px 1px rgba(255, 77, 141, 0.1) !important;
-    transition: all 0.4s ease;
+    margin-bottom: 25px !important;
 }
 
-.glow-box {
-    background: linear-gradient(135deg, rgba(123, 97, 255, 0.15), rgba(255, 77, 141, 0.15)) !important;
-    box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.6),
-                0 0 35px 3px rgba(123, 97, 255, 0.4),
-                0 0 15px 2px rgba(255, 77, 141, 0.3) !important;
-}
-
-.hero-card:hover, .result-card:hover, .stat-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 20px 60px 0 rgba(0, 0, 0, 0.7),
-                0 0 40px 5px rgba(123, 97, 255, 0.4),
-                0 0 20px 3px rgba(255, 77, 141, 0.3) !important;
-}
-
-/* 5. Glowing Interactive Buttons */
+/* Buttons - Glowing Gold Gradient */
 div.stButton > button:first-child,
 div[data-testid="stFormSubmitButton"] > button {
-    background: linear-gradient(135deg, #8a6fff 0%, #ff6eb4 100%) !important;
-    color: white !important;
+    background: linear-gradient(135deg, #aa771c 0%, #f1da36 100%) !important;
+    color: #000000 !important; /* Black text for luxury look */
     border: none !important;
-    border-radius: 50px !important;
+    border-radius: 100px !important;
     padding: 1.2rem 2.5rem !important;
-    font-weight: 600 !important;
-    font-size: 1.15rem !important;
+    font-weight: 700 !important;
+    font-size: 1.1rem !important;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    letter-spacing: 1.5px;
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-    box-shadow: 0 8px 30px rgba(138, 111, 255, 0.5) !important;
-    margin-top: 20px !important;
+    transition: all 0.4s ease !important;
+    box-shadow: 0 10px 30px rgba(170, 119, 28, 0.4) !important;
 }
 
-/* 6. Form Inputs & Selectbox */
-.stTextInput > div > div > input,
-.stNumberInput > div > div > input,
-.stTextArea textarea,
+div.stButton > button:first-child:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 15px 45px rgba(170, 119, 28, 0.6) !important;
+}
+
+/* Inputs */
+.stTextInput > div > div > input, 
+.stNumberInput > div > div > input, 
+.stTextArea textarea, 
 .stSelectbox div[data-baseweb="select"] > div {
-    background-color: rgba(255, 255, 255, 0.04) !important;
+    background: rgba(255, 255, 255, 0.05) !important;
     border: 1px solid rgba(255, 255, 255, 0.1) !important;
     border-radius: 18px !important;
     color: #ffffff !important;
-    -webkit-text-fill-color: #ffffff !important;
-    padding: 12px 18px !important;
 }
 
-/* 7. Language Switcher */
+/* Language Switcher UI */
+.top-floating-lang {
+    display: flex;
+    justify-content: flex-end;
+    gap: 15px;
+    margin-bottom: 10px;
+}
 .lang-chip {
-    background: rgba(255, 255, 255, 0.05) !important;
-    color: #ffffff !important;
-    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    text-decoration: none !important;
+    color: rgba(255, 255, 255, 0.4) !important;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
 }
-
 .lang-chip.active {
-    background: linear-gradient(135deg, #8a6fff, #ff6eb4) !important;
-    border: none !important;
-    box-shadow: 0 4px 20px rgba(138, 111, 255, 0.5);
+    color: #f1da36 !important;
+    border-bottom: 2px solid #f1da36;
 }
 
-/* Extra touch: Remove default Streamlit elements */
+/* Image Aura */
+.stImage > img {
+    border-radius: 30px !important;
+    box-shadow: 0 0 40px rgba(123, 97, 255, 0.3) !important;
+}
+
+/* Hide Default Elements */
 #MainMenu {visibility: hidden;}
 footer {visibility: hidden;}
 header {visibility: hidden;}
@@ -156,9 +156,29 @@ header {visibility: hidden;}
 """, unsafe_allow_html=True)
 
 # -----------------------------
-# Hero Banner Image
+# 4. Hero Visuals (Banner & Branding)
 # -----------------------------
+# 1. แสดงรูปปกที่เจนมาให้ (สวยและพรีเมียมที่สุด)
 st.image("https://r.jina.ai/i/993685f67b4f4664871e48f766e4a215", use_container_width=True)
+
+# 2. Language Switcher (ใต้รูปปก)
+st.markdown(f"""
+<div class="top-floating-lang">
+    <a href="?lang=th" class="lang-chip {'active' if st.session_state.lang == 'th' else ''}">THAILAND</a>
+    <a href="?lang=en" class="lang-chip {'active' if st.session_state.lang == 'en' else ''}">ENGLISH</a>
+</div>
+""", unsafe_allow_html=True)
+
+# 3. Brand Title & Subtitle
+st.markdown('<h1 class="hero-brand">LUMINA SOUL</h1>', unsafe_allow_html=True)
+st.markdown(f'<p class="hero-subtitle">{tr("พื้นที่สะท้อนชีวิต | ถอดรหัสลับพลังงานวันเกิด", "A Space for Reflection | Decode Your Soul Energy")}</p>', unsafe_allow_html=True)
+
+st.write("---")
+
+# -----------------------------
+# 5. [ส่วนที่เหลือของโค้ดคุณ: Google Sheets endpoint, Helpers, และ Content]
+# -----------------------------
+# นำ GOOGLE_SCRIPT_URL = "..." และฟังก์ชันต่างๆ มาวางต่อตรงนี้ได้เลยค่ะ
 
 # -----------------------------
 # Google Sheets endpoint
