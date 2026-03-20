@@ -35,323 +35,144 @@ if "lang" in query_params:
 # -----------------------------
 # CSS
 # -----------------------------
+# -----------------------------
+# CSS (GLOWING LIGHT-BRINGER EDITION)
+# -----------------------------
 st.markdown("""
 <style>
-html, body, [class*="css"] {
-    color: #2f1f38 !important;
-}
+/* 1. Import Premium Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Prompt:wght@300;400;600&display=swap');
 
+/* 2. Global Styling & Glowing Background */
 .stApp {
-    background-image: linear-gradient(135deg, #fdfcfb 0%, #e7d7fb 38%, #fdfbfb 68%, #fff2ec 100%);
-    color: #2f1f38 !important;
+    background: radial-gradient(circle at 20% 20%, rgba(123, 97, 255, 0.15), transparent 40%),
+                radial-gradient(circle at 80% 80%, rgba(255, 77, 141, 0.15), transparent 40%),
+                radial-gradient(circle at top, #1a0b33, #05020a);
+    color: #ffffff !important;
+    font-family: 'Prompt', sans-serif;
 }
 
-p, span, div, label, li, small {
-    color: #2f1f38 !important;
+/* 3. Typography & Text Glow */
+h1, h2, h3, h4, h5, h6, p, span, label, div {
+    font-family: 'Prompt', sans-serif;
+    color: #ffffff !important;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    margin: 0 !important;
+.hero-brand {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.8rem !important;
+    font-weight: 800;
+    background: linear-gradient(135deg, #FFD700 0%, #D4AF37 50%, #FFDF00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -2px;
+    filter: drop-shadow(0 0 15px rgba(212, 175, 55, 0.6));
+    margin-bottom: 5px !important;
+    text-transform: uppercase;
 }
 
+.hero-subtitle {
+    font-size: 1.4rem !important;
+    color: #e0ceff !important;
+    font-weight: 300 !important;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(224, 206, 255, 0.5);
+    margin-top: 5px !important;
+}
+
+/* 4. Glowing Aura Containers (No hard borders, just light) */
+.hero-card, .glow-box, .result-card, .mini-card, .stat-card, .review-card {
+    background: rgba(255, 255, 255, 0.03) !important;
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: none !important; /* Remove borders */
+    border-radius: 28px !important;
+    padding: 30px !important;
+    /* Neon Aura Glow */
+    box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.6),
+                0 0 25px 2px rgba(123, 97, 255, 0.2), /* Cyan/Purple Aura */
+                0 0 10px 1px rgba(255, 77, 141, 0.1) !important; /* Magenta Aura */
+    transition: all 0.4s ease;
+}
+
+.glow-box {
+    background: linear-gradient(135deg, rgba(123, 97, 255, 0.15), rgba(255, 77, 141, 0.15)) !important;
+    box-shadow: 0 10px 50px 0 rgba(0, 0, 0, 0.6),
+                0 0 35px 3px rgba(123, 97, 255, 0.4),
+                0 0 15px 2px rgba(255, 77, 141, 0.3) !important;
+}
+
+/* Hover effects for cards */
+.hero-card:hover, .result-card:hover, .stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 60px 0 rgba(0, 0, 0, 0.7),
+                0 0 40px 5px rgba(123, 97, 255, 0.4),
+                0 0 20px 3px rgba(255, 77, 141, 0.3) !important;
+}
+
+/* 5. Glowing Interactive Buttons */
 div.stButton > button:first-child,
 div[data-testid="stFormSubmitButton"] > button {
-    background: linear-gradient(to right, #ba68c8 0%, #f06292 100%) !important;
+    background: linear-gradient(135deg, #8a6fff 0%, #ff6eb4 100%) !important;
     color: white !important;
     border: none !important;
-    border-radius: 25px !important;
-    padding: 0.78rem 1.3rem !important;
-    font-weight: 700 !important;
-    font-size: 1.02rem !important;
-    transition: 0.25s all ease !important;
-    box-shadow: 0 6px 18px rgba(186, 104, 200, 0.28) !important;
-    width: 100% !important;
-    margin-top: 10px !important;
+    border-radius: 50px !important;
+    padding: 1.2rem 2.5rem !important;
+    font-weight: 600 !important;
+    font-size: 1.15rem !important;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
+    box-shadow: 0 8px 30px rgba(138, 111, 255, 0.5) !important;
+    margin-top: 20px !important;
 }
 
-div.stButton > button:first-child:hover,
-div[data-testid="stFormSubmitButton"] > button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 22px rgba(186, 104, 200, 0.38);
-    color: white !important;
+div.stButton > button:first-child:hover {
+    transform: translateY(-4px) scale(1.03);
+    box-shadow: 0 15px 45px rgba(255, 110, 180, 0.6),
+                0 0 30px rgba(138, 111, 255, 0.5) !important;
 }
 
+/* 6. Form Inputs & Selectbox */
 .stTextInput > div > div > input,
 .stNumberInput > div > div > input,
 .stTextArea textarea,
 .stSelectbox div[data-baseweb="select"] > div {
-    border-radius: 14px !important;
-    border: 1px solid #d9cfe6 !important;
-    background-color: rgba(255,255,255,0.94) !important;
-    color: #2f1f38 !important;
-    -webkit-text-fill-color: #2f1f38 !important;
+    background-color: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 18px !important;
+    color: #ffffff !important;
+    -webkit-text-fill-color: #ffffff !important;
+    padding: 12px 18px !important;
+    transition: border 0.3s ease;
 }
 
-input::placeholder,
-textarea::placeholder {
-    color: #8d7b9a !important;
-    opacity: 1 !important;
-    -webkit-text-fill-color: #8d7b9a !important;
+/* Glowing input focus */
+.stTextInput > div > div > input:focus,
+.stNumberInput > div > div > input:focus,
+.stTextArea textarea:focus {
+    border: 1px solid rgba(138, 111, 255, 0.6) !important;
+    box-shadow: 0 0 15px rgba(138, 111, 255, 0.3) !important;
 }
 
-label, .stMarkdown, .stTextInput label, .stNumberInput label, .stSelectbox label, .stTextArea label {
-    color: #4a3557 !important;
-}
-
-div[data-baseweb="select"] * {
-    color: #2f1f38 !important;
-}
-
-.stAlert {
-    border-radius: 14px !important;
-    border: none !important;
-}
-
-.hero-header-box {
-    position: relative;
-}
-
-.hero-title-wrap {
-    text-align: left;
-    margin-top: 6px;
-    margin-bottom: 12px;
-}
-
-.hero-brand {
-    font-size: 3.0rem;
-    font-weight: 800;
-    line-height: 1.02;
-    color: #3f234f !important;
-    letter-spacing: -1px;
-    margin-bottom: 10px;
-}
-
-.hero-subtitle {
-    font-size: 2.0rem;
-    font-weight: 700;
-    line-height: 1.22;
-    color: #3f234f !important;
-}
-
-.top-floating-lang {
-    position: absolute;
-    top: -33px;
-    right: 0;
-    z-index: 10;
-    display: flex;
-    gap: 8px;
-}
-
+/* 7. Language Switcher */
 .lang-chip {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 38px;
-    height: 28px;
-    padding: 0 10px;
-    border-radius: 999px;
-    background: rgba(255,255,255,0.88);
-    color: #6e4a7d !important;
-    text-decoration: none !important;
-    font-size: 12px;
-    font-weight: 700;
-    border: 1px solid rgba(186, 104, 200, 0.18);
-    box-shadow: 0 4px 14px rgba(186, 104, 200, 0.12);
-    backdrop-filter: blur(8px);
-    transition: all 0.22s ease;
-}
-
-.lang-chip:hover {
-    background: rgba(255,255,255,0.98);
-    transform: translateY(-1px);
-    box-shadow: 0 6px 18px rgba(186, 104, 200, 0.18);
+    background: rgba(255, 255, 255, 0.05) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
 }
 
 .lang-chip.active {
-    background: linear-gradient(to right, #ba68c8, #f06292);
-    color: white !important;
-    border: none;
-    box-shadow: 0 0 12px rgba(186, 104, 200, 0.35);
-}
-
-.hero-card {
-    background: rgba(255,255,255,0.58) !important;
-    backdrop-filter: blur(6px);
-    padding: 20px 18px !important;
-    border-radius: 24px !important;
-    box-shadow: 0 8px 24px rgba(126, 87, 194, 0.10) !important;
-    margin-top: 10px !important;
-    margin-bottom: 16px !important;
-}
-
-.glow-box {
-    background: linear-gradient(135deg, rgba(214,228,255,0.95), rgba(234,223,255,0.95)) !important;
-    border-radius: 18px !important;
-    padding: 18px !important;
-    box-shadow: 0 6px 20px rgba(126, 87, 194, 0.10) !important;
-    margin-top: 8px !important;
-    margin-bottom: 18px !important;
-}
-
-.result-card {
-    background: rgba(255,255,255,0.85) !important;
-    padding: 22px !important;
-    border-radius: 20px !important;
-    box-shadow: 0 10px 28px rgba(126, 87, 194, 0.12) !important;
-    margin-top: 10px !important;
-    margin-bottom: 12px !important;
-    color: #2f1f38 !important;
-}
-
-.mini-card {
-    background: rgba(255,255,255,0.80) !important;
-    padding: 16px !important;
-    border-radius: 18px !important;
-    box-shadow: 0 4px 16px rgba(126, 87, 194, 0.10) !important;
-    margin-bottom: 12px !important;
-    color: #2f1f38 !important;
-}
-
-.stat-card {
-    background: rgba(255,255,255,0.78) !important;
-    padding: 14px 12px !important;
-    border-radius: 18px !important;
-    text-align: center !important;
-    box-shadow: 0 4px 14px rgba(126, 87, 194, 0.08) !important;
-    margin-bottom: 10px !important;
-    min-height: 120px;
-}
-
-.review-card {
-    background: rgba(255,255,255,0.78) !important;
-    padding: 16px !important;
-    border-radius: 18px !important;
-    box-shadow: 0 4px 14px rgba(126, 87, 194, 0.08) !important;
-    margin-bottom: 12px !important;
-}
-
-.center-text {
-    text-align: center !important;
-    color: #5a3d5c !important;
-}
-
-.soft-note {
-    color: #6b5876 !important;
-    font-size: 0.95rem !important;
-}
-
-.cta-note {
-    text-align: center;
-    color: #6e4a7d !important;
-    font-size: 0.95rem;
-    margin-top: 6px;
-    margin-bottom: 8px;
-}
-
-.premium-btn a {
-    display: block;
-    text-align: center;
-    padding: 14px 18px;
-    border-radius: 999px;
-    font-weight: 600;
-    font-size: 14px;
-    background: linear-gradient(135deg, #ff4d8d, #7b61ff);
-    color: white !important;
-    box-shadow: 0 8px 20px rgba(123, 97, 255, 0.3);
-    text-decoration: none;
-    transition: all 0.25s ease;
-}
-
-.premium-btn a:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 12px 28px rgba(123, 97, 255, 0.4);
-}
-
-hr {
+    background: linear-gradient(135deg, #8a6fff, #ff6eb4) !important;
     border: none !important;
-    border-top: 1px solid rgba(126, 87, 194, 0.15) !important;
+    box-shadow: 0 4px 20px rgba(138, 111, 255, 0.5);
 }
 
-* {
-    -webkit-text-fill-color: inherit;
-}
-
-@media (max-width: 768px) {
-    .hero-brand {
-        font-size: 2.25rem !important;
-        line-height: 1.02 !important;
-        letter-spacing: -0.4px !important;
-        margin-bottom: 12px !important;
-    }
-
-    .hero-subtitle {
-        font-size: 1.15rem !important;
-        line-height: 1.32 !important;
-        font-weight: 700 !important;
-    }
-
-    .hero-card {
-        padding: 16px 14px !important;
-        border-radius: 20px !important;
-    }
-
-    .glow-box {
-        padding: 15px !important;
-        border-radius: 16px !important;
-    }
-
-    .result-card, .mini-card, .stat-card, .review-card {
-        border-radius: 16px !important;
-    }
-
-    .soft-note {
-        font-size: 0.92rem !important;
-    }
-
-    .top-floating-lang {
-        top: -33px;
-        right: 0;
-        gap: 6px;
-    }
-
-    .lang-chip {
-        min-width: 34px;
-        height: 24px;
-        padding: 0 8px;
-        font-size: 11px;
-    }
-}
-
-@media (prefers-color-scheme: dark) {
-    html, body, .stApp {
-        color: #2f1f38 !important;
-        background-color: transparent !important;
-    }
-
-    p, span, div, label, li, small {
-        color: #2f1f38 !important;
-    }
-
-    .result-card, .mini-card, .stat-card, .review-card, .hero-card, .glow-box {
-        color: #2f1f38 !important;
-        background: rgba(255,255,255,0.88) !important;
-    }
-
-    .stTextInput > div > div > input,
-    .stNumberInput > div > div > input,
-    .stTextArea textarea,
-    .stSelectbox div[data-baseweb="select"] > div {
-        background-color: rgba(255,255,255,0.95) !important;
-        color: #2f1f38 !important;
-        -webkit-text-fill-color: #2f1f38 !important;
-    }
-
-    input::placeholder,
-    textarea::placeholder {
-        color: #8d7b9a !important;
-        -webkit-text-fill-color: #8d7b9a !important;
-    }
-}
+/* Extra touch: Remove default Streamlit elements */
+#MainMenu {visibility: hidden;}
+footer {visibility: hidden;}
+header {visibility: hidden;}
 </style>
 """, unsafe_allow_html=True)
 
