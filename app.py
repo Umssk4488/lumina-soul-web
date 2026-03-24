@@ -355,6 +355,7 @@ hr {
 }
 </style>
 """, unsafe_allow_html=True)
+
 st.image("banner.png", use_container_width=True)
 
 # -----------------------------
