@@ -354,7 +354,6 @@ hr {
 }
 </style>
 """, unsafe_allow_html=True)
-st.image("hero.png", use_container_width=True)
 
 # -----------------------------
 # Google Sheets endpoint
