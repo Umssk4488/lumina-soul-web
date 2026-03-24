@@ -10,7 +10,6 @@ st.set_page_config(
     page_icon="🔮",
     layout="centered"
 )
-st.image("banner.jpg.png", use_container_width=300)
 
 # -----------------------------
 # Language state
@@ -355,9 +354,6 @@ hr {
 }
 </style>
 """, unsafe_allow_html=True)
-st.image("hero.png", use_container_width=True)
-
-st.image("banner.png", use_container_width=True)
 
 # -----------------------------
 # Google Sheets endpoint
