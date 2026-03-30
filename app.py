@@ -880,9 +880,7 @@ st.markdown(
                 <div class="hero-lux-cta-row">
                     <a href="#decode-form" class="hero-lux-btn-primary">
                         {tr("เริ่มต้นถอดรหัสเลย", "Begin Your Reading")}
-                    </a>
-                    <a href="#why-start" class="hero-lux-btn-secondary">
-                        {tr("อ่านรายละเอียดก่อน", "Explore First")}
+                    
                     </a>
                 </div>
             </div>
