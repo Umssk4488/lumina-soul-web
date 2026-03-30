@@ -1,6 +1,5 @@
 import streamlit as st
 import requests
-from datetime import datetime
 
 # -----------------------------
 # Page config
@@ -18,18 +17,12 @@ if "lang" not in st.session_state:
     st.session_state.lang = "th"
 
 
+def set_lang(lang: str):
+    st.session_state.lang = lang
+
+
 def tr(th_text: str, en_text: str) -> str:
     return th_text if st.session_state.lang == "th" else en_text
-
-
-# -----------------------------
-# Query params language switch
-# -----------------------------
-query_params = st.query_params
-if "lang" in query_params:
-    qp_lang = str(query_params["lang"]).lower()
-    if qp_lang in ["th", "en"]:
-        st.session_state.lang = qp_lang
 
 
 # -----------------------------
@@ -76,6 +69,24 @@ div[data-testid="stFormSubmitButton"] > button:hover {
     color: white !important;
 }
 
+.lang-switch-wrap {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+div[data-testid="column"] .lang-btn div.stButton > button {
+    width: auto !important;
+    min-width: 58px !important;
+    padding: 0.42rem 0.75rem !important;
+    font-size: 0.82rem !important;
+    border-radius: 999px !important;
+    margin-top: 0 !important;
+    box-shadow: 0 4px 12px rgba(186, 104, 200, 0.18) !important;
+}
+
 .stTextInput > div > div > input,
 .stNumberInput > div > div > input,
 .stTextArea textarea,
@@ -107,10 +118,6 @@ div[data-baseweb="select"] * {
     border: none !important;
 }
 
-.hero-header-box {
-    position: relative;
-}
-
 .hero-title-wrap {
     text-align: left;
     margin-top: 6px;
@@ -131,47 +138,6 @@ div[data-baseweb="select"] * {
     font-weight: 700;
     line-height: 1.22;
     color: #3f234f !important;
-}
-
-.top-floating-lang {
-    position: absolute;
-    top: -33px;
-    right: 0;
-    z-index: 10;
-    display: flex;
-    gap: 8px;
-}
-
-.lang-chip {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 38px;
-    height: 28px;
-    padding: 0 10px;
-    border-radius: 999px;
-    background: rgba(255,255,255,0.88);
-    color: #6e4a7d !important;
-    text-decoration: none !important;
-    font-size: 12px;
-    font-weight: 700;
-    border: 1px solid rgba(186, 104, 200, 0.18);
-    box-shadow: 0 4px 14px rgba(186, 104, 200, 0.12);
-    backdrop-filter: blur(8px);
-    transition: all 0.22s ease;
-}
-
-.lang-chip:hover {
-    background: rgba(255,255,255,0.98);
-    transform: translateY(-1px);
-    box-shadow: 0 6px 18px rgba(186, 104, 200, 0.18);
-}
-
-.lang-chip.active {
-    background: linear-gradient(to right, #ba68c8, #f06292);
-    color: white !important;
-    border: none;
-    box-shadow: 0 0 12px rgba(186, 104, 200, 0.35);
 }
 
 .hero-card {
@@ -240,33 +206,6 @@ div[data-baseweb="select"] * {
     font-size: 0.95rem !important;
 }
 
-.cta-note {
-    text-align: center;
-    color: #6e4a7d !important;
-    font-size: 0.95rem;
-    margin-top: 6px;
-    margin-bottom: 8px;
-}
-
-.premium-btn a {
-    display: block;
-    text-align: center;
-    padding: 14px 18px;
-    border-radius: 999px;
-    font-weight: 600;
-    font-size: 14px;
-    background: linear-gradient(135deg, #ff4d8d, #7b61ff);
-    color: white !important;
-    box-shadow: 0 8px 20px rgba(123, 97, 255, 0.3);
-    text-decoration: none;
-    transition: all 0.25s ease;
-}
-
-.premium-btn a:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 12px 28px rgba(123, 97, 255, 0.4);
-}
-
 hr {
     border: none !important;
     border-top: 1px solid rgba(126, 87, 194, 0.15) !important;
@@ -308,17 +247,10 @@ hr {
         font-size: 0.92rem !important;
     }
 
-    .top-floating-lang {
-        top: -33px;
-        right: 0;
-        gap: 6px;
-    }
-
-    .lang-chip {
-        min-width: 34px;
-        height: 24px;
-        padding: 0 8px;
-        font-size: 11px;
+    div[data-testid="column"] .lang-btn div.stButton > button {
+        min-width: 52px !important;
+        padding: 0.36rem 0.65rem !important;
+        font-size: 0.76rem !important;
     }
 }
 
@@ -358,7 +290,7 @@ hr {
 # -----------------------------
 # Google Sheets endpoint
 # -----------------------------
-GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbztgbRuGYMGMC41V8QHgNl2wnNTgJ5ZhRckVoiUXpVNTkSA-U75MFg-GRZNiCiIjrQeGg/exec"
+GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzjNIr948oDKixAVajbf7me-kuABFyRopjKVmdx-PmMkYpFL8WbXAraMMJkPy2lMKLJNg/exec"
 
 # -----------------------------
 # Helpers
@@ -500,24 +432,72 @@ month_options = [
 ]
 
 month_energy_meanings = {
-    1: {"th": "พลังของการเริ่มต้นและความชัดเจน", "en": "the energy of beginnings and clarity"},
-    2: {"th": "พลังของความสัมพันธ์และความอ่อนโยน", "en": "the energy of connection and gentleness"},
-    3: {"th": "พลังของการสื่อสารและความคิดสร้างสรรค์", "en": "the energy of communication and creativity"},
-    4: {"th": "พลังของความมั่นคงและการวางรากฐาน", "en": "the energy of stability and foundation-building"},
-    5: {"th": "พลังของการเปลี่ยนแปลงและอิสรภาพ", "en": "the energy of change and freedom"},
-    6: {"th": "พลังของความรัก การดูแล และการเยียวยา", "en": "the energy of love, care, and healing"},
-    7: {"th": "พลังของการค้นหาความหมายภายใน", "en": "the energy of inner searching and meaning"},
-    8: {"th": "พลังของความสำเร็จและการผลักดันเป้าหมาย", "en": "the energy of achievement and forward momentum"},
-    9: {"th": "พลังของการให้ การปล่อยวาง และการเข้าใจชีวิต", "en": "the energy of giving, release, and understanding life"},
-    10: {"th": "พลังของจุดเปลี่ยนและการเปิดวงจรใหม่", "en": "the energy of turning points and new cycles"},
-    11: {"th": "พลังของญาณรู้และการตื่นรู้ภายใน", "en": "the energy of intuition and inner awakening"},
-    12: {"th": "พลังของการปิดวงจรเก่าเพื่อเตรียมสู่การเริ่มต้นใหม่", "en": "the energy of closing old cycles to prepare for a new beginning"}
+    1: {
+        "th": "พลังของการเริ่มต้นและความชัดเจน",
+        "en": "the energy of beginnings and clarity"
+    },
+    2: {
+        "th": "พลังของความสัมพันธ์และความอ่อนโยน",
+        "en": "the energy of connection and gentleness"
+    },
+    3: {
+        "th": "พลังของการสื่อสารและความคิดสร้างสรรค์",
+        "en": "the energy of communication and creativity"
+    },
+    4: {
+        "th": "พลังของความมั่นคงและการวางรากฐาน",
+        "en": "the energy of stability and foundation-building"
+    },
+    5: {
+        "th": "พลังของการเปลี่ยนแปลงและอิสรภาพ",
+        "en": "the energy of change and freedom"
+    },
+    6: {
+        "th": "พลังของความรัก การดูแล และการเยียวยา",
+        "en": "the energy of love, care, and healing"
+    },
+    7: {
+        "th": "พลังของการค้นหาความหมายภายใน",
+        "en": "the energy of inner searching and meaning"
+    },
+    8: {
+        "th": "พลังของความสำเร็จและการผลักดันเป้าหมาย",
+        "en": "the energy of achievement and forward momentum"
+    },
+    9: {
+        "th": "พลังของการให้ การปล่อยวาง และการเข้าใจชีวิต",
+        "en": "the energy of giving, release, and understanding life"
+    },
+    10: {
+        "th": "พลังของจุดเปลี่ยนและการเปิดวงจรใหม่",
+        "en": "the energy of turning points and new cycles"
+    },
+    11: {
+        "th": "พลังของญาณรู้และการตื่นรู้ภายใน",
+        "en": "the energy of intuition and inner awakening"
+    },
+    12: {
+        "th": "พลังของการปิดวงจรเก่าเพื่อเตรียมสู่การเริ่มต้นใหม่",
+        "en": "the energy of closing old cycles to prepare for a new beginning"
+    }
 }
 
 categories = [
-    {"key": "love", "th": "ความรักและความสัมพันธ์", "en": "Love & Relationships"},
-    {"key": "career", "th": "การงานและเส้นทางชีวิต", "en": "Career & Life Path"},
-    {"key": "money", "th": "โชคลาภและกระแสการเงิน", "en": "Luck & Financial Flow"}
+    {
+        "key": "love",
+        "th": "ความรักและความสัมพันธ์",
+        "en": "Love & Relationships"
+    },
+    {
+        "key": "career",
+        "th": "การงานและเส้นทางชีวิต",
+        "en": "Career & Life Path"
+    },
+    {
+        "key": "money",
+        "th": "โชคลาภและกระแสการเงิน",
+        "en": "Luck & Financial Flow"
+    }
 ]
 
 category_advice = {
@@ -534,6 +514,7 @@ category_advice = {
         "en": "This is an initial reflection of your financial flow. If you would like a deeper reading about money, opportunities, and personal timing, you can reach out for a personalized session."
     }
 }
+
 
 # -----------------------------
 # Generate content
@@ -632,63 +613,23 @@ If you would like a deeper personalized reading in the area of {category_label},
 """.strip()
 
 
-def build_premium_reading(category_key: str, life_number: int, lang: str) -> dict:
-    if lang == "th":
-        strengths = {
-            "love": "คุณมีพลังรักที่ลึก ซื่อสัตย์ และรับรู้อารมณ์คนอื่นได้ดี จุดเด่นของคุณคือการเชื่อมโยงหัวใจคนได้จริง",
-            "career": "คุณมีพลังในการสร้างเส้นทางของตัวเอง และมีศักยภาพเติบโตมากเมื่อได้ทำสิ่งที่สอดคล้องกับตัวตนจริง",
-            "money": "คุณมีพลังสร้างมูลค่าได้ดี หากจัดระบบความคิด การตัดสินใจ และความเชื่อเรื่องคุณค่าในตัวเองให้ชัด"
-        }
-        next_steps = {
-            "love": "โฟกัสที่การตั้งขอบเขตและถามตัวเองให้ชัดว่าความรักแบบไหนที่ดีต่อใจคุณจริง",
-            "career": "สังเกตว่างานแบบไหนที่ทำแล้วใจไม่ฝืน เพราะนั่นคือสัญญาณของเส้นทางที่ใช่กว่าเดิม",
-            "money": "เริ่มจัดระบบการเงินและเปิดรับวิธีสร้างรายได้ใหม่ โดยไม่ดูถูกคุณค่าของตัวเอง"
-        }
-        cautions = {
-            "love": "ระวังการยอมทนเพียงเพราะกลัวเสียใครไป",
-            "career": "ระวังอยู่ในเส้นทางเดิมเพียงเพราะความคุ้นเคย",
-            "money": "ระวังการตัดสินตัวเองจากรายได้ระยะสั้น"
-        }
-    else:
-        strengths = {
-            "love": "You carry deep, sincere love energy and a real ability to connect with people at heart level.",
-            "career": "You have strong potential to create your own path and grow when your work aligns with your authentic self.",
-            "money": "You have solid value-creation energy when your thinking, structure, and self-worth become clearer."
-        }
-        next_steps = {
-            "love": "Focus on boundaries and get clearer about the kind of love that is truly healthy for you.",
-            "career": "Notice which kind of work feels aligned rather than forced. That often points toward your true path.",
-            "money": "Start creating better financial structure and open yourself to new ways of receiving income."
-        }
-        cautions = {
-            "love": "Be careful not to stay only because you fear losing someone.",
-            "career": "Be careful not to remain in an old path just because it feels familiar.",
-            "money": "Be careful not to measure your worth by short-term financial fluctuations."
-        }
-
-    return {
-        "strength": strengths.get(category_key, ""),
-        "next_step": next_steps.get(category_key, ""),
-        "caution": cautions.get(category_key, "")
-    }
-
-
 # -----------------------------
 # Header with language switch
 # -----------------------------
+# Header FIX (ปุ่มมุมขวาบน)
+# -----------------------------
 st.markdown(
-f"""
-<div class="hero-header-box">
-<div class="top-floating-lang">
-<a href="?lang=th" class="lang-chip {'active' if st.session_state.lang == 'th' else ''}">TH</a>
-<a href="?lang=en" class="lang-chip {'active' if st.session_state.lang == 'en' else ''}">EN</a>
-</div>
-<div class="hero-title-wrap" style="margin-bottom:0;">
-<div class="hero-brand" style="margin-bottom:0;">🔮 LUMINA SOUL</div>
-</div>
-</div>
-""",
-unsafe_allow_html=True
+    f"""
+    <div class="top-floating-lang">
+        <a href="?lang=th" class="lang-chip {'active' if st.session_state.lang == 'th' else ''}">TH</a>
+        <a href="?lang=en" class="lang-chip {'active' if st.session_state.lang == 'en' else ''}">EN</a>
+    </div>
+
+    <div class="hero-title-wrap" style="margin-bottom:0;">
+        <div class="hero-brand" style="margin-bottom:0;">🔮 LUMINA SOUL</div>
+    </div>
+    """,
+    unsafe_allow_html=True
 )
 
 st.markdown(
@@ -740,14 +681,14 @@ st.markdown(
 # -----------------------------
 # Trust section
 # -----------------------------
-st.markdown(tr("### 🔯 ทำไมหลายคนถึงเริ่มจากการถอดรหัสพลังงานชีวิต", "### 🔯 Why many people begin with decoding their life energy"))
+st.markdown(tr("### 🔑 ทำไมหลายคนถึงเริ่มจากการถอดรหัสพลังงานชีวิต", "### 🔑 Why many people begin with decoding their life energy"))
 
 c1, c2, c3 = st.columns(3)
 with c1:
     st.markdown(
         f"""
         <div class="stat-card">
-            <div style="font-size:1.15rem; font-weight:700; color:#8e24aa;">{tr("⭐️เข้าใจตัวเอง", "Know Yourself")}</div>
+            <div style="font-size:1.15rem; font-weight:700; color:#8e24aa;">{tr("เข้าใจตัวเอง", "Know Yourself")}</div>
             <div class="soft-note">{tr("เห็นจุดแข็ง จุดเปลี่ยน และบทเรียนที่กำลังเกิดขึ้น", "See your strengths, turning points, and the lessons unfolding in your life")}</div>
         </div>
         """,
@@ -758,7 +699,7 @@ with c2:
     st.markdown(
         f"""
         <div class="stat-card">
-            <div style="font-size:1.15rem; font-weight:700; color:#8e24aa;">{tr("⭐️สะท้อนชีวิต", "Reflect on Life")}</div>
+            <div style="font-size:1.15rem; font-weight:700; color:#8e24aa;">{tr("สะท้อนชีวิต", "Reflect on Life")}</div>
             <div class="soft-note">{tr("ช่วยมองความรัก งาน และการเงินในมุมที่ลึกขึ้น", "Gain deeper insight into love, career, and financial flow")}</div>
         </div>
         """,
@@ -769,14 +710,14 @@ with c3:
     st.markdown(
         f"""
         <div class="stat-card">
-            <div style="font-size:1.15rem; font-weight:700; color:#8e24aa;">{tr("⭐️ต่อยอดได้จริง", "Take It Further")}</div>
+            <div style="font-size:1.15rem; font-weight:700; color:#8e24aa;">{tr("ต่อยอดได้จริง", "Take It Further")}</div>
             <div class="soft-note">{tr("หากรู้สึกว่าตรง คุณสามารถอ่านเชิงลึกต่อได้ทันที", "If it resonates, you can continue with a deeper personalized reading")}</div>
         </div>
         """,
         unsafe_allow_html=True
     )
 
-st.markdown(tr("### ☪️ รีวิวความรู้สึกจากผู้ที่เคยสะท้อนพลังงาน💫", "### ☪️ Reflections from people who resonated with their reading 💫"))
+st.markdown(tr("### 🌕 รีวิวความรู้สึกจากผู้ที่เคยสะท้อนพลังงาน💫", "### 🌕 Reflections from people who resonated with their reading 💫"))
 
 r1, r2 = st.columns(2)
 with r1:
@@ -929,11 +870,6 @@ if submitted:
             }
         )[st.session_state.lang]
 
-        premium = build_premium_reading(category_key, life_number, st.session_state.lang)
-        strength = premium["strength"]
-        next_step_text = premium["next_step"]
-        caution = premium["caution"]
-
         birthdate_text_th = f"{day_num} {birth_month_th} {year_num}"
         birthdate_text_en = f"{day_num} {birth_month_en} {year_num}"
 
@@ -959,12 +895,7 @@ if submitted:
                     "birth_meaning": birth_meaning,
                     "soul_message": soul_message,
                     "advice": advice,
-                    "strength": strength,
-                    "next_step": next_step_text,
-                    "caution": caution,
-                    "language": st.session_state.lang,
-                    "source": "website_form",
-                    "submitted_at": str(datetime.now())
+                    "language": st.session_state.lang
                 },
                 timeout=15
             )
@@ -1024,36 +955,6 @@ if submitted:
             unsafe_allow_html=True
         )
 
-        st.markdown(
-            f"""
-            <div class="mini-card">
-                <h4 style="color:#8e24aa; margin-top:0;">{tr("🌟 จุดเด่นพลังงานของคุณ", "🌟 Your Energy Strength")}</h4>
-                <p>{strength}</p>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-
-        st.markdown(
-            f"""
-            <div class="mini-card">
-                <h4 style="color:#8e24aa; margin-top:0;">{tr("🪄 แนวทางที่ควรโฟกัสต่อ", "🪄 Your Next Focus")}</h4>
-                <p>{next_step_text}</p>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-
-        st.markdown(
-            f"""
-            <div class="mini-card">
-                <h4 style="color:#8e24aa; margin-top:0;">{tr("⚠️ สิ่งที่ควรระวัง", "⚠️ What to Be Careful With")}</h4>
-                <p>{caution}</p>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-
         st.info(f"💡 {advice}")
 
         st.markdown(
@@ -1066,27 +967,53 @@ if submitted:
             unsafe_allow_html=True
         )
 
+        st.markdown(tr("### ✨ ข้อความจาก Lumina Soul", "### ✨ A Message from Lumina Soul"))
         st.markdown(
-            f"""
-<div class="cta-note">
-{tr(
-"หากบางส่วนของข้อความนี้สะท้อนชีวิตคุณจริง คุณสามารถพูดคุยต่อเพื่อรับการอ่านเชิงลึกแบบเฉพาะตัวได้",
-"If part of this message resonates with your life, you can continue with a deeper personalized reading"
-)}
-</div>
+            tr(
+                """
+สิ่งที่คุณเห็นข้างต้น เป็นเพียง **การสะท้อนพลังงานเบื้องต้นจากวันเกิดของคุณ**
+
+หลายครั้ง รหัสชีวิตของคนเรา  
+ไม่ได้เปิดเผยทั้งหมดในครั้งเดียว
+
+ยังมีรายละเอียดที่ลึกกว่า เช่น
+
+• บทเรียนชีวิตที่เกิดซ้ำ  
+• ความสัมพันธ์ที่เข้ามาในชีวิต  
+• จังหวะการเปลี่ยนแปลงของเส้นทางชีวิต  
+
+หากคุณรู้สึกว่า **บางส่วนของข้อความนี้สะท้อนชีวิตคุณจริง**
+
+คุณสามารถทักเข้ามาเพื่อรับ  
+**การอ่านพลังงานเชิงลึกแบบเฉพาะตัว**
+
+Lumina Soul จะช่วยสะท้อนสิ่งที่ชีวิตของคุณกำลังพยายามบอกคุณอยู่ ✨
 """,
-            unsafe_allow_html=True
+                """
+What you see above is only an **initial energetic reflection based on your birth date**.
+
+Many times, the codes of our lives  
+do not reveal everything all at once.
+
+There are often deeper layers such as:
+
+• repeating life lessons  
+• relationships that keep entering your path  
+• important timing shifts in your life journey  
+
+If you feel that **part of this message truly resonates with your life**,
+
+you are welcome to reach out for a  
+**deeper personalized energy reading**.
+
+Lumina Soul is here to reflect what your life may be trying to show you ✨
+"""
+            )
         )
 
-        st.markdown(
-            f"""
-<div class="premium-btn">
-    <a href="https://lin.ee/jmI4z6G" target="_blank">
-        ✳️👉 {tr("คุยกับที่ปรึกษา LUMINA SOUL", "Talk to a LUMINA SOUL guide")}
-    </a>
-</div>
-""",
-            unsafe_allow_html=True
+        st.link_button(
+            tr("✳️👉 คุยกับที่ปรึกษา LUMINA SOUL", "✳️👉 Talk to a LUMINA SOUL guide"),
+            "https://lin.ee/jmI4z6G"
         )
 
 # -----------------------------
