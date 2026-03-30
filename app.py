@@ -1,6 +1,5 @@
 import streamlit as st
 import requests
-from datetime import datetime
 
 # -----------------------------
 # Page config
@@ -18,18 +17,12 @@ if "lang" not in st.session_state:
     st.session_state.lang = "th"
 
 
+def set_lang(lang: str):
+    st.session_state.lang = lang
+
+
 def tr(th_text: str, en_text: str) -> str:
     return th_text if st.session_state.lang == "th" else en_text
-
-
-# -----------------------------
-# Query params language switch
-# -----------------------------
-query_params = st.query_params
-if "lang" in query_params:
-    qp_lang = str(query_params["lang"]).lower()
-    if qp_lang in ["th", "en"]:
-        st.session_state.lang = qp_lang
 
 
 # -----------------------------
@@ -42,7 +35,7 @@ html, body, [class*="css"] {
 }
 
 .stApp {
-    background-image: linear-gradient(135deg, #f8f1fb 0%, #eadbf8 35%, #f9f4f9 68%, #fff6ef 100%);
+    background-image: linear-gradient(135deg, #fdfcfb 0%, #e7d7fb 38%, #fdfbfb 68%, #fff2ec 100%);
     color: #2f1f38 !important;
 }
 
@@ -54,26 +47,55 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 !important;
 }
 
-section.main > div {
-    padding-top: 1.2rem;
+div.stButton > button:first-child,
+div[data-testid="stFormSubmitButton"] > button {
+    background: linear-gradient(to right, #ba68c8 0%, #f06292 100%) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 25px !important;
+    padding: 0.78rem 1.3rem !important;
+    font-weight: 700 !important;
+    font-size: 1.02rem !important;
+    transition: 0.25s all ease !important;
+    box-shadow: 0 6px 18px rgba(186, 104, 200, 0.28) !important;
+    width: 100% !important;
+    margin-top: 10px !important;
 }
 
-/* Inputs */
+div.stButton > button:first-child:hover,
+div[data-testid="stFormSubmitButton"] > button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(186, 104, 200, 0.38);
+    color: white !important;
+}
+
+.lang-switch-wrap {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    gap: 6px;
+    margin-top: 8px;
+}
+
+div[data-testid="column"] .lang-btn div.stButton > button {
+    width: auto !important;
+    min-width: 58px !important;
+    padding: 0.42rem 0.75rem !important;
+    font-size: 0.82rem !important;
+    border-radius: 999px !important;
+    margin-top: 0 !important;
+    box-shadow: 0 4px 12px rgba(186, 104, 200, 0.18) !important;
+}
+
 .stTextInput > div > div > input,
 .stNumberInput > div > div > input,
 .stTextArea textarea,
 .stSelectbox div[data-baseweb="select"] > div {
-    border-radius: 16px !important;
-    border: 1px solid rgba(123, 97, 255, 0.16) !important;
-    background: rgba(255,255,255,0.92) !important;
+    border-radius: 14px !important;
+    border: 1px solid #d9cfe6 !important;
+    background-color: rgba(255,255,255,0.94) !important;
     color: #2f1f38 !important;
     -webkit-text-fill-color: #2f1f38 !important;
-    min-height: 48px !important;
-    box-shadow: 0 6px 18px rgba(103, 58, 183, 0.05) !important;
-}
-
-.stTextArea textarea {
-    min-height: 120px !important;
 }
 
 input::placeholder,
@@ -91,263 +113,87 @@ div[data-baseweb="select"] * {
     color: #2f1f38 !important;
 }
 
-/* Buttons */
-div.stButton > button:first-child,
-div[data-testid="stFormSubmitButton"] > button {
-    background: linear-gradient(135deg, #f5e3b1 0%, #d9b469 45%, #f8edd0 100%) !important;
-    color: #4a2f18 !important;
-    border: none !important;
-    border-radius: 999px !important;
-    padding: 0.92rem 1.5rem !important;
-    font-weight: 800 !important;
-    font-size: 1.02rem !important;
-    transition: 0.25s all ease !important;
-    box-shadow: 0 10px 26px rgba(216, 179, 106, 0.28) !important;
-    width: 100% !important;
-    margin-top: 8px !important;
-}
-
-div.stButton > button:first-child:hover,
-div[data-testid="stFormSubmitButton"] > button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 14px 30px rgba(216, 179, 106, 0.36) !important;
-    color: #4a2f18 !important;
-}
-
 .stAlert {
-    border-radius: 16px !important;
+    border-radius: 14px !important;
     border: none !important;
 }
 
-/* Hero */
-.hero-lux-wrap {
-    position: relative;
-    width: 100%;
-   min-height: 85vh;
-    border-radius: 30px;
-    overflow: hidden;
+.hero-title-wrap {
+    text-align: left;
     margin-top: 6px;
-    margin-bottom: 28px;
-    box-shadow: 0 18px 44px rgba(49, 24, 68, 0.16);
-    background:
-        linear-gradient(135deg, rgba(22,12,34,0.72), rgba(52,20,68,0.58)),
-        radial-gradient(circle at center, rgba(245,226,170,0.18), rgba(245,226,170,0.02) 36%, rgba(14,8,24,0.08) 62%, rgba(14,8,24,0.18) 100%),
-        url("https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=1600&q=80");
-    background-size: cover;
-    background-position: center;
+    margin-bottom: 12px;
 }
 
-.hero-lux-overlay {
-    position: absolute;
-    inset: 0;
-    background:
-        linear-gradient(to bottom, rgba(255,255,255,0.02), rgba(255,255,255,0.00) 32%, rgba(255,255,255,0.02) 100%);
-    pointer-events: none;
-}
-
-.hero-lux-inner {
-    position: relative;
-    z-index: 2;
-    min-height: 68vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 42px 28px;
-}
-
-.hero-lux-card {
-    width: min(900px, 94%);
-    background: linear-gradient(135deg, rgba(255,255,255,0.20), rgba(255,255,255,0.10));
-    border: 1px solid rgba(255,255,255,0.24);
-    backdrop-filter: blur(14px);
-    -webkit-backdrop-filter: blur(14px);
-    border-radius: 28px;
-    padding: 34px 28px 30px 28px;
-    text-align: center;
-    box-shadow:
-        0 12px 34px rgba(21, 8, 34, 0.24),
-        inset 0 1px 0 rgba(255,255,255,0.18);
-}
-
-.hero-lux-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    border-radius: 999px;
-    background: rgba(255,255,255,0.14);
-    border: 1px solid rgba(255,255,255,0.16);
-    color: #f6e8b2 !important;
-    font-size: 0.88rem;
-    font-weight: 700;
-    margin-bottom: 16px;
-}
-
-.hero-lux-brand {
-    font-size: 3.15rem;
+.hero-brand {
+    font-size: 3.0rem;
     font-weight: 800;
     line-height: 1.02;
+    color: #3f234f !important;
     letter-spacing: -1px;
     margin-bottom: 10px;
-    color: #fff7df !important;
-    text-shadow: 0 0 18px rgba(234, 194, 111, 0.20), 0 2px 14px rgba(0,0,0,0.18);
 }
 
-.hero-lux-divider {
-    width: 120px;
-    height: 1px;
-    margin: 0 auto 20px auto;
-    background: linear-gradient(to right, rgba(255,255,255,0), rgba(232,194,120,0.95), rgba(255,255,255,0));
-}
-
-.hero-lux-title {
-    font-size: 2.05rem;
-    line-height: 1.18;
-    font-weight: 800;
-    margin-bottom: 12px;
-    color: #ffeab7 !important;
-    text-shadow: 0 0 14px rgba(234, 194, 111, 0.15);
-}
-
-.hero-lux-sub {
-    max-width: 710px;
-    margin: 0 auto 22px auto;
-    font-size: 1.08rem;
-    line-height: 1.7;
-    color: rgba(255,255,255,0.92) !important;
-}
-
-.hero-lux-cta-row {
-    display: flex;
-    gap: 12px;
-    justify-content: center;
-    flex-wrap: wrap;
-    margin-top: 6px;
-}
-
-.hero-lux-btn-primary,
-.hero-lux-btn-secondary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 220px;
-    padding: 14px 24px;
-    border-radius: 999px;
-    text-decoration: none !important;
-    font-weight: 800;
-    font-size: 1rem;
-    transition: all 0.22s ease;
-}
-
-.hero-lux-btn-primary {
-    background: linear-gradient(135deg, #f4dfaa 0%, #d7b36d 45%, #f8ecd2 100%);
-    color: #4a2f18 !important;
-    box-shadow: 0 8px 20px rgba(216, 179, 106, 0.34), 0 0 22px rgba(244, 223, 170, 0.20);
-}
-
-.hero-lux-btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 24px rgba(216, 179, 106, 0.42), 0 0 30px rgba(244, 223, 170, 0.28);
-}
-
-.hero-lux-btn-secondary {
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.24);
-    color: #fff7df !important;
-}
-
-.hero-lux-btn-secondary:hover {
-    transform: translateY(-2px);
-    background: rgba(255,255,255,0.16);
-}
-
-/* Section styles */
-.section-lux-title {
-    font-size: 2rem;
-    font-weight: 800;
-    color: #3b234a !important;
-    margin-top: 8px;
-    margin-bottom: 6px;
-    letter-spacing: -0.5px;
-}
-
-.section-lux-sub {
-    color: #7a6488 !important;
-    margin-bottom: 14px;
-    font-size: 1rem;
-    line-height: 1.6;
-}
-
-.lux-divider-line {
-    height: 1px;
-    border: none;
-    background: linear-gradient(to right, rgba(186,104,200,0), rgba(216,179,106,0.65), rgba(186,104,200,0));
-    margin: 20px 0 22px 0;
-}
-
-.hero-card,
-.glow-box,
-.result-card,
-.mini-card,
-.stat-card,
-.review-card,
-.form-shell {
-    background: rgba(255,255,255,0.68) !important;
-    border: 1px solid rgba(255,255,255,0.34);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: 0 8px 24px rgba(126, 87, 194, 0.10) !important;
+.hero-subtitle {
+    font-size: 2.0rem;
+    font-weight: 700;
+    line-height: 1.22;
+    color: #3f234f !important;
 }
 
 .hero-card {
+    background: rgba(255,255,255,0.58) !important;
+    backdrop-filter: blur(6px);
     padding: 20px 18px !important;
     border-radius: 24px !important;
+    box-shadow: 0 8px 24px rgba(126, 87, 194, 0.10) !important;
     margin-top: 10px !important;
     margin-bottom: 16px !important;
 }
 
 .glow-box {
-    background: linear-gradient(135deg, rgba(235,225,255,0.78), rgba(246,240,255,0.70)) !important;
-    border-radius: 20px !important;
+    background: linear-gradient(135deg, rgba(214,228,255,0.95), rgba(234,223,255,0.95)) !important;
+    border-radius: 18px !important;
     padding: 18px !important;
+    box-shadow: 0 6px 20px rgba(126, 87, 194, 0.10) !important;
     margin-top: 8px !important;
     margin-bottom: 18px !important;
 }
 
 .result-card {
+    background: rgba(255,255,255,0.85) !important;
     padding: 22px !important;
-    border-radius: 22px !important;
+    border-radius: 20px !important;
+    box-shadow: 0 10px 28px rgba(126, 87, 194, 0.12) !important;
     margin-top: 10px !important;
     margin-bottom: 12px !important;
     color: #2f1f38 !important;
 }
 
 .mini-card {
-    padding: 18px !important;
-    border-radius: 20px !important;
+    background: rgba(255,255,255,0.80) !important;
+    padding: 16px !important;
+    border-radius: 18px !important;
+    box-shadow: 0 4px 16px rgba(126, 87, 194, 0.10) !important;
     margin-bottom: 12px !important;
     color: #2f1f38 !important;
 }
 
 .stat-card {
-    padding: 16px 14px !important;
-    border-radius: 20px !important;
+    background: rgba(255,255,255,0.78) !important;
+    padding: 14px 12px !important;
+    border-radius: 18px !important;
     text-align: center !important;
+    box-shadow: 0 4px 14px rgba(126, 87, 194, 0.08) !important;
     margin-bottom: 10px !important;
-    min-height: 126px;
+    min-height: 120px;
 }
 
 .review-card {
-    padding: 18px !important;
-    border-radius: 20px !important;
+    background: rgba(255,255,255,0.78) !important;
+    padding: 16px !important;
+    border-radius: 18px !important;
+    box-shadow: 0 4px 14px rgba(126, 87, 194, 0.08) !important;
     margin-bottom: 12px !important;
-}
-
-.form-shell {
-    padding: 24px 18px 18px 18px;
-    border-radius: 24px;
-    margin-top: 12px;
-    margin-bottom: 16px;
 }
 
 .center-text {
@@ -360,72 +206,6 @@ div[data-testid="stFormSubmitButton"] > button:hover {
     font-size: 0.95rem !important;
 }
 
-.cta-note {
-    text-align: center;
-    color: #6e4a7d !important;
-    font-size: 0.95rem;
-    margin-top: 6px;
-    margin-bottom: 8px;
-}
-
-.premium-btn a {
-    display: block;
-    text-align: center;
-    padding: 14px 18px;
-    border-radius: 999px;
-    font-weight: 800;
-    font-size: 15px;
-    background: linear-gradient(135deg, #f4dfaa 0%, #d7b36d 45%, #f8ecd2 100%);
-    color: #4a2f18 !important;
-    box-shadow: 0 10px 24px rgba(216, 179, 106, 0.28);
-    text-decoration: none;
-    transition: all 0.25s ease;
-}
-
-.premium-btn a:hover {
-    transform: translateY(-2px) scale(1.01);
-    box-shadow: 0 14px 28px rgba(216, 179, 106, 0.36);
-}
-
-.top-floating-lang {
-    position: absolute;
-    top: -33px;
-    right: 0;
-    z-index: 10;
-    display: flex;
-    gap: 8px;
-}
-
-.lang-chip {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 38px;
-    height: 28px;
-    padding: 0 10px;
-    border-radius: 999px;
-    background: rgba(255,255,255,0.88);
-    color: #6e4a7d !important;
-    text-decoration: none !important;
-    font-size: 12px;
-    font-weight: 700;
-    border: 1px solid rgba(186, 104, 200, 0.18);
-    box-shadow: 0 4px 14px rgba(186, 104, 200, 0.12);
-    transition: all 0.22s ease;
-}
-
-.lang-chip:hover {
-    background: rgba(255,255,255,0.98);
-    transform: translateY(-1px);
-}
-
-.lang-chip.active {
-    background: linear-gradient(to right, #ba68c8, #f06292);
-    color: white !important;
-    border: none;
-    box-shadow: 0 0 12px rgba(186, 104, 200, 0.35);
-}
-
 hr {
     border: none !important;
     border-top: 1px solid rgba(126, 87, 194, 0.15) !important;
@@ -436,62 +216,41 @@ hr {
 }
 
 @media (max-width: 768px) {
-    .hero-lux-wrap {
-        min-height: 58vh;
-        border-radius: 24px;
+    .hero-brand {
+        font-size: 2.25rem !important;
+        line-height: 1.02 !important;
+        letter-spacing: -0.4px !important;
+        margin-bottom: 12px !important;
     }
 
-    .hero-lux-inner {
-        min-height: 58vh;
-        padding: 24px 14px;
+    .hero-subtitle {
+        font-size: 1.15rem !important;
+        line-height: 1.32 !important;
+        font-weight: 700 !important;
     }
 
-    .hero-lux-card {
-        width: 100%;
-        padding: 22px 16px 20px 16px;
-        border-radius: 22px;
+    .hero-card {
+        padding: 16px 14px !important;
+        border-radius: 20px !important;
     }
 
-    .hero-lux-brand {
-        font-size: 2.15rem;
-        margin-bottom: 10px;
+    .glow-box {
+        padding: 15px !important;
+        border-radius: 16px !important;
     }
 
-    .hero-lux-title {
-        font-size: 1.35rem;
-        line-height: 1.3;
-        margin-bottom: 10px;
+    .result-card, .mini-card, .stat-card, .review-card {
+        border-radius: 16px !important;
     }
 
-    .hero-lux-sub {
-        font-size: 0.96rem;
-        line-height: 1.6;
-        margin-bottom: 18px;
+    .soft-note {
+        font-size: 0.92rem !important;
     }
 
-    .hero-lux-btn-primary,
-    .hero-lux-btn-secondary {
-        width: 100%;
-        min-width: unset;
-        padding: 13px 18px;
-        font-size: 0.98rem;
-    }
-
-    .section-lux-title {
-        font-size: 1.55rem;
-    }
-
-    .top-floating-lang {
-        top: -33px;
-        right: 0;
-        gap: 6px;
-    }
-
-    .lang-chip {
-        min-width: 34px;
-        height: 24px;
-        padding: 0 8px;
-        font-size: 11px;
+    div[data-testid="column"] .lang-btn div.stButton > button {
+        min-width: 52px !important;
+        padding: 0.36rem 0.65rem !important;
+        font-size: 0.76rem !important;
     }
 }
 
@@ -505,7 +264,7 @@ hr {
         color: #2f1f38 !important;
     }
 
-    .result-card, .mini-card, .stat-card, .review-card, .hero-card, .glow-box, .form-shell {
+    .result-card, .mini-card, .stat-card, .review-card, .hero-card, .glow-box {
         color: #2f1f38 !important;
         background: rgba(255,255,255,0.88) !important;
     }
@@ -531,7 +290,7 @@ hr {
 # -----------------------------
 # Google Sheets endpoint
 # -----------------------------
-GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbztgbRuGYMGMC41V8QHgNl2wnNTgJ5ZhRckVoiUXpVNTkSA-U75MFg-GRZNiCiIjrQeGg/exec"
+GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzjNIr948oDKixAVajbf7me-kuABFyRopjKVmdx-PmMkYpFL8WbXAraMMJkPy2lMKLJNg/exec"
 
 # -----------------------------
 # Helpers
@@ -673,24 +432,72 @@ month_options = [
 ]
 
 month_energy_meanings = {
-    1: {"th": "พลังของการเริ่มต้นและความชัดเจน", "en": "the energy of beginnings and clarity"},
-    2: {"th": "พลังของความสัมพันธ์และความอ่อนโยน", "en": "the energy of connection and gentleness"},
-    3: {"th": "พลังของการสื่อสารและความคิดสร้างสรรค์", "en": "the energy of communication and creativity"},
-    4: {"th": "พลังของความมั่นคงและการวางรากฐาน", "en": "the energy of stability and foundation-building"},
-    5: {"th": "พลังของการเปลี่ยนแปลงและอิสรภาพ", "en": "the energy of change and freedom"},
-    6: {"th": "พลังของความรัก การดูแล และการเยียวยา", "en": "the energy of love, care, and healing"},
-    7: {"th": "พลังของการค้นหาความหมายภายใน", "en": "the energy of inner searching and meaning"},
-    8: {"th": "พลังของความสำเร็จและการผลักดันเป้าหมาย", "en": "the energy of achievement and forward momentum"},
-    9: {"th": "พลังของการให้ การปล่อยวาง และการเข้าใจชีวิต", "en": "the energy of giving, release, and understanding life"},
-    10: {"th": "พลังของจุดเปลี่ยนและการเปิดวงจรใหม่", "en": "the energy of turning points and new cycles"},
-    11: {"th": "พลังของญาณรู้และการตื่นรู้ภายใน", "en": "the energy of intuition and inner awakening"},
-    12: {"th": "พลังของการปิดวงจรเก่าเพื่อเตรียมสู่การเริ่มต้นใหม่", "en": "the energy of closing old cycles to prepare for a new beginning"}
+    1: {
+        "th": "พลังของการเริ่มต้นและความชัดเจน",
+        "en": "the energy of beginnings and clarity"
+    },
+    2: {
+        "th": "พลังของความสัมพันธ์และความอ่อนโยน",
+        "en": "the energy of connection and gentleness"
+    },
+    3: {
+        "th": "พลังของการสื่อสารและความคิดสร้างสรรค์",
+        "en": "the energy of communication and creativity"
+    },
+    4: {
+        "th": "พลังของความมั่นคงและการวางรากฐาน",
+        "en": "the energy of stability and foundation-building"
+    },
+    5: {
+        "th": "พลังของการเปลี่ยนแปลงและอิสรภาพ",
+        "en": "the energy of change and freedom"
+    },
+    6: {
+        "th": "พลังของความรัก การดูแล และการเยียวยา",
+        "en": "the energy of love, care, and healing"
+    },
+    7: {
+        "th": "พลังของการค้นหาความหมายภายใน",
+        "en": "the energy of inner searching and meaning"
+    },
+    8: {
+        "th": "พลังของความสำเร็จและการผลักดันเป้าหมาย",
+        "en": "the energy of achievement and forward momentum"
+    },
+    9: {
+        "th": "พลังของการให้ การปล่อยวาง และการเข้าใจชีวิต",
+        "en": "the energy of giving, release, and understanding life"
+    },
+    10: {
+        "th": "พลังของจุดเปลี่ยนและการเปิดวงจรใหม่",
+        "en": "the energy of turning points and new cycles"
+    },
+    11: {
+        "th": "พลังของญาณรู้และการตื่นรู้ภายใน",
+        "en": "the energy of intuition and inner awakening"
+    },
+    12: {
+        "th": "พลังของการปิดวงจรเก่าเพื่อเตรียมสู่การเริ่มต้นใหม่",
+        "en": "the energy of closing old cycles to prepare for a new beginning"
+    }
 }
 
 categories = [
-    {"key": "love", "th": "ความรักและความสัมพันธ์", "en": "Love & Relationships"},
-    {"key": "career", "th": "การงานและเส้นทางชีวิต", "en": "Career & Life Path"},
-    {"key": "money", "th": "โชคลาภและกระแสการเงิน", "en": "Luck & Financial Flow"}
+    {
+        "key": "love",
+        "th": "ความรักและความสัมพันธ์",
+        "en": "Love & Relationships"
+    },
+    {
+        "key": "career",
+        "th": "การงานและเส้นทางชีวิต",
+        "en": "Career & Life Path"
+    },
+    {
+        "key": "money",
+        "th": "โชคลาภและกระแสการเงิน",
+        "en": "Luck & Financial Flow"
+    }
 ]
 
 category_advice = {
@@ -806,85 +613,20 @@ If you would like a deeper personalized reading in the area of {category_label},
 """.strip()
 
 
-def build_premium_reading(category_key: str, life_number: int, lang: str) -> dict:
-    if lang == "th":
-        strengths = {
-            "love": "คุณมีพลังรักที่ลึก ซื่อสัตย์ และรับรู้อารมณ์คนอื่นได้ดี จุดเด่นของคุณคือการเชื่อมโยงหัวใจคนได้จริง",
-            "career": "คุณมีพลังในการสร้างเส้นทางของตัวเอง และมีศักยภาพเติบโตมากเมื่อได้ทำสิ่งที่สอดคล้องกับตัวตนจริง",
-            "money": "คุณมีพลังสร้างมูลค่าได้ดี หากจัดระบบความคิด การตัดสินใจ และความเชื่อเรื่องคุณค่าในตัวเองให้ชัด"
-        }
-        next_steps = {
-            "love": "โฟกัสที่การตั้งขอบเขตและถามตัวเองให้ชัดว่าความรักแบบไหนที่ดีต่อใจคุณจริง",
-            "career": "สังเกตว่างานแบบไหนที่ทำแล้วใจไม่ฝืน เพราะนั่นคือสัญญาณของเส้นทางที่ใช่กว่าเดิม",
-            "money": "เริ่มจัดระบบการเงินและเปิดรับวิธีสร้างรายได้ใหม่ โดยไม่ดูถูกคุณค่าของตัวเอง"
-        }
-        cautions = {
-            "love": "ระวังการยอมทนเพียงเพราะกลัวเสียใครไป",
-            "career": "ระวังอยู่ในเส้นทางเดิมเพียงเพราะความคุ้นเคย",
-            "money": "ระวังการตัดสินตัวเองจากรายได้ระยะสั้น"
-        }
-    else:
-        strengths = {
-            "love": "You carry deep, sincere love energy and a real ability to connect with people at heart level.",
-            "career": "You have strong potential to create your own path and grow when your work aligns with your authentic self.",
-            "money": "You have solid value-creation energy when your thinking, structure, and self-worth become clearer."
-        }
-        next_steps = {
-            "love": "Focus on boundaries and get clearer about the kind of love that is truly healthy for you.",
-            "career": "Notice which kind of work feels aligned rather than forced. That often points toward your true path.",
-            "money": "Start creating better financial structure and open yourself to new ways of receiving income."
-        }
-        cautions = {
-            "love": "Be careful not to stay only because you fear losing someone.",
-            "career": "Be careful not to remain in an old path just because it feels familiar.",
-            "money": "Be careful not to measure your worth by short-term financial fluctuations."
-        }
-
-    return {
-        "strength": strengths.get(category_key, ""),
-        "next_step": next_steps.get(category_key, ""),
-        "caution": cautions.get(category_key, "")
-    }
-
-
 # -----------------------------
-# Premium Hero
+# Header with language switch
+# -----------------------------
+# Header FIX (ปุ่มมุมขวาบน)
 # -----------------------------
 st.markdown(
     f"""
-    <div class="hero-lux-wrap">
-        <div class="hero-lux-overlay"></div>
-        <div class="hero-lux-inner">
-            <div class="hero-lux-card">
-                <div class="hero-lux-badge">
-                    ✦ {tr("LUXURY SOUL REFLECTION", "LUXURY SOUL REFLECTION")}
-                </div>
+    <div class="top-floating-lang">
+        <a href="?lang=th" class="lang-chip {'active' if st.session_state.lang == 'th' else ''}">TH</a>
+        <a href="?lang=en" class="lang-chip {'active' if st.session_state.lang == 'en' else ''}">EN</a>
+    </div>
 
-                <div class="hero-lux-brand">LUMINA SOUL</div>
-                <div class="hero-lux-divider"></div>
-
-                <div class="hero-lux-title">
-                    {tr(
-                        "ถอดรหัสพลังงานชีวิตจากวันเกิด",
-                        "Decode Your Life Energy Through Birth Date"
-                    )}
-                </div>
-
-                <div class="hero-lux-sub">
-                    {tr(
-                        "ไม่ใช่การทำนาย แต่คือการสะท้อนอย่างลึกซึ้งว่า ตอนนี้คุณอยู่ตรงไหนในชีวิต ความรัก การงาน และเส้นทางภายในของคุณกำลังสื่อสารอะไรอยู่",
-                        "Not fortune telling, but a refined reflection of where you are in life right now—what your love, career, and inner path may be trying to tell you."
-                    )}
-                </div>
-
-                <div class="hero-lux-cta-row">
-                    <a href="#decode-form" class="hero-lux-btn-primary">
-                        {tr("เริ่มต้นถอดรหัสเลย", "Begin Your Reading")}
-                    
-                    </a>
-                </div>
-            </div>
-        </div>
+    <div class="hero-title-wrap" style="margin-bottom:0;">
+        <div class="hero-brand" style="margin-bottom:0;">🔮 LUMINA SOUL</div>
     </div>
     """,
     unsafe_allow_html=True
@@ -892,40 +634,61 @@ st.markdown(
 
 st.markdown(
     f"""
-    <div class="hero-header-box" style="margin-bottom: 6px;">
-        <div class="top-floating-lang">
-            <a href="?lang=th" class="lang-chip {'active' if st.session_state.lang == 'th' else ''}">TH</a>
-            <a href="?lang=en" class="lang-chip {'active' if st.session_state.lang == 'en' else ''}">EN</a>
-        </div>
+    <div class="hero-subtitle" style="margin-top:8px; margin-bottom:8px;">
+        {tr("พื้นที่สะท้อนชีวิต | ถอดรหัสลับพลังงานวันเกิด",
+             "A space for reflection | Decode your birth energy")}
     </div>
     """,
     unsafe_allow_html=True
 )
 
-st.markdown('<div id="why-start"></div>', unsafe_allow_html=True)
+st.write("---")
+
+st.markdown(
+    f"""
+    <div class="hero-card">
+        <p class='center-text' style='font-size:1.05rem; margin-bottom:8px;'>
+        {tr(
+            "ยินดีต้อนรับสู่พื้นที่แห่งการตื่นรู้และเยียวยาใจ ผ่านสัญญาณจาก Oversoul และรหัสลับวันเกิด เพื่อปลดล็อกศักยภาพในตัวคุณ",
+            "Welcome to a space of awakening and healing through Oversoul guidance and birth-energy decoding to help unlock your inner potential."
+        )}
+        </p>
+        <p class='center-text soft-note' style='margin-bottom:0;'>
+        {tr(
+            "บางคำตอบในชีวิต อาจเริ่มต้นจากการเข้าใจพลังงานของตัวเอง",
+            "Some of life’s answers may begin with understanding your own energy."
+        )}
+        </p>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    f"""
+    <div class="glow-box">
+        <p style="margin:0; color:#3576c5 !important; font-weight:600;">
+        {tr(
+            "✨ รหัสลับจิตวิญญาณ... เมื่อคุณเริ่มเข้าใจพลังงานตัวเอง ประตูสู่ความเป็นไปได้ใหม่ ๆ จะเปิดออก",
+            "✨ Soul codes... when you begin to understand your own energy, new doors of possibility begin to open."
+        )}
+        </p>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 # -----------------------------
 # Trust section
 # -----------------------------
-st.markdown(
-    f"""
-    <div class="section-lux-title">
-        {tr("เหตุผลที่หลายคนเริ่มต้นจากการถอดรหัสพลังงานชีวิต", "Why many begin with life-energy decoding")}
-    </div>
-    <div class="section-lux-sub">
-        {tr("การเข้าใจพลังงานของตัวเอง คือจุดเริ่มต้นของการมองชีวิตได้ชัดขึ้นอย่างมีความหมาย", "Understanding your own energy is often the first step toward seeing life with greater clarity and depth.")}
-    </div>
-    <div class="lux-divider-line"></div>
-    """,
-    unsafe_allow_html=True
-)
+st.markdown(tr("### 🔑 ทำไมหลายคนถึงเริ่มจากการถอดรหัสพลังงานชีวิต", "### 🔑 Why many people begin with decoding their life energy"))
 
 c1, c2, c3 = st.columns(3)
 with c1:
     st.markdown(
         f"""
         <div class="stat-card">
-            <div style="font-size:1.15rem; font-weight:800; color:#8e24aa;">{tr("เข้าใจตัวเอง", "Know Yourself")}</div>
+            <div style="font-size:1.15rem; font-weight:700; color:#8e24aa;">{tr("เข้าใจตัวเอง", "Know Yourself")}</div>
             <div class="soft-note">{tr("เห็นจุดแข็ง จุดเปลี่ยน และบทเรียนที่กำลังเกิดขึ้น", "See your strengths, turning points, and the lessons unfolding in your life")}</div>
         </div>
         """,
@@ -936,7 +699,7 @@ with c2:
     st.markdown(
         f"""
         <div class="stat-card">
-            <div style="font-size:1.15rem; font-weight:800; color:#8e24aa;">{tr("สะท้อนชีวิต", "Reflect on Life")}</div>
+            <div style="font-size:1.15rem; font-weight:700; color:#8e24aa;">{tr("สะท้อนชีวิต", "Reflect on Life")}</div>
             <div class="soft-note">{tr("ช่วยมองความรัก งาน และการเงินในมุมที่ลึกขึ้น", "Gain deeper insight into love, career, and financial flow")}</div>
         </div>
         """,
@@ -947,46 +710,21 @@ with c3:
     st.markdown(
         f"""
         <div class="stat-card">
-            <div style="font-size:1.15rem; font-weight:800; color:#8e24aa;">{tr("ต่อยอดได้จริง", "Take It Further")}</div>
+            <div style="font-size:1.15rem; font-weight:700; color:#8e24aa;">{tr("ต่อยอดได้จริง", "Take It Further")}</div>
             <div class="soft-note">{tr("หากรู้สึกว่าตรง คุณสามารถอ่านเชิงลึกต่อได้ทันที", "If it resonates, you can continue with a deeper personalized reading")}</div>
         </div>
         """,
         unsafe_allow_html=True
     )
 
-st.markdown(
-    f"""
-    <div class="glow-box">
-        <p style="margin:0; color:#5c3c7c !important; font-weight:700; text-align:center;">
-        {tr(
-            "บางคำตอบในชีวิต ไม่ได้เริ่มจากการวิ่งหา แต่อาจเริ่มจากการกลับมาเข้าใจพลังงานของตัวเองอย่างจริงจัง",
-            "Some answers are not found by chasing harder, but by returning inward and understanding your own energy more deeply."
-        )}
-        </p>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
-st.markdown(
-    f"""
-    <div class="section-lux-title">
-        {tr("เสียงสะท้อนจากผู้ที่เคยอ่านพลังงานกับเรา", "Reflections from those who resonated with their reading")}
-    </div>
-    <div class="section-lux-sub">
-        {tr("คำบางคำอาจไม่ใช่คำทำนาย แต่มันอาจเป็นคำที่ทำให้คุณมองชีวิตตัวเองได้ชัดขึ้น", "Sometimes, what touches people most is not prediction—but clarity.")}
-    </div>
-    <div class="lux-divider-line"></div>
-    """,
-    unsafe_allow_html=True
-)
+st.markdown(tr("### 🌕 รีวิวความรู้สึกจากผู้ที่เคยสะท้อนพลังงาน💫", "### 🌕 Reflections from people who resonated with their reading 💫"))
 
 r1, r2 = st.columns(2)
 with r1:
     st.markdown(
         f"""
         <div class="review-card">
-            <div style="font-weight:800; color:#7b1fa2;">{tr("“อ่านแล้วเหมือนมีใครอธิบายชีวิตเราได้”", '"It felt like someone could finally explain my life."')}</div>
+            <div style="font-weight:700; color:#7b1fa2;">{tr("“อ่านแล้วเหมือนมีใครอธิบายชีวิตเราได้”", '"It felt like someone could finally explain my life."')}</div>
             <div class="soft-note">{tr("หลายอย่างตรงแบบรู้สึกได้ว่าไม่ใช่แค่คำทั่วไป", "So many parts felt deeply accurate—not like generic words at all")}</div>
         </div>
         """,
@@ -997,25 +735,14 @@ with r2:
     st.markdown(
         f"""
         <div class="review-card">
-            <div style="font-weight:800; color:#7b1fa2;">{tr("“ช่วยให้เข้าใจช่วงชีวิตที่กำลังเปลี่ยน”", '"It helped me understand the phase of life I am moving through."')}</div>
+            <div style="font-weight:700; color:#7b1fa2;">{tr("“ช่วยให้เข้าใจช่วงชีวิตที่กำลังเปลี่ยน”", '"It helped me understand the phase of life I am moving through."')}</div>
             <div class="soft-note">{tr("ยิ่งอ่านยิ่งเห็นภาพว่าบางอย่างที่เกิดขึ้นมีเหตุผลของมัน", "The more I read, the more I could see that what was happening had meaning")}</div>
         </div>
         """,
         unsafe_allow_html=True
     )
 
-st.markdown(
-    f"""
-    <div class="section-lux-title">
-        {tr("สิ่งที่คุณอาจค้นพบจากการอ่านพลังงานนี้", "What this reflection may help you discover")}
-    </div>
-    <div class="section-lux-sub">
-        {tr("บางคำตอบในชีวิต ไม่ได้เริ่มจากการวิ่งหา แต่เริ่มจากการมองกลับเข้ามาข้างในอย่างจริงจัง", "Some answers are not found by chasing harder—but by returning inward with honesty.")}
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
+st.markdown(tr("### 🔮 ตัวอย่างสิ่งที่คุณอาจค้นพบ", "### 🔮 Examples of what you may discover"))
 st.markdown(
     f"""
     <div class="mini-card">
@@ -1033,22 +760,6 @@ st.markdown(
 # -----------------------------
 month_display_list = [m["th"] if st.session_state.lang == "th" else m["en"] for m in month_options]
 category_display_list = [c["th"] if st.session_state.lang == "th" else c["en"] for c in categories]
-
-st.markdown('<div id="decode-form"></div>', unsafe_allow_html=True)
-
-st.markdown(
-    f"""
-    <div class="section-lux-title">
-        {tr("เริ่มต้นอ่านพลังงานของคุณ", "Begin your energy reading")}
-    </div>
-    <div class="section-lux-sub">
-        {tr("กรอกข้อมูลด้านล่างเพื่อรับคำสะท้อนเบื้องต้นที่ออกแบบมาให้เข้าใจง่าย อ่านสบาย และลึกพอให้คุณเห็นภาพชีวิตชัดขึ้น", "Fill in the details below to receive an elegant first reflection designed to be clear, gentle, and meaningful.")}
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
-st.markdown('<div class="form-shell">', unsafe_allow_html=True)
 
 with st.form("lumina_single_page_form"):
     name = st.text_input(tr("ชื่อ-นามสกุล", "Full Name"))
@@ -1083,7 +794,7 @@ with st.form("lumina_single_page_form"):
         format_func=lambda i: category_display_list[i]
     )
 
-    st.markdown(f"**{tr('เรื่องที่คุณกังวลใจที่สุดในตอนนี้คืออะไร?', 'What is your biggest concern right now?')}**")
+    st.markdown(f"**{tr('⭐️ เรื่องที่คุณกังวลใจที่สุดในตอนนี้คืออะไร?', '⭐️ What is your biggest concern right now?')}**")
     question = st.text_area(
         "",
         placeholder=tr(
@@ -1093,9 +804,7 @@ with st.form("lumina_single_page_form"):
         height=120
     )
 
-    submitted = st.form_submit_button(tr("ถอดรหัสพลังงานของฉัน", "Decode My Energy"))
-
-st.markdown('</div>', unsafe_allow_html=True)
+    submitted = st.form_submit_button(tr("🔮 ถอดรหัสพันธสัญญาจิตวิญญาณ", "🔮 Decode My Soul Contract"))
 
 # -----------------------------
 # Processing
@@ -1161,11 +870,6 @@ if submitted:
             }
         )[st.session_state.lang]
 
-        premium = build_premium_reading(category_key, life_number, st.session_state.lang)
-        strength = premium["strength"]
-        next_step_text = premium["next_step"]
-        caution = premium["caution"]
-
         birthdate_text_th = f"{day_num} {birth_month_th} {year_num}"
         birthdate_text_en = f"{day_num} {birth_month_en} {year_num}"
 
@@ -1191,12 +895,7 @@ if submitted:
                     "birth_meaning": birth_meaning,
                     "soul_message": soul_message,
                     "advice": advice,
-                    "strength": strength,
-                    "next_step": next_step_text,
-                    "caution": caution,
-                    "language": st.session_state.lang,
-                    "source": "website_form",
-                    "submitted_at": str(datetime.now())
+                    "language": st.session_state.lang
                 },
                 timeout=15
             )
@@ -1207,15 +906,15 @@ if submitted:
         st.write("---")
         st.success(
             tr(
-                f"ผลสะท้อนพลังงานเบื้องต้น: คุณ {name_clean}",
-                f"Your Initial Energy Reflection: {name_clean}"
+                f"### 🌟 ผลสะท้อนพลังงานเบื้องต้น: คุณ {name_clean}",
+                f"### 🌟 Your Initial Energy Reflection: {name_clean}"
             )
         )
 
         st.markdown(
             f"""
             <div class="result-card">
-                <h4 style="color:#7b1fa2; margin-top:0;">{tr("เลขพลังงานของคุณ", "Your Energy Numbers")}</h4>
+                <h4 style="color:#7b1fa2; margin-top:0;">{tr("🔢 เลขพลังงานของคุณ", "🔢 Your Energy Numbers")}</h4>
                 <p><b>{tr("เลขเส้นทางชีวิต:", "Life Path Number:")}</b> {life_number}</p>
                 <p><b>{tr("เลขพลังงานวันเกิด:", "Birth Day Energy:")}</b> {birth_energy}</p>
             </div>
@@ -1226,7 +925,7 @@ if submitted:
         st.markdown(
             f"""
             <div class="mini-card">
-                <h4 style="color:#8e24aa; margin-top:0;">{tr("ความหมายพลังชีวิต", "Life Path Meaning")}</h4>
+                <h4 style="color:#8e24aa; margin-top:0;">{tr("🌙 ความหมายพลังชีวิต", "🌙 Life Path Meaning")}</h4>
                 <p>{life_meaning}</p>
             </div>
             """,
@@ -1236,7 +935,7 @@ if submitted:
         st.markdown(
             f"""
             <div class="mini-card">
-                <h4 style="color:#8e24aa; margin-top:0;">{tr("พลังงานจากวันเกิด", "Birth Day Energy")}</h4>
+                <h4 style="color:#8e24aa; margin-top:0;">{tr("💎 พลังงานจากวันเกิด", "💎 Birth Day Energy")}</h4>
                 <p>{birth_meaning}</p>
             </div>
             """,
@@ -1247,40 +946,10 @@ if submitted:
             f"""
             <div class="result-card">
                 <h4 style="color:#ad1457; margin-top:0;">
-                    {tr("คำสะท้อนในด้าน", "Reflection for ")}
+                    {tr("🔮 คำสะท้อนในด้าน", "🔮 Reflection for ")}
                     {category_label_th if st.session_state.lang == "th" else category_label_en}
                 </h4>
                 <p>{main_result}</p>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-
-        st.markdown(
-            f"""
-            <div class="mini-card">
-                <h4 style="color:#8e24aa; margin-top:0;">{tr("จุดเด่นพลังงานของคุณ", "Your Energy Strength")}</h4>
-                <p>{strength}</p>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-
-        st.markdown(
-            f"""
-            <div class="mini-card">
-                <h4 style="color:#8e24aa; margin-top:0;">{tr("แนวทางที่ควรโฟกัสต่อ", "Your Next Focus")}</h4>
-                <p>{next_step_text}</p>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-
-        st.markdown(
-            f"""
-            <div class="mini-card">
-                <h4 style="color:#8e24aa; margin-top:0;">{tr("สิ่งที่ควรระวัง", "What to Be Careful With")}</h4>
-                <p>{caution}</p>
             </div>
             """,
             unsafe_allow_html=True
@@ -1291,34 +960,60 @@ if submitted:
         st.markdown(
             f"""
             <div class="mini-card">
-                <h4 style="color:#6a1b9a; margin-top:0;">{tr("ข้อความจาก Lumina Soul", "A Message from Lumina Soul")}</h4>
+                <h4 style="color:#6a1b9a; margin-top:0;">{tr("✨ ข้อความจาก Lumina Soul", "✨ A Message from Lumina Soul")}</h4>
                 <p>{soul_message}</p>
             </div>
             """,
             unsafe_allow_html=True
         )
 
+        st.markdown(tr("### ✨ ข้อความจาก Lumina Soul", "### ✨ A Message from Lumina Soul"))
         st.markdown(
-            f"""
-<div class="cta-note">
-{tr(
-"หากบางส่วนของข้อความนี้สะท้อนชีวิตคุณจริง คุณสามารถพูดคุยต่อเพื่อรับการอ่านเชิงลึกแบบเฉพาะตัวได้",
-"If part of this message resonates with your life, you can continue with a deeper personalized reading"
-)}
-</div>
+            tr(
+                """
+สิ่งที่คุณเห็นข้างต้น เป็นเพียง **การสะท้อนพลังงานเบื้องต้นจากวันเกิดของคุณ**
+
+หลายครั้ง รหัสชีวิตของคนเรา  
+ไม่ได้เปิดเผยทั้งหมดในครั้งเดียว
+
+ยังมีรายละเอียดที่ลึกกว่า เช่น
+
+• บทเรียนชีวิตที่เกิดซ้ำ  
+• ความสัมพันธ์ที่เข้ามาในชีวิต  
+• จังหวะการเปลี่ยนแปลงของเส้นทางชีวิต  
+
+หากคุณรู้สึกว่า **บางส่วนของข้อความนี้สะท้อนชีวิตคุณจริง**
+
+คุณสามารถทักเข้ามาเพื่อรับ  
+**การอ่านพลังงานเชิงลึกแบบเฉพาะตัว**
+
+Lumina Soul จะช่วยสะท้อนสิ่งที่ชีวิตของคุณกำลังพยายามบอกคุณอยู่ ✨
 """,
-            unsafe_allow_html=True
+                """
+What you see above is only an **initial energetic reflection based on your birth date**.
+
+Many times, the codes of our lives  
+do not reveal everything all at once.
+
+There are often deeper layers such as:
+
+• repeating life lessons  
+• relationships that keep entering your path  
+• important timing shifts in your life journey  
+
+If you feel that **part of this message truly resonates with your life**,
+
+you are welcome to reach out for a  
+**deeper personalized energy reading**.
+
+Lumina Soul is here to reflect what your life may be trying to show you ✨
+"""
+            )
         )
 
-        st.markdown(
-            f"""
-<div class="premium-btn">
-    <a href="https://lin.ee/jmI4z6G" target="_blank">
-        ✳️👉 {tr("คุยกับที่ปรึกษา LUMINA SOUL", "Talk to a LUMINA SOUL guide")}
-    </a>
-</div>
-""",
-            unsafe_allow_html=True
+        st.link_button(
+            tr("✳️👉 คุยกับที่ปรึกษา LUMINA SOUL", "✳️👉 Talk to a LUMINA SOUL guide"),
+            "https://lin.ee/jmI4z6G"
         )
 
 # -----------------------------
