@@ -851,7 +851,7 @@ def build_premium_reading(category_key: str, life_number: int, lang: str) -> dic
 # Premium Hero
 # -----------------------------
 st.markdown(
-    f"""
+    """
     <div class="hero-lux-wrap">
         <div class="hero-lux-overlay"></div>
         <div class="hero-lux-inner">
