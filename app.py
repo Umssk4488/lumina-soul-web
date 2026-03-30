@@ -123,7 +123,7 @@ div[data-testid="stFormSubmitButton"] > button:hover {
 .hero-lux-wrap {
     position: relative;
     width: 100%;
-    min-height: 68vh;
+   min-height: 85vh;
     border-radius: 30px;
     overflow: hidden;
     margin-top: 6px;
