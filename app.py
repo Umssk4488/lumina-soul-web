@@ -1255,6 +1255,7 @@ if st.session_state.latest_result:
         """,
         unsafe_allow_html=True
     )
+
     st.markdown(
         f"""
         <div class="lock-card">
@@ -1312,16 +1313,6 @@ if st.session_state.latest_result:
         unsafe_allow_html=True
     )
 
-    st.markdown(
-        f"""
-        <div class="premium-btn">
-            <a href="{LINE_LINK}" target="_blank">
-                ✨ {tr("ปลดล็อกคำตอบชีวิตฉัน", "Unlock My Answer")}
-            </a>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
     if not st.session_state.premium_unlocked:
         st.markdown(
             f"""
@@ -1466,8 +1457,8 @@ if st.session_state.latest_result:
             f"""
             <div class="cta-note">
             {tr(
-                "หากคำอ่านนี้สะท้อนชีวิตคุณจริง ขั้นต่อไปคือ eBook หรือการอ่านเชิงลึกส่วนตัว เพื่อเชื่อมสิ่งที่คุณรู้สึกเข้ากับเส้นทางชีวิตจริง",
-                "If this reading deeply resonates, your next step is the eBook or a personalized deep reading to connect what you feel with your real life path."
+                "ถ้าคำอ่านนี้สะท้อนชีวิตคุณจริง แปลว่าคุณไม่ได้ต้องการแค่คำตอบชั่วคราว แต่คุณกำลังต้องการมองชีวิตตัวเองให้ชัดขึ้นจริง ๆ ขั้นต่อไปของคุณคือ eBook หรือการอ่านเชิงลึก ที่จะช่วยให้คุณเข้าใจว่าตอนนี้คุณติดอะไร ทำไมมันถึงเกิด และคุณควรขยับยังไงต่อ",
+                "If this reading truly resonates, then you are not only looking for a temporary answer. You are ready to understand your life more clearly. Your next step is the eBook or a deeper reading that helps you see what is blocking you, why it is happening, and how to move forward."
             )}
             </div>
             """,
@@ -1478,7 +1469,7 @@ if st.session_state.latest_result:
             f"""
             <div class="premium-btn">
                 <a href="{LINE_LINK}" target="_blank">
-                    ✳️👉 {tr("คุยกับที่ปรึกษา LUMINA SOUL", "Talk to a LUMINA SOUL guide")}
+                    ✳️👉 {tr("ดูรายละเอียด eBook / อ่านเชิงลึก", "View eBook / Deep Reading")}
                 </a>
             </div>
             """,
