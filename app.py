@@ -1396,28 +1396,63 @@ if st.session_state.latest_result:
 
         st.info("💡 " + premium_result["unlock_note"])
 
-        st.markdown(
-            f"""
-            <div class="cta-note">
-            {tr(
-                "หากคำอ่านนี้สะท้อนชีวิตคุณจริง ขั้นต่อไปคือ eBook หรือการอ่านเชิงลึกส่วนตัว เพื่อเชื่อมสิ่งที่คุณรู้สึกเข้ากับเส้นทางชีวิตจริง",
-                "If this reading deeply resonates, your next step is the eBook or a personalized deep reading to connect what you feel with your real life path."
-            )}
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+st.markdown(
+    f"""
+    <div class="lock-card">
+        <h4 style="color:#8e24aa; margin-top:0;">
+        ✨ {tr("ถ้าคุณรู้สึกว่า ‘มันใช่’ นี่คือขั้นต่อไปของคุณ",
+               "If this feels right, this is your next step")}
+        </h4>
 
-        st.markdown(
-            f"""
-            <div class="premium-btn">
-                <a href="{LINE_LINK}" target="_blank">
-                    ✳️👉 {tr("คุยกับที่ปรึกษา LUMINA SOUL", "Talk to a LUMINA SOUL guide")}
-                </a>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
+        <p>
+        {tr("สิ่งที่คุณอ่านไป เป็นแค่ภาพรวมเท่านั้นนะคะ",
+            "What you’ve read so far is only the surface.")}
+        </p>
+
+        <p>
+        {tr("ของจริงจะเป็นการถอดพิมพ์เขียวแบบเฉพาะตัว ที่เจาะลึกลงไปว่า",
+            "The deeper version reveals your personal blueprint:")}
+        </p>
+
+        <p>• {tr("คุณกำลังติดอะไรอยู่ตอนนี้","What is keeping you stuck")}</p>
+        <p>• {tr("ทำไมชีวิตมันถึงเป็นแบบนี้","Why your life is unfolding this way")}</p>
+        <p>• {tr("และคุณต้องขยับยังไงต่อ","What your next step truly is")}</p>
+
+        <p style="margin-top:10px;">
+        {tr("มันไม่ใช่คำทำนาย แต่มันคือการสะท้อนชีวิตจริงของคุณ",
+            "This is not fortune telling. This is your real life reflected back to you.")}
+        </p>
+
+        <p style="font-weight:600; color:#7b1fa2;">
+        {tr("ถ้าคุณอ่านแล้วรู้สึกว่า ‘มันใช่’ อย่าหยุดแค่ตรงนี้",
+            "If this resonates… don’t stop here.")}
+        </p>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    f"""
+    <div class="premium-btn">
+        <a href="{LINE_LINK}" target="_blank">
+            ✨ {tr("ปลดล็อกพิมพ์เขียวชีวิตของฉัน",
+                   "Unlock My Deeper Blueprint")}
+        </a>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    f"""
+    <div class="cta-note">
+        {tr("นี่ไม่ใช่แค่คำอ่าน แต่มันคือคำตอบที่คุณตามหามานาน",
+            "This may be the answer you've been searching for.")}
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 # -----------------------------
 # Footer
