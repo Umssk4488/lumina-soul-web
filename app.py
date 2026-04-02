@@ -624,18 +624,54 @@ HEALING_TEXT = {
 }
 
 WOUND_TEXT = {
-    1: {"th": "บาดแผลลึกของคุณคือความรู้สึกว่าต้องพิสูจน์ตัวเองตลอดเวลา", "en": "Your deeper wound is the feeling that you must constantly prove yourself."},
-    2: {"th": "บาดแผลของคุณคือความกลัวว่าถ้าพูดความจริงออกไป คนจะไม่พอใจหรือจากไป", "en": "Your wound is the fear that speaking your truth may upset people or make them leave."},
-    3: {"th": "บาดแผลของคุณคือความกลัวว่าถ้าคนเห็นตัวจริงแล้ว เขาอาจไม่ชอบ", "en": "Your wound is the fear that if people see the real you, they may not like it."},
-    4: {"th": "บาดแผลของคุณคือความรู้สึกว่าถ้าปล่อยมือ ทุกอย่างจะพัง", "en": "Your wound is the feeling that if you loosen your grip, everything will fall apart."},
-    5: {"th": "บาดแผลของคุณคือความกลัวว่าถ้าหยุดนิ่งหรือถูกผูกมัด คุณจะเสียตัวเองไป", "en": "Your wound is the fear that if you stay still or become tied down, you will lose yourself."},
-    6: {"th": "บาดแผลของคุณคือความรู้สึกว่าตัวเองจะมีค่าก็ต่อเมื่อกำลังดูแลหรือช่วยใครบางคน", "en": "Your wound is the feeling that you are valuable only when you are taking care of someone."},
-    7: {"th": "บาดแผลของคุณคือความรู้สึกว่าไม่มีใครเข้าใจสิ่งลึก ๆ ในตัวคุณจริง", "en": "Your wound is the feeling that no one truly understands the deeper layers of you."},
-    8: {"th": "บาดแผลของคุณคือการเชื่อว่าคุณจะปลอดภัยก็ต่อเมื่อทุกอย่างอยู่ภายใต้การควบคุม", "en": "Your wound is the belief that you are safe only when everything is under control."},
-    9: {"th": "บาดแผลของคุณคือการติดอยู่กับสิ่งที่หมดเวลาแล้วเพราะยังรักหรือยังรู้สึกผูกพัน", "en": "Your wound is staying attached to what has already ended because love or emotional attachment still remains."},
-    11: {"th": "บาดแผลของคุณคือความรู้สึกว่าโลกนี้อาจไม่เข้าใจความไวและความลึกของคุณ", "en": "Your wound is the feeling that this world may not understand your sensitivity and depth."},
-    22: {"th": "บาดแผลของคุณคือความรู้สึกว่าภารกิจในใจมันใหญ่เกินไปสำหรับชีวิตจริง", "en": "Your wound is the feeling that the mission inside you is too large for ordinary life to hold."},
-    33: {"th": "บาดแผลของคุณคือความรู้สึกว่าตัวเองต้องแบกรับหรือเยียวยาทุกอย่างให้คนอื่นถึงจะมีคุณค่า", "en": "Your wound is the feeling that you must carry or heal everything for others in order to have value."},
+    1: {
+        "th": "คุณเคยรู้สึกว่าต้องเก่ง ต้องทำได้ ต้องพิสูจน์ตัวเองตลอดเวลา จนบางครั้งคุณไม่กล้าพัก เพราะลึก ๆ กลัวว่าถ้าหยุดเมื่อไหร่ คุณจะดูไม่มีค่า",
+        "en": "You’ve felt like you always need to be strong, capable, and constantly proving yourself. Deep down, you fear that if you stop, you might lose your sense of worth."
+    },
+    2: {
+        "th": "คุณมักเก็บความรู้สึกไว้ ไม่พูดในสิ่งที่ตัวเองต้องการจริง ๆ เพราะกลัวอีกฝ่ายจะไม่พอใจ จนสุดท้ายคุณกลายเป็นคนที่เข้าใจทุกคน…ยกเว้นตัวเอง",
+        "en": "You tend to hold your feelings in and avoid expressing what you truly need, fearing others might be upset. In the end, you understand everyone—except yourself."
+    },
+    3: {
+        "th": "คุณมีหลายอย่างในใจที่อยากพูด อยากเป็น แต่คุณมักเก็บมันไว้ เพราะกลัวว่าถ้าคนเห็นตัวจริงของคุณ เขาอาจจะไม่ยอมรับ",
+        "en": "You have many thoughts and feelings you want to express, but you hold them back because you fear that if people see the real you, they may not accept you."
+    },
+    4: {
+        "th": "คุณรู้สึกว่าตัวเองต้องควบคุมทุกอย่างให้ดี ต้องรับผิดชอบให้ได้ เพราะลึก ๆ กลัวว่าถ้าปล่อยเมื่อไหร่ ทุกอย่างจะพัง และคุณจะเป็นคนที่พลาด",
+        "en": "You feel the need to control everything and stay responsible, because deep down you fear that if you let go, everything will fall apart—and it will be your fault."
+    },
+    5: {
+        "th": "คุณเคยอยู่ในสิ่งที่ไม่ใช่ตัวเองมานาน ทั้งที่ลึก ๆ อยากออกมา แต่ก็ยังไม่กล้าพอที่จะปล่อย เพราะไม่รู้ว่าชีวิตใหม่จะไปทางไหน",
+        "en": "You’ve stayed in situations that don’t truly fit you, even though you’ve wanted to leave. But you haven’t fully let go because you’re unsure where life will take you next."
+    },
+    6: {
+        "th": "คุณให้คนอื่นมากจนกลายเป็นเรื่องปกติ จนสุดท้ายไม่มีใครรู้เลยว่าคุณก็เหนื่อย คุณก็ต้องการการดูแลเหมือนกัน",
+        "en": "You give so much to others that it becomes normal, until no one realizes that you’re tired and need care too."
+    },
+    7: {
+        "th": "คุณรู้สึกว่าคุณคิดไม่เหมือนคนอื่น และไม่มีใครเข้าใจคุณลึกจริง ๆ ทำให้หลายครั้งคุณเลือกอยู่เงียบ ๆ มากกว่าจะอธิบายตัวเอง",
+        "en": "You feel like you think differently from others, and no one truly understands you. So many times, you choose silence instead of explaining yourself."
+    },
+    8: {
+        "th": "คุณถูกบังคับให้เข้มแข็งเร็วกว่าที่ควร จนคุณชินกับการไม่แสดงความอ่อนแอ และลึก ๆ คุณก็ไม่รู้ว่าจะขอความช่วยเหลือยังไง",
+        "en": "You had to become strong earlier than you should have, and now you’re used to hiding your vulnerability. Deep down, you don’t even know how to ask for help."
+    },
+    9: {
+        "th": "คุณยังเก็บบางความสัมพันธ์หรือบางความรู้สึกไว้ในใจ ทั้งที่มันจบไปแล้ว เพราะคุณรักจริง และคุณไม่ได้ลืมง่ายเหมือนที่คนอื่นคิด",
+        "en": "You still hold on to certain relationships or feelings, even though they’ve ended—because you truly loved, and you don’t forget easily like others think."
+    },
+    11: {
+        "th": "คุณรับความรู้สึกและพลังของคนอื่นได้ลึกมาก จนบางครั้งคุณแยกไม่ออกว่าอะไรคือของคุณ อะไรคือของคนอื่น และมันทำให้คุณเหนื่อยโดยไม่รู้ตัว",
+        "en": "You feel others’ emotions and energy deeply, to the point where you sometimes can’t tell what belongs to you and what belongs to others—and it drains you without you realizing it."
+    },
+    22: {
+        "th": "คุณรู้สึกว่าตัวเองมีศักยภาพทำอะไรบางอย่างที่ใหญ่กว่าชีวิตปกติ แต่ในขณะเดียวกัน คุณก็กลัวว่าตัวเองจะทำไม่สำเร็จ จนกลายเป็นแรงกดดันที่คุณแบกไว้เงียบ ๆ",
+        "en": "You feel that you’re meant for something bigger than an ordinary life, yet at the same time you fear you might not live up to it—creating a silent pressure you carry within."
+    },
+    33: {
+        "th": "คุณมักเป็นคนที่อยากช่วยคนอื่นก่อนเสมอ จนบางครั้งคุณลืมตัวเองไป และลึก ๆ คุณอาจรู้สึกว่าคุณต้องมีประโยชน์ต่อคนอื่น ถึงจะมีคุณค่า",
+        "en": "You often feel the need to help others first, sometimes forgetting yourself. Deep down, you may feel that you need to be useful to others in order to be worthy."
+    }
 }
 
 GIFT_TEXT = {
