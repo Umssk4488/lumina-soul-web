@@ -756,18 +756,54 @@ NEXT_STEP_TEXT = {
 }
 
 WARNING_TEXT = {
-    1: {"th": "ระวังการใช้ความสำเร็จเป็นตัววัดคุณค่าของหัวใจตัวเอง", "en": "Be careful not to use success as the only measure of your worth."},
-    2: {"th": "ระวังการเป็นคนรองรับทุกอย่างจนไม่มีใครรู้เลยว่าคุณเจ็บตรงไหน", "en": "Be careful not to hold everything for everyone until no one knows where you hurt."},
-    3: {"th": "ระวังการทำทุกอย่างให้ดูเบาจนหัวใจลึก ๆ ไม่เคยถูกได้ยิน", "en": "Be careful not to make everything look light until your deeper heart is never heard."},
-    4: {"th": "ระวังการติดกับโครงสร้างเดิมจนพลาดโอกาสใหม่ที่เหมาะกว่า", "en": "Be careful not to cling so tightly to old structures that you miss better opportunities."},
-    5: {"th": "ระวังการเปลี่ยนทุกอย่างเพียงเพราะรู้สึกอึดอัดชั่วคราว", "en": "Be careful not to change everything just because a temporary discomfort appears."},
-    6: {"th": "ระวังการให้เกินกว่าที่อีกฝ่ายร้องขอแล้วคาดหวังว่าจะถูกเห็นคุณค่าเอง", "en": "Be careful not to over-give and silently expect your worth to be recognized."},
-    7: {"th": "ระวังการใช้ความลึกเป็นข้ออ้างในการไม่เชื่อมต่อกับชีวิตจริง", "en": "Be careful not to use depth as an excuse to disconnect from real life."},
-    8: {"th": "ระวังการทำทุกอย่างให้ใหญ่จนหัวใจไม่เหลือพื้นที่หายใจ", "en": "Be careful not to make everything so large that your heart no longer has room to breathe."},
-    9: {"th": "ระวังการใช้เมตตาเป็นข้ออ้างในการอยู่ต่อในสิ่งที่ทำร้ายคุณ", "en": "Be careful not to use compassion as a reason to stay in what harms you."},
-    11: {"th": "ระวังการเปิดรับทุกอย่างจนตัวเองพร่าและหมดแรง", "en": "Be careful not to open yourself to everything until your energy becomes blurred and depleted."},
-    22: {"th": "ระวังการผลักตัวเองด้วยมาตรฐานที่หนักจนหมดแรงก่อนสิ่งใหญ่จะเป็นรูปเป็นร่าง", "en": "Be careful not to drive yourself so hard that you burn out before the vision takes shape."},
-    33: {"th": "ระวังการช่วยคนจนหลุดจากแกนตัวเอง", "en": "Be careful not to help others so much that you lose your own center."},
+    1: {
+        "th": "ระวังการพยายามพิสูจน์ตัวเองตลอดเวลา จนชีวิตกลายเป็นการแข่งขันที่ไม่มีวันจบ เพราะสุดท้าย…คุณจะเหนื่อยกับการเป็นคนที่ต้องเก่งตลอด โดยที่ไม่เคยได้เป็นตัวเองจริง ๆ",
+        "en": "Be careful not to constantly prove yourself. Life can turn into an endless competition, leaving you exhausted from always needing to be strong—without ever being your true self."
+    },
+    2: {
+        "th": "ระวังการเก็บทุกอย่างไว้ในใจ เพื่อรักษาความสัมพันธ์ เพราะวันหนึ่งคุณจะกลายเป็นคนที่เข้าใจทุกคน…แต่ไม่มีใครเข้าใจคุณเลย",
+        "en": "Be careful not to keep everything inside just to maintain relationships. One day, you may become the one who understands everyone—but no one understands you."
+    },
+    3: {
+        "th": "ระวังการทำเป็นโอเค ทำเป็นตลก หรือทำให้ทุกอย่างดูเบา จนไม่มีใครรู้ว่าจริง ๆ แล้วคุณกำลังรู้สึกอะไรอยู่ลึก ๆ",
+        "en": "Be careful not to hide behind humor or pretend everything is okay. People may never realize what you truly feel deep inside."
+    },
+    4: {
+        "th": "ระวังการแบกทุกอย่างไว้คนเดียว เพราะคุณจะกลายเป็นคนที่เหนื่อยที่สุด…โดยที่ไม่มีใครรู้ว่าคุณต้องการความช่วยเหลือ",
+        "en": "Be careful not to carry everything alone. You may become the most exhausted person, while no one realizes you need help."
+    },
+    5: {
+        "th": "ระวังการอยู่ในสิ่งที่ไม่ใช่นานเกินไป เพราะยิ่งคุณทนมากเท่าไหร่ คุณจะยิ่งลืมไปว่า ‘ชีวิตที่เป็นตัวเองจริง ๆ’ มันรู้สึกยังไง",
+        "en": "Be careful not to stay too long in places that aren’t right for you. The longer you endure, the more you forget what it feels like to truly be yourself."
+    },
+    6: {
+        "th": "ระวังการให้คนอื่นมากเกินไป จนวันหนึ่งคุณไม่เหลือพลังให้ตัวเอง และเริ่มรู้สึกว่าชีวิตคุณมีไว้เพื่อคนอื่นเท่านั้น",
+        "en": "Be careful not to give too much to others. One day, you may have no energy left for yourself and feel like your life exists only for others."
+    },
+    7: {
+        "th": "ระวังการถอยออกจากโลก เพราะคิดว่าไม่มีใครเข้าใจคุณ เพราะยิ่งคุณเงียบ คุณจะยิ่งโดดเดี่ยว และไม่มีใครเข้าถึงคุณได้จริง",
+        "en": "Be careful not to withdraw from the world because you feel misunderstood. The more you stay silent, the more alone you become."
+    },
+    8: {
+        "th": "ระวังการทำตัวให้แข็งแรงตลอดเวลา จนไม่มีใครกล้าเข้ามาดูแลคุณ เพราะทุกคนคิดว่าคุณไม่ต้องการใคร",
+        "en": "Be careful not to appear strong all the time. People may assume you don’t need anyone, and no one will step in to support you."
+    },
+    9: {
+        "th": "ระวังการยึดติดกับอดีตหรือคนที่จบไปแล้ว เพราะมันจะทำให้คุณไม่สามารถเปิดรับสิ่งใหม่ที่กำลังเข้ามาในชีวิตได้",
+        "en": "Be careful not to stay attached to the past or people who are no longer in your life. It may block new opportunities from entering."
+    },
+    11: {
+        "th": "ระวังการเปิดรับพลังหรือความรู้สึกของคนอื่นมากเกินไป จนคุณสับสนและหมดแรง โดยที่ไม่รู้ว่าอะไรคือของคุณจริง ๆ",
+        "en": "Be careful not to absorb too much from others. It can leave you confused and drained, unable to tell what truly belongs to you."
+    },
+    22: {
+        "th": "ระวังการกดดันตัวเองด้วยความคาดหวังที่สูงเกินไป จนคุณไม่กล้าเริ่ม เพราะกลัวว่าจะทำได้ไม่ดีพอ",
+        "en": "Be careful not to pressure yourself with unrealistic expectations. You may end up not starting at all out of fear of not doing it perfectly."
+    },
+    33: {
+        "th": "ระวังการช่วยคนอื่นจนลืมตัวเอง เพราะสุดท้ายคุณจะเป็นคนที่เหนื่อยที่สุด แต่ไม่มีใครรู้ว่าคุณกำลังหมดแรง",
+        "en": "Be careful not to help others so much that you forget yourself. In the end, you may be the most exhausted person—and no one will even notice."
+    }
 }
 
 
