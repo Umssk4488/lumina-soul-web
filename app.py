@@ -1255,7 +1255,43 @@ if st.session_state.latest_result:
         """,
         unsafe_allow_html=True
     )
+    st.markdown(
+        f"""
+        <div class="lock-card">
+            <h4 style="color:#8e24aa; margin-top:0;">
+                ✨ {tr("ถ้าคุณรู้สึกว่า ‘มันใช่’ นี่คือขั้นต่อไปของคุณ",
+                       "If this feels right, this is your next step")}
+            </h4>
 
+            <p>{tr("สิ่งที่คุณอ่านไป เป็นแค่ภาพรวมเท่านั้น",
+                   "What you’ve read so far is only the surface.")}</p>
+
+            <p>{tr("ของจริงจะลึกกว่านี้ และจะบอกคุณว่า",
+                   "The deeper layer will show you:")}</p>
+
+            <p>• {tr("คุณกำลังติดอะไรอยู่", "What is blocking you")}</p>
+            <p>• {tr("ทำไมชีวิตเป็นแบบนี้", "Why your life is like this")}</p>
+            <p>• {tr("และต้องไปต่อยังไง", "What you should do next")}</p>
+
+            <p style="font-weight:600; color:#7b1fa2;">
+                {tr("ถ้าคุณรู้สึกว่าใช่ อย่าหยุดแค่ตรงนี้",
+                    "If this feels right, don’t stop here")}
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+    st.markdown(
+        f"""
+        <div class="premium-btn">
+            <a href="{LINE_LINK}" target="_blank">
+                ✨ {tr("ปลดล็อกคำตอบชีวิตฉัน", "Unlock My Answer")}
+            </a>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
     if not st.session_state.premium_unlocked:
         st.markdown(
             f"""
