@@ -1336,7 +1336,7 @@ if st.session_state.latest_result:
 
         code_input = st.text_input(tr("✨ ใส่ Soul Code ของคุณ", "✨ Enter your Soul Code"))
 
-    if st.button(tr("🔓 ปลดล็อคคำอ่านฉบับเต็ม", "🔓 Unlock Full Reading")):
+if st.button(tr("🔓 ปลดล็อคคำอ่านฉบับเต็ม", "🔓 Unlock Full Reading")):
     code_clean = code_input.strip().upper()
     api_result = verify_code_via_api(code_clean)
 
