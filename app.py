@@ -905,7 +905,12 @@ category_display_list = [c["th"] if st.session_state.lang == "th" else c["en"] f
 
 with st.form("lumina_form_v2"):
     name = st.text_input(tr("ชื่อ-นามสกุล", "Full Name"))
-    contact = st.text_input(tr("ID Line (เพื่อรับสิทธิ์ปลดล็อค)", "Line ID (for unlock access)"), value=LINE_ID)
+    contact = st.text_input(
+        tr(
+            "ID Line (เพื่อรับผลสะท้อนพลังงานและสิทธิ์อ่านเชิงลึก)",
+            "Line ID (to receive your reflection and deeper reading access)"
+        )
+    )
 
     col1, col2, col3 = st.columns(3)
     with col1:
@@ -1021,6 +1026,7 @@ if submitted:
 
         st.session_state.premium_unlocked = False
         st.session_state.used_code = ""
+        st.balloons()
 
 # -----------------------------
 # Result rendering
