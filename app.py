@@ -410,7 +410,62 @@ def verify_code(code_input: str):
     if not code:
         return False
     return code in MANUAL_CODES
+def verify_code_via_api(code_input: str):
+    code = (code_input or "").strip().upper()
+    if not code:
+        return {"success": False, "valid": False}
 
+    try:
+        response = requests.post(
+            SOULCODES_API_URL,
+            json={
+                "action": "verify_code",
+                "code": code
+            },
+            timeout=10
+        )
+
+        data = response.json()
+
+        if data.get("success") and data.get("valid"):
+            return {
+                "success": True,
+                "valid": True,
+                "code": code
+            }
+
+        return {
+            "success": True,
+            "valid": False
+        }
+
+    except Exception:
+        return {
+            "success": False,
+            "valid": False
+        }
+
+
+def mark_code_used_via_api(code_input: str):
+    code = (code_input or "").strip().upper()
+    if not code:
+        return False
+
+    try:
+        response = requests.post(
+            SOULCODES_API_URL,
+            json={
+                "action": "mark_used",
+                "code": code
+            },
+            timeout=10
+        )
+
+        data = response.json()
+        return bool(data.get("success"))
+
+    except Exception:
+        return False
 
 def push_to_google_sheet(payload: dict):
     try:
