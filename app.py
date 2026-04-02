@@ -1,6 +1,3 @@
-from textwrap import dedent
-
-code = dedent(r'''
 import streamlit as st
 import requests
 from datetime import datetime
@@ -461,683 +458,8 @@ month_energy_meanings = {
 }
 
 # -----------------------------
-# Content library
+# Smaller libraries reused by all numbers
 # -----------------------------
-PROFILE_LIBRARY = {
-    1: {
-        "core": {
-            "th": [
-                "คุณมีพลังของผู้เริ่มต้นและผู้เปิดทาง ชีวิตของคุณมักไม่สบายใจเมื่อถูกบังคับให้อยู่ในกรอบที่ไม่ใช่ตัวเอง",
-                "หัวใจของคุณต้องการอิสระในการตัดสินใจ และต้องการรู้สึกว่าชีวิตกำลังเดินไปในทิศทางที่ตัวเองเลือก"
-            ],
-            "en": [
-                "You carry the energy of an initiator and path opener. Your soul does not feel at ease when it is trapped in a life that does not reflect who you are.",
-                "At your core, you need freedom in decision-making and a sense that your life is moving in a direction you truly chose."
-            ]
-        },
-        "shadow": {
-            "th": [
-                "เมื่อพลังคุณตก คุณอาจกลายเป็นคนกดดันตัวเองเกินไป รีบเกินไป หรือรู้สึกว่าต้องแข็งแรงตลอดเวลา",
-                "บทเรียนสำคัญคือการนำพาชีวิตโดยไม่ต้องต่อสู้กับทุกอย่างตลอดเวลา"
-            ],
-            "en": [
-                "When your energy is low, you may pressure yourself too much, rush life, or feel you must always stay strong.",
-                "A key lesson is learning to lead without turning everything into a battle."
-            ]
-        },
-        "love": {
-            "th": [
-                "ในความรัก คุณต้องการความสัมพันธ์ที่เคารพตัวตน ไม่ใช่ความสัมพันธ์ที่ทำให้คุณต้องหายไปเพื่อเอาใจอีกฝ่าย",
-                "คุณรักได้จริง แต่หัวใจคุณจะปิดทันทีเมื่อรู้สึกว่าถูกควบคุม"
-            ],
-            "en": [
-                "In love, you need a relationship that respects your identity rather than one that asks you to disappear to please the other person.",
-                "You can love deeply, but your heart closes quickly when it feels controlled."
-            ]
-        },
-        "career": {
-            "th": [
-                "งานที่เหมาะกับคุณคือสิ่งที่ได้เริ่ม ได้ตัดสินใจ และได้สร้างบางอย่างด้วยวิธีของตัวเอง",
-                "คุณมักเติบโตเมื่อกล้ารับบทนำ ไม่ใช่เมื่อซ่อนความสามารถไว้ข้างหลัง"
-            ],
-            "en": [
-                "Work suits you best when you can initiate, decide, and build in your own way.",
-                "You thrive when you are willing to step into leadership instead of hiding your capability."
-            ]
-        },
-        "money": {
-            "th": [
-                "การเงินของคุณดีขึ้นเมื่อคุณเชื่อในคุณค่าของตัวเองและกล้าตั้งราคากับสิ่งที่ทำ",
-                "เมื่อคุณลังเลในคุณค่า เงินมักสะท้อนความลังเลนั้นกลับมา"
-            ],
-            "en": [
-                "Your financial flow improves when you believe in your own value and dare to price what you create.",
-                "When you doubt your worth, money tends to mirror that hesitation."
-            ]
-        },
-        "healing": {
-            "th": ["คุณไม่ได้เกิดมาเพื่อเดินตามทุกคน คุณเกิดมาเพื่อจำเสียงของตัวเองให้ได้อีกครั้ง"],
-            "en": ["You were not born to follow every path around you. You were born to remember your own voice."]
-        }
-    },
-    2: {
-        "core": {
-            "th": [
-                "คุณมีพลังของผู้ประสานใจ รับรู้อารมณ์ละเอียด และมักเข้าใจสิ่งที่คนอื่นไม่ได้พูดออกมาตรง ๆ",
-                "หัวใจของคุณเติบโตเมื่ออยู่ในพื้นที่ที่อ่อนโยน จริงใจ และปลอดภัยพอให้เป็นตัวเอง"
-            ],
-            "en": [
-                "You carry the energy of a harmonizer. You sense subtle emotions and often understand what others do not say directly.",
-                "Your heart grows in spaces that feel gentle, sincere, and safe enough for your true self."
-            ]
-        },
-        "shadow": {
-            "th": [
-                "เมื่อพลังตก คุณอาจกลัวความขัดแย้งจนเก็บความรู้สึกตัวเองไว้ หรือรับพลังคนอื่นมาหนักเกินไป",
-                "บทเรียนของคุณคือการอ่อนโยนกับคนอื่นโดยไม่ทอดทิ้งหัวใจตัวเอง"
-            ],
-            "en": [
-                "When your energy is low, you may avoid conflict so much that you suppress your own feelings or carry too much of other people’s energy.",
-                "Your lesson is to remain gentle with others without abandoning your own heart."
-            ]
-        },
-        "love": {
-            "th": [
-                "ความรักของคุณต้องการความมั่นคงทางใจและการสื่อสารที่นุ่มนวล",
-                "คุณไม่ได้ต้องการแค่คนรัก แต่ต้องการคนที่เห็นความละเอียดอ่อนของคุณอย่างจริงใจ"
-            ],
-            "en": [
-                "Your love life needs emotional safety and soft, honest communication.",
-                "You are not just seeking a partner—you are seeking someone who truly sees your sensitivity."
-            ]
-        },
-        "career": {
-            "th": [
-                "คุณเหมาะกับงานที่ใช้การประสานคน ดูแลความสัมพันธ์ รับฟัง หรือสร้างบรรยากาศที่ทำให้คนสบายใจ",
-                "พรสวรรค์ของคุณคือการเชื่อมโยงมากกว่าการแข่งขัน"
-            ],
-            "en": [
-                "You do well in work that involves connection, care, listening, or creating an environment where people feel safe.",
-                "Your gift lies more in connecting than competing."
-            ]
-        },
-        "money": {
-            "th": [
-                "การเงินของคุณดีขึ้นเมื่อคุณหยุดมองว่าความอ่อนโยนไม่มีมูลค่า",
-                "คุณสามารถสร้างเงินได้จากการช่วยให้คนรู้สึกดีขึ้นหรือเข้าใจตัวเองมากขึ้น"
-            ],
-            "en": [
-                "Your money grows when you stop assuming that softness has no value.",
-                "You can create income through helping people feel better or understand themselves more deeply."
-            ]
-        },
-        "healing": {
-            "th": ["ความอ่อนไหวของคุณไม่ใช่จุดอ่อน แต่มันคือภาษาละเอียดของจิตวิญญาณ"],
-            "en": ["Your sensitivity is not a weakness. It is one of the subtle languages of the soul."]
-        }
-    },
-    3: {
-        "core": {
-            "th": [
-                "คุณมีพลังของการสื่อสาร ความคิดสร้างสรรค์ และการทำให้พลังภายในถูกถ่ายทอดออกมาเป็นคำพูดหรือผลงาน",
-                "ชีวิตของคุณมักเปิดทางเมื่อคุณยอมให้ตัวเองถูกมองเห็น"
-            ],
-            "en": [
-                "You carry the energy of expression, creativity, and turning inner energy into words, art, or communication.",
-                "Life opens for you when you allow yourself to be seen."
-            ]
-        },
-        "shadow": {
-            "th": [
-                "เมื่อพลังตก คุณอาจใช้ความสดใสกลบความจริงในใจ หรือกลัวว่าถ้าพูดจริงแล้วคนจะไม่รับ",
-                "บทเรียนคือการสื่อสารจากแก่นแท้ ไม่ใช่จากการพยายามทำให้ทุกคนพอใจ"
-            ],
-            "en": [
-                "When your energy drops, you may use brightness to cover what is really happening inside or fear that honesty will not be accepted.",
-                "Your lesson is to express from truth rather than from the need to please everyone."
-            ]
-        },
-        "love": {
-            "th": [
-                "ในความรัก คุณต้องการความสนุก การสื่อสาร และการเชื่อมโยงที่มีชีวิตชีวา",
-                "แต่ลึก ๆ แล้วคุณต้องการคนที่รับฟังโลกภายในของคุณด้วย ไม่ใช่เห็นแค่ภาพภายนอก"
-            ],
-            "en": [
-                "In love, you need playfulness, communication, and a lively sense of connection.",
-                "But underneath that, you also need someone who listens to your inner world, not just your outer sparkle."
-            ]
-        },
-        "career": {
-            "th": [
-                "คุณเหมาะกับงานสื่อสาร คอนเทนต์ การพูด การสอน การขายเชิงความรู้ หรือการสร้างแรงบันดาลใจ",
-                "พรสวรรค์ของคุณคือการทำให้สิ่งที่จับต้องยากกลายเป็นสิ่งที่คนรู้สึกได้"
-            ],
-            "en": [
-                "You suit communication, content, speaking, teaching, value-based selling, and inspiration-led work.",
-                "Your gift is making intangible things feel real and emotionally accessible."
-            ]
-        },
-        "money": {
-            "th": [
-                "การเงินของคุณดีเมื่อคุณกล้าใช้เสียงของตัวเองและทำสิ่งที่มีเอกลักษณ์",
-                "รายได้มักเชื่อมกับความสามารถในการดึงดูดคนผ่านเสน่ห์และการสื่อสาร"
-            ],
-            "en": [
-                "Your financial flow improves when you dare to use your voice and create through your own uniqueness.",
-                "Income often connects to your ability to attract people through communication and personal magnetism."
-            ]
-        },
-        "healing": {
-            "th": ["เสียงของคุณไม่ได้มีไว้เพื่อทำให้คนพอใจอย่างเดียว แต่มันมีไว้เพื่อปลดล็อกบางอย่างในใจคนด้วย"],
-            "en": ["Your voice is not only here to please people. It is here to unlock something in them too."]
-        }
-    },
-    4: {
-        "core": {
-            "th": [
-                "คุณมีพลังของผู้สร้างรากฐาน ชีวิตของคุณเด่นเรื่องความรับผิดชอบ ความจริงจัง และการทำสิ่งเล็กให้กลายเป็นความมั่นคง",
-                "คุณรู้สึกปลอดภัยเมื่อทุกอย่างมีโครงสร้างที่ชัดเจน"
-            ],
-            "en": [
-                "You carry builder energy. Your life highlights responsibility, seriousness, and the ability to turn small actions into real stability.",
-                "You feel safest when life has clear structure."
-            ]
-        },
-        "shadow": {
-            "th": [
-                "เมื่อพลังตก คุณอาจแบกเยอะเกินไป กดดันตัวเอง และยึดกับวิธีเดิมจนชีวิตไม่ไหล",
-                "บทเรียนสำคัญคือการสร้างโดยไม่แข็งทื่อ"
-            ],
-            "en": [
-                "When your energy is low, you may over-carry, over-pressure yourself, and cling to old methods until life feels blocked.",
-                "Your key lesson is to build without becoming rigid."
-            ]
-        },
-        "love": {
-            "th": [
-                "ในความรัก คุณต้องการความชัดเจน ความมั่นคง และความไว้ใจที่พิสูจน์ได้จริง",
-                "คุณเปิดใจช้า แต่ถ้าเชื่อใจแล้วจะจริงจังมาก"
-            ],
-            "en": [
-                "In love, you need clarity, stability, and trust that can be felt in action.",
-                "You open slowly, but once you trust, you become deeply committed."
-            ]
-        },
-        "career": {
-            "th": [
-                "คุณเหมาะกับงานระบบ งานวางแผน งานจัดการ หรือธุรกิจที่ต้องสร้างฐานให้มั่นคง",
-                "ความสำเร็จของคุณมักมาแบบค่อยเป็นค่อยไปแต่ยั่งยืน"
-            ],
-            "en": [
-                "You suit systems, planning, management, and businesses that require a strong foundation.",
-                "Your success often builds slowly but lasts."
-            ]
-        },
-        "money": {
-            "th": [
-                "การเงินของคุณขึ้นกับวินัย การจัดระบบ และการตัดสินใจระยะยาว",
-                "คุณมีศักยภาพสร้างความมั่นคงสูง ถ้าไม่กลัวการเติบโตที่ค่อยเป็นค่อยไป"
-            ],
-            "en": [
-                "Your finances depend on discipline, systems, and long-term decision-making.",
-                "You have strong potential for lasting stability if you stop underestimating slow growth."
-            ]
-        },
-        "healing": {
-            "th": ["คุณไม่ได้ช้า คุณกำลังสร้างสิ่งที่อยู่ได้นานกว่า"],
-            "en": ["You are not slow. You are building something designed to last."]
-        }
-    },
-    5: {
-        "core": {
-            "th": [
-                "คุณมีพลังของการเปลี่ยนแปลง อิสรภาพ และการเรียนรู้จากประสบการณ์ตรง",
-                "ชีวิตของคุณมักเติบโตเมื่อได้ขยับ เดินทาง ทดลอง และปล่อยให้ตัวเองมีพื้นที่"
-            ],
-            "en": [
-                "You carry the energy of change, freedom, and learning through direct experience.",
-                "Your life expands through movement, exploration, experimentation, and spaciousness."
-            ]
-        },
-        "shadow": {
-            "th": [
-                "เมื่อพลังตก คุณอาจรู้สึกเบื่อง่าย กระจัดกระจาย หรือหนีความรู้สึกลึกด้วยการหาสิ่งใหม่ตลอดเวลา",
-                "บทเรียนคือการรักษาอิสรภาพโดยไม่หนีจากตัวเอง"
-            ],
-            "en": [
-                "When your energy is low, you may become restless, scattered, or avoid deeper emotions by constantly chasing something new.",
-                "Your lesson is to stay free without running from yourself."
-            ]
-        },
-        "love": {
-            "th": [
-                "ในความรัก คุณต้องการพื้นที่ ความสดใหม่ และคนที่ไม่ทำให้คุณรู้สึกติดกับ",
-                "แต่หัวใจคุณก็ยังต้องการความจริงใจ ไม่ใช่แค่ความตื่นเต้นชั่วคราว"
-            ],
-            "en": [
-                "In love, you need space, freshness, and a partner who does not make you feel trapped.",
-                "Yet your heart still needs sincerity, not just temporary excitement."
-            ]
-        },
-        "career": {
-            "th": [
-                "คุณเหมาะกับงานที่มีความยืดหยุ่น การสื่อสาร การตลาด การเดินทาง หรือสิ่งที่ได้ลองหลายบทบาท",
-                "คุณเติบโตเมื่อมีพื้นที่ให้พลังชีวิตได้ไหล"
-            ],
-            "en": [
-                "You suit flexible work, communication, marketing, travel, and roles that allow variety.",
-                "You thrive when your life-force is allowed to move."
-            ]
-        },
-        "money": {
-            "th": [
-                "การเงินของคุณมักขึ้นลงตามจังหวะชีวิต แต่ถ้าคุณสร้างระบบรองรับอิสรภาพได้ เงินจะไหลดีมาก",
-                "คุณมีพลังดึงดูดโอกาส แต่ต้องระวังการใช้จ่ายตามอารมณ์"
-            ],
-            "en": [
-                "Your finances may fluctuate with your life rhythm, but when you build systems that support your freedom, money can flow well.",
-                "You attract opportunities, but emotional spending needs care."
-            ]
-        },
-        "healing": {
-            "th": ["อิสรภาพที่แท้จริง ไม่ใช่การหนีทุกอย่าง แต่มันคือการอยู่กับตัวเองได้โดยไม่ติดกรง"],
-            "en": ["True freedom is not escaping everything. It is being able to stay with yourself without living in a cage."]
-        }
-    },
-    6: {
-        "core": {
-            "th": [
-                "คุณมีพลังของผู้ดูแล ผู้เยียวยา และผู้สร้างพื้นที่ปลอดภัยให้คนอื่น",
-                "หัวใจของคุณมีความรัก ความรับผิดชอบ และความต้องการทำสิ่งที่มีคุณค่าต่อผู้คน"
-            ],
-            "en": [
-                "You carry the energy of the nurturer, healer, and one who creates emotional safety for others.",
-                "Your heart is rooted in love, responsibility, and doing something meaningful for people."
-            ]
-        },
-        "shadow": {
-            "th": [
-                "เมื่อพลังตก คุณอาจให้มากเกินไป แบกคนอื่นเกินจำเป็น หรือรู้สึกผิดง่ายเมื่อไม่ได้ช่วยทุกคน",
-                "บทเรียนคือการดูแลคนอื่นโดยไม่ละทิ้งตัวเอง"
-            ],
-            "en": [
-                "When your energy drops, you may over-give, over-carry, or feel guilty when you cannot save everyone.",
-                "Your lesson is to care for others without abandoning yourself."
-            ]
-        },
-        "love": {
-            "th": [
-                "ในความรัก คุณต้องการความอบอุ่น ความมั่นคง และความสัมพันธ์ที่ให้ความรู้สึกเหมือนบ้าน",
-                "คุณรักลึกและทุ่มเท แต่ต้องระวังการเป็นคนเยียวยาแทนที่จะเป็นคนรัก"
-            ],
-            "en": [
-                "In love, you need warmth, stability, and a bond that feels like home.",
-                "You love deeply and generously, but be careful not to become the healer instead of the partner."
-            ]
-        },
-        "career": {
-            "th": [
-                "คุณเหมาะกับงานดูแล บริการ ให้คำแนะนำ ความงาม สุขภาวะ หรือสิ่งที่ช่วยยกระดับชีวิตคนอื่น",
-                "พรสวรรค์ของคุณคือการทำให้คนรู้สึกว่าตัวเองมีค่า"
-            ],
-            "en": [
-                "You suit care work, service, guidance, beauty, wellbeing, and anything that helps people feel better or live better.",
-                "Your gift is helping people feel valued."
-            ]
-        },
-        "money": {
-            "th": [
-                "เงินของคุณมักมาเมื่อคุณให้คุณค่ากับสิ่งที่คุณมอบ ไม่ใช่แค่ทำไปเพราะใจดี",
-                "คุณต้องเรียนรู้ว่าความสามารถในการดูแลและเยียวยาก็มีมูลค่าทางการเงิน"
-            ],
-            "en": [
-                "Money tends to come when you value what you offer instead of giving endlessly just because you care.",
-                "Your care and healing ability also hold financial value."
-            ]
-        },
-        "healing": {
-            "th": ["การรักคนอื่นไม่จำเป็นต้องแลกกับการทิ้งตัวเองไว้ข้างหลัง"],
-            "en": ["Loving others does not require leaving yourself behind."]
-        }
-    },
-    7: {
-        "core": {
-            "th": [
-                "คุณมีพลังของนักค้นหาความจริง ชีวิตของคุณมักไม่พอใจกับคำตอบผิวเผิน เพราะหัวใจต้องการเข้าใจสิ่งต่าง ๆ ให้ถึงแก่น",
-                "คุณเชื่อมต่อกับโลกภายในได้ลึก และมักมีสัญชาตญาณที่ชัดกว่าที่ตัวเองยอมรับ"
-            ],
-            "en": [
-                "You carry the energy of a truth seeker. Surface-level answers rarely satisfy you because your heart wants to understand life at its root.",
-                "You are deeply connected to your inner world and often possess stronger intuition than you openly admit."
-            ]
-        },
-        "shadow": {
-            "th": [
-                "เมื่อพลังตก คุณอาจถอยห่าง เก็บตัว คิดวน หรือรู้สึกว่าไม่มีใครเข้าใจสิ่งที่อยู่ข้างใน",
-                "บทเรียนสำคัญคือการใช้ความลึกเพื่อเปิดประตู ไม่ใช่สร้างกำแพง"
-            ],
-            "en": [
-                "When your energy drops, you may withdraw, overthink, or feel that no one truly understands what lives inside you.",
-                "A core lesson is to use depth as a doorway rather than as a wall."
-            ]
-        },
-        "love": {
-            "th": [
-                "ในความรัก คุณไม่ได้ต้องการเพียงความสัมพันธ์ แต่ต้องการ connection ที่จริง ลึก และซื่อสัตย์",
-                "คุณอาจดูนิ่งหรือเปิดยาก แต่ความจริงคือคุณให้ความสำคัญกับความจริงใจมากกว่าความหวือหวา"
-            ],
-            "en": [
-                "In love, you are not seeking just a relationship—you are seeking real, deep, and honest connection.",
-                "You may seem reserved or hard to access, but the truth is you value sincerity more than spectacle."
-            ]
-        },
-        "career": {
-            "th": [
-                "คุณเหมาะกับงานที่ได้คิด วิเคราะห์ เขียน สอน วิจัย หรือถ่ายทอดสิ่งลึกให้คนเข้าใจง่ายขึ้น",
-                "คุณเติบโตได้มากเมื่อทำงานที่เชื่อมโลกภายในกับคุณค่าที่ส่งต่อออกไปภายนอก"
-            ],
-            "en": [
-                "You are suited to work involving analysis, writing, teaching, research, or translating depth into something others can understand.",
-                "You grow most when your work bridges inner truth with outer contribution."
-            ]
-        },
-        "money": {
-            "th": [
-                "การเงินของคุณดีขึ้นเมื่อคุณหยุดแยกเรื่องจิตวิญญาณออกจากคุณค่าในโลกจริง",
-                "เมื่อสิ่งที่คุณทำมีความหมายและมีโครงสร้าง เงินจะเริ่มไหลแบบมั่นคงขึ้น"
-            ],
-            "en": [
-                "Your finances improve when you stop separating spirituality from real-world value.",
-                "When your work carries meaning and structure, money begins to flow more steadily."
-            ]
-        },
-        "healing": {
-            "th": ["ความลึกของคุณไม่ได้ทำให้คุณยากเกินจะรัก มันแค่หมายความว่าหัวใจคุณต้องการความจริงมากกว่าคนทั่วไป"],
-            "en": ["Your depth does not make you too difficult to love. It simply means your heart requires more truth than most."]
-        }
-    },
-    8: {
-        "core": {
-            "th": [
-                "คุณมีพลังของการบริหาร ความสำเร็จ และการทำให้สิ่งที่มองเห็นในหัวกลายเป็นผลลัพธ์ที่จับต้องได้",
-                "ชีวิตของคุณมีศักยภาพสูงในเรื่องการสร้างอิทธิพล ความมั่นคง และพลังในโลกจริง"
-            ],
-            "en": [
-                "You carry the energy of leadership, achievement, and turning vision into tangible results.",
-                "Your life holds strong potential around influence, stability, and worldly power."
-            ]
-        },
-        "shadow": {
-            "th": [
-                "เมื่อพลังตก คุณอาจกดดันตัวเองหนัก วัดคุณค่าจากความสำเร็จ หรือกลัวการล้มเหลวจนไม่กล้าผ่อน",
-                "บทเรียนสำคัญคือการมีอำนาจโดยไม่กลายเป็นนักสู้ที่ไม่มีวันพัก"
-            ],
-            "en": [
-                "When your energy is low, you may pressure yourself harshly, measure your worth by success, or fear failure so much that you never fully rest.",
-                "Your lesson is to hold power without becoming a warrior who never stops fighting."
-            ]
-        },
-        "love": {
-            "th": [
-                "ในความรัก คุณต้องการคนที่เคารพพลังและความทะเยอทะยานของคุณ ไม่ใช่ทำให้คุณรู้สึกผิดที่จริงจังกับชีวิต",
-                "หัวใจคุณต้องการความซื่อสัตย์และความมั่นคงพอ ๆ กับความสำเร็จ"
-            ],
-            "en": [
-                "In love, you need someone who respects your power and ambition rather than making you feel guilty for taking life seriously.",
-                "Your heart needs honesty and stability just as much as success."
-            ]
-        },
-        "career": {
-            "th": [
-                "คุณเหมาะกับงานบริหาร ธุรกิจ การเงิน การสร้างแบรนด์ หรือบทบาทที่ต้องตัดสินใจและรับผิดชอบภาพใหญ่",
-                "คุณมีศักยภาพเป็นผู้นำสิ่งที่สร้างความมั่นคงให้ตัวเองและคนอื่น"
-            ],
-            "en": [
-                "You suit business, management, finance, branding, and roles that require decision-making and big-picture responsibility.",
-                "You have the potential to lead something that creates stability for both you and others."
-            ]
-        },
-        "money": {
-            "th": [
-                "การเงินเป็นหนึ่งในสนามพลังสำคัญของคุณ ยิ่งคุณจัดระบบและกล้ายืนในคุณค่าของตัวเอง เงินยิ่งตอบสนอง",
-                "คุณไม่ได้เกิดมาเพื่อเล็กกับเรื่องความอุดมสมบูรณ์"
-            ],
-            "en": [
-                "Money is one of your major energetic arenas. The more you build structure and stand in your value, the more finances respond.",
-                "You were not born to stay small around abundance."
-            ]
-        },
-        "healing": {
-            "th": ["ความสำเร็จที่แท้จริง ไม่ใช่การพิสูจน์ว่าคุณเก่งพอ แต่มันคือการสร้างชีวิตที่ไม่ต้องหักหลังหัวใจตัวเอง"],
-            "en": ["True success is not proving you are enough. It is building a life that does not betray your own heart."]
-        }
-    },
-    9: {
-        "core": {
-            "th": [
-                "คุณมีพลังของผู้ให้ เมตตา เข้าใจมนุษย์ และมีสายเชื่อมกับบทเรียนเรื่องการปล่อยวาง",
-                "หัวใจของคุณมักรู้สึกถึงความทุกข์ของผู้คนและต้องการทำบางอย่างที่มีความหมาย"
-            ],
-            "en": [
-                "You carry compassionate, humanitarian energy and are deeply linked to lessons of release and meaning.",
-                "Your heart often feels the suffering of others and wants to do something that matters."
-            ]
-        },
-        "shadow": {
-            "th": [
-                "เมื่อพลังตก คุณอาจแบกอดีต แบกคนอื่น หรือจมกับความผิดหวังที่ยังไม่ปิดวงจร",
-                "บทเรียนสำคัญคือการให้โดยไม่ทำให้ตัวเองสูญหาย"
-            ],
-            "en": [
-                "When your energy is low, you may carry the past, carry other people, or remain entangled in disappointments that never fully closed.",
-                "Your lesson is to give without disappearing."
-            ]
-        },
-        "love": {
-            "th": [
-                "ในความรัก คุณต้องการความหมาย ความเข้าใจ และความสัมพันธ์ที่ไม่ตื้น",
-                "แต่คุณต้องระวังความเมตตาที่ทำให้ยอมทนกับสิ่งที่ควรปล่อย"
-            ],
-            "en": [
-                "In love, you seek meaning, emotional understanding, and depth.",
-                "But you must watch for compassion becoming the reason you stay in what should already be released."
-            ]
-        },
-        "career": {
-            "th": [
-                "คุณเหมาะกับงานเยียวยา สอน ช่วยเหลือ สร้างแรงบันดาลใจ หรือสิ่งที่ส่งผลต่อผู้คนในวงกว้าง",
-                "ชีวิตคุณเด่นเมื่อสิ่งที่ทำมีคุณค่าต่อมากกว่าตัวเอง"
-            ],
-            "en": [
-                "You suit healing, teaching, helping, inspiring, or work that impacts people on a larger scale.",
-                "Your life becomes powerful when what you do serves more than just yourself."
-            ]
-        },
-        "money": {
-            "th": [
-                "การเงินของคุณมั่นคงขึ้นเมื่อคุณเลิกคิดว่าจิตวิญญาณกับความอุดมสมบูรณ์ไปด้วยกันไม่ได้",
-                "คุณทำเงินได้ดีเมื่อสิ่งที่ทำมีหัวใจและมีขอบเขตที่ชัด"
-            ],
-            "en": [
-                "Your finances become steadier when you stop believing spirituality and abundance cannot coexist.",
-                "You do well financially when your work has heart and clear boundaries."
-            ]
-        },
-        "healing": {
-            "th": ["สิ่งที่คุณต้องปล่อย ไม่ได้แปลว่าคุณรักน้อยลง แต่มันแปลว่าคุณเริ่มรักตัวเองด้วย"],
-            "en": ["What you release does not mean you love less. It means you are finally including yourself in that love."]
-        }
-    },
-    11: {
-        "core": {
-            "th": [
-                "คุณมีพลังของผู้ตื่นรู้ ญาณรู้ และการรับรู้สิ่งที่ลึกกว่าระดับผิว",
-                "ชีวิตของคุณมักมีช่วงที่ดูเหมือนแรงเกินไปหรืออ่อนไหวเกินไป เพราะคุณรับคลื่นได้มากกว่าคนทั่วไป"
-            ],
-            "en": [
-                "You carry awakened energy, heightened intuition, and the ability to sense what lies beyond the surface.",
-                "Your life may often feel intense or overly sensitive because you receive more than most people do."
-            ]
-        },
-        "shadow": {
-            "th": [
-                "เมื่อพลังตก คุณอาจสับสนในสิ่งที่ตัวเองรับรู้ รู้สึกเหนื่อยง่าย หรือแยกไม่ออกว่าอะไรเป็นของตัวเองอะไรเป็นของคนอื่น",
-                "บทเรียนของคุณคือการฝังแสงลงบนพื้นดิน ไม่ใช่ลอยอยู่กับความรู้สึกอย่างเดียว"
-            ],
-            "en": [
-                "When your energy drops, you may doubt what you sense, feel easily drained, or struggle to separate your energy from others.",
-                "Your lesson is to ground your light instead of floating only in feeling."
-            ]
-        },
-        "love": {
-            "th": [
-                "ในความรัก คุณต้องการความเชื่อมโยงระดับวิญญาณ แต่ก็ต้องการคนที่มั่นคงพอจะอยู่กับความลึกของคุณได้",
-                "คุณไม่เหมาะกับความสัมพันธ์ที่เล่นเกมหรือไม่ชัดเจน"
-            ],
-            "en": [
-                "In love, you seek soul-level connection, but you also need someone stable enough to meet your depth.",
-                "You are not built for games or emotional vagueness."
-            ]
-        },
-        "career": {
-            "th": [
-                "คุณเหมาะกับงานที่ผสานจิตวิญญาณกับการสื่อสาร การสอน การเยียวยา หรือการสร้างแรงบันดาลใจ",
-                "ชีวิตคุณจะเด่นเมื่อสิ่งที่คุณรับรู้ถูกแปลออกมาเป็นประโยชน์ต่อผู้คน"
-            ],
-            "en": [
-                "You suit work that bridges spirituality with communication, teaching, healing, or inspiration.",
-                "Your life path becomes powerful when what you sense is translated into something useful for others."
-            ]
-        },
-        "money": {
-            "th": [
-                "การเงินของคุณดีขึ้นเมื่อคุณหยุดลดทอนของขวัญตัวเอง",
-                "สิ่งที่คุณมองว่าเป็นเรื่องลึกหรือธรรมดาสำหรับคุณ อาจเป็นสิ่งล้ำค่าสำหรับคนอื่น"
-            ],
-            "en": [
-                "Your finances improve when you stop minimizing your gifts.",
-                "What feels normal or deeply personal to you may actually be profoundly valuable to others."
-            ]
-        },
-        "healing": {
-            "th": ["คุณไม่ได้แปลกเกินไป คุณแค่รับแสงได้มากเกินกว่าที่โลกทั่วไปสอนให้เข้าใจ"],
-            "en": ["You are not too strange. You simply receive more light than the ordinary world knows how to explain."]
-        }
-    },
-    22: {
-        "core": {
-            "th": [
-                "คุณมีพลังของผู้สร้างสิ่งใหญ่ให้เป็นจริง เห็นภาพกว้างและมีศักยภาพสร้างผลกระทบที่ยาวไกล",
-                "คุณไม่ได้มีพลังแค่ฝัน แต่มีพลังทำให้สิ่งนั้นลงสู่โลกจริง"
-            ],
-            "en": [
-                "You carry the energy of the master builder—someone who can see the bigger vision and create long-range impact.",
-                "Your power is not just in dreaming, but in bringing that dream into reality."
-            ]
-        },
-        "shadow": {
-            "th": [
-                "เมื่อพลังตก คุณอาจรู้สึกหนักกับภาระ รู้สึกว่าต้องแบกอะไรใหญ่เกินไป หรือกลัวความรับผิดชอบในศักยภาพตัวเอง",
-                "บทเรียนสำคัญคือการสร้างใหญ่โดยไม่แบกทุกอย่างคนเดียว"
-            ],
-            "en": [
-                "When your energy drops, you may feel overwhelmed by responsibility or afraid of the scale of your own potential.",
-                "Your lesson is to build big without carrying everything alone."
-            ]
-        },
-        "love": {
-            "th": [
-                "ในความรัก คุณต้องการคนที่เดินเติบโตไปด้วยกัน ไม่ใช่ความสัมพันธ์ที่ดึงคุณออกจากภารกิจชีวิต",
-                "คุณรักจริงจังและมองไกล จึงต้องการความสัมพันธ์ที่มีรากฐาน"
-            ],
-            "en": [
-                "In love, you need someone who can grow alongside you rather than pull you away from your mission.",
-                "You love seriously and think long-term, so relationships need foundation."
-            ]
-        },
-        "career": {
-            "th": [
-                "คุณเหมาะกับการสร้างธุรกิจ ระบบ แพลตฟอร์ม ทีม หรือสิ่งที่ส่งผลต่อผู้คนจำนวนมาก",
-                "คุณมีพลังทำวิสัยทัศน์ให้เป็นสิ่งจับต้องได้ ถ้ากล้าค่อย ๆ วางโครงอย่างมีวินัย"
-            ],
-            "en": [
-                "You suit building businesses, systems, platforms, teams, or anything that serves many people.",
-                "You can turn vision into form when you commit to structure and long-term discipline."
-            ]
-        },
-        "money": {
-            "th": [
-                "การเงินของคุณมีศักยภาพสูงมากเมื่อคุณทำสิ่งที่ใหญ่พอจะรับพลังคุณได้",
-                "คุณไม่ได้เกิดมาเพื่อแค่พออยู่ แต่เพื่อสร้างสิ่งที่มั่นคงและส่งต่อได้"
-            ],
-            "en": [
-                "Your financial potential is high when you engage in work big enough to hold your energy.",
-                "You were not born only to survive—you were born to build something strong and transmissible."
-            ]
-        },
-        "healing": {
-            "th": ["อย่ากลัวศักยภาพของตัวเอง เพราะสิ่งที่ดูใหญ่ในใจคุณ อาจเป็นเหตุผลที่คุณมาเกิด"],
-            "en": ["Do not fear your own potential. What feels huge inside you may be one of the reasons you came here."]
-        }
-    },
-    33: {
-        "core": {
-            "th": [
-                "คุณมีพลังของครูผู้เยียวยา เมตตา ลึก ซื่อสัตย์กับหัวใจ และมีแรงผลักดันที่จะส่งบางอย่างที่ช่วยผู้คนได้จริง",
-                "พลังของคุณไม่ใช่แค่เข้าใจความเจ็บปวด แต่สามารถแปรมันเป็นแสงให้คนอื่นได้"
-            ],
-            "en": [
-                "You carry the energy of the healing teacher—compassionate, deep, heart-led, and moved to offer something genuinely helpful to people.",
-                "Your gift is not only understanding pain, but turning it into light for others."
-            ]
-        },
-        "shadow": {
-            "th": [
-                "เมื่อพลังตก คุณอาจแบกความทุกข์คนอื่นมากไป คาดหวังกับตัวเองสูง และลืมว่าแม้ผู้เยียวยาก็ต้องได้รับการเยียวยา",
-                "บทเรียนคือการรับใช้โดยไม่สูญเสียหัวใจตัวเอง"
-            ],
-            "en": [
-                "When your energy drops, you may carry too much of others’ pain, hold impossible standards for yourself, and forget that healers also need healing.",
-                "Your lesson is to serve without losing your own heart."
-            ]
-        },
-        "love": {
-            "th": [
-                "ในความรัก คุณต้องการความสัมพันธ์ที่อบอุ่น ลึก และช่วยให้ทั้งสองคนเติบโต",
-                "แต่คุณต้องระวังบทบาทผู้ช่วยชีวิตที่ทำให้หัวใจเหนื่อย"
-            ],
-            "en": [
-                "In love, you seek warmth, emotional depth, and a bond that helps both people grow.",
-                "But you must watch for the savior role that exhausts the heart."
-            ]
-        },
-        "career": {
-            "th": [
-                "คุณเหมาะกับงานสอน เยียวยา โค้ช สื่อสารจากหัวใจ หรือธุรกิจที่สร้างการเปลี่ยนแปลงกับชีวิตคน",
-                "ความสำเร็จของคุณมาเมื่อภารกิจและการลงมือจริงเดินไปด้วยกัน"
-            ],
-            "en": [
-                "You suit teaching, healing, coaching, heart-led communication, or work that genuinely transforms lives.",
-                "Your success comes when mission and practical action walk together."
-            ]
-        },
-        "money": {
-            "th": [
-                "การเงินของคุณไม่ควรถูกตัดออกจากภารกิจ คุณสามารถได้รับอย่างงดงามจากสิ่งที่ช่วยผู้คน",
-                "คุณไม่ได้จำเป็นต้องเลือกระหว่างหัวใจกับความอุดมสมบูรณ์"
-            ],
-            "en": [
-                "Your finances do not need to be separated from your mission. You can receive beautifully through work that helps people.",
-                "You do not have to choose between heart and abundance."
-            ]
-        },
-        "healing": {
-            "th": ["การเป็นแสงให้คนอื่น ไม่จำเป็นต้องแผดเผาตัวเองจนหมดแรง"],
-            "en": ["Being a light for others does not require burning yourself out."]
-        }
-    }
-}
-
 BIRTH_DAY_LIBRARY = {
     1: {"th": "วันเกิดของคุณเติมพลังความกล้าและความเป็นตัวของตัวเอง", "en": "Your birth day amplifies courage and self-led energy."},
     2: {"th": "วันเกิดของคุณเติมพลังความอ่อนโยนและการรับรู้อารมณ์", "en": "Your birth day amplifies gentleness and emotional sensitivity."},
@@ -1173,8 +495,135 @@ QUESTION_SIGNALS = {
 }
 
 # -----------------------------
-# Content helpers
+# Main content library (compact + scalable)
 # -----------------------------
+BASE_CORE = {
+    1: {
+        "th": "คุณมีพลังของผู้เริ่มต้นและผู้เปิดทาง หัวใจของคุณต้องการอิสระในการตัดสินใจ และต้องการเดินในเส้นทางที่ตัวเองเลือกจริง ๆ",
+        "en": "You carry the energy of an initiator and path opener. Your heart needs freedom in decision-making and a path that genuinely feels like your own."
+    },
+    2: {
+        "th": "คุณมีพลังของผู้ประสานใจ รับรู้อารมณ์ละเอียด และเติบโตได้ดีเมื่ออยู่ในพื้นที่ที่อ่อนโยนและจริงใจ",
+        "en": "You carry the energy of a harmonizer, sensing emotional subtleties and growing best in spaces that feel gentle and sincere."
+    },
+    3: {
+        "th": "คุณมีพลังของการสื่อสารและความคิดสร้างสรรค์ ชีวิตมักเปิดเมื่อคุณยอมให้ตัวเองถูกมองเห็นมากขึ้น",
+        "en": "You carry the energy of expression and creativity. Life opens when you allow yourself to be seen more fully."
+    },
+    4: {
+        "th": "คุณมีพลังของผู้สร้างรากฐาน เด่นเรื่องความรับผิดชอบ ความจริงจัง และการทำสิ่งเล็กให้มั่นคงระยะยาว",
+        "en": "You carry builder energy with strong responsibility, seriousness, and the ability to turn small actions into long-term stability."
+    },
+    5: {
+        "th": "คุณมีพลังของการเปลี่ยนแปลง อิสรภาพ และการเรียนรู้ผ่านประสบการณ์ตรง ชีวิตของคุณเติบโตเมื่อได้ขยับและเปิดพื้นที่ให้ตัวเอง",
+        "en": "You carry the energy of change, freedom, and learning through lived experience. Your life expands when you move and give yourself space."
+    },
+    6: {
+        "th": "คุณมีพลังของผู้ดูแลและผู้เยียวยา หัวใจของคุณต้องการทำสิ่งที่มีคุณค่าต่อผู้คนและสร้างพื้นที่ปลอดภัยให้คนรอบตัว",
+        "en": "You carry the energy of the nurturer and healer. Your heart wants to do meaningful work and create safety for people around you."
+    },
+    7: {
+        "th": "คุณมีพลังของนักค้นหาความจริง ไม่พอใจกับคำตอบผิวเผิน และเชื่อมกับโลกภายในได้ลึกกว่าที่ตัวเองยอมรับ",
+        "en": "You carry the energy of a truth seeker, rarely satisfied by surface answers and more deeply connected to your inner world than you may admit."
+    },
+    8: {
+        "th": "คุณมีพลังของการบริหาร ความสำเร็จ และการทำให้สิ่งที่เห็นในหัวกลายเป็นผลลัพธ์ที่จับต้องได้",
+        "en": "You carry the energy of leadership, achievement, and turning vision into tangible outcomes."
+    },
+    9: {
+        "th": "คุณมีพลังของผู้ให้ เมตตา เข้าใจมนุษย์ และมีสายเชื่อมกับบทเรียนเรื่องการปล่อยวางและความหมายของชีวิต",
+        "en": "You carry compassionate, humanitarian energy and a strong connection to lessons of release and deeper meaning."
+    },
+    11: {
+        "th": "คุณมีพลังของผู้ตื่นรู้ ญาณรู้ และการรับรู้สิ่งที่ลึกกว่าระดับผิว ชีวิตของคุณมักมีความไวต่อสัญญาณมากกว่าคนทั่วไป",
+        "en": "You carry awakened energy, intuition, and sensitivity to what lies beyond the surface. You often receive more signals than most people."
+    },
+    22: {
+        "th": "คุณมีพลังของผู้สร้างสิ่งใหญ่ให้เป็นจริง มองภาพกว้างและมีศักยภาพสร้างผลกระทบระยะยาว",
+        "en": "You carry the energy of the master builder, seeing the bigger picture and holding potential for long-term impact."
+    },
+    33: {
+        "th": "คุณมีพลังของครูผู้เยียวยา เมตตา ลึก และมีแรงผลักดันที่จะส่งบางอย่างที่ช่วยผู้คนได้จริง",
+        "en": "You carry the energy of the healing teacher—compassionate, deep, and moved to offer something that genuinely helps others."
+    },
+}
+
+BASE_SHADOW = {
+    1: {"th": "เมื่อพลังตก คุณอาจกดดันตัวเองเกินไปและรู้สึกว่าต้องแข็งแรงตลอดเวลา", "en": "When your energy drops, you may pressure yourself too much and feel you must stay strong all the time."},
+    2: {"th": "เมื่อพลังตก คุณอาจเก็บความรู้สึกตัวเองไว้และรับพลังคนอื่นมาหนักเกินไป", "en": "When your energy drops, you may hide your own feelings and carry too much of other people’s energy."},
+    3: {"th": "เมื่อพลังตก คุณอาจใช้ความสดใสกลบความจริงในใจ หรือกลัวว่าถ้าพูดจริงแล้วคนจะไม่รับ", "en": "When your energy drops, you may use brightness to hide what is really happening inside or fear honesty will not be welcomed."},
+    4: {"th": "เมื่อพลังตก คุณอาจแบกเยอะเกินไปและยึดกับวิธีเดิมจนชีวิตไม่ไหล", "en": "When your energy drops, you may over-carry and cling to old methods until life feels blocked."},
+    5: {"th": "เมื่อพลังตก คุณอาจกระจัดกระจาย เบื่อง่าย หรือหนีความรู้สึกลึกด้วยการหาสิ่งใหม่ตลอดเวลา", "en": "When your energy drops, you may become scattered, restless, or use constant novelty to avoid deeper feelings."},
+    6: {"th": "เมื่อพลังตก คุณอาจให้มากเกินไปและลืมดูแลหัวใจตัวเอง", "en": "When your energy drops, you may over-give and forget to care for your own heart."},
+    7: {"th": "เมื่อพลังตก คุณอาจถอยห่าง เก็บตัว คิดวน และรู้สึกว่าไม่มีใครเข้าใจสิ่งที่อยู่ข้างใน", "en": "When your energy drops, you may withdraw, overthink, and feel that no one understands what is inside you."},
+    8: {"th": "เมื่อพลังตก คุณอาจวัดคุณค่าจากความสำเร็จและกลัวการล้มเหลวจนไม่กล้าผ่อน", "en": "When your energy drops, you may measure your worth by success and fear failure so much that you cannot relax."},
+    9: {"th": "เมื่อพลังตก คุณอาจแบกอดีต แบกคนอื่น หรือจมกับความผิดหวังที่ยังไม่ปิดวงจร", "en": "When your energy drops, you may carry the past, carry other people, or stay tangled in disappointments that never fully closed."},
+    11: {"th": "เมื่อพลังตก คุณอาจสับสนในสิ่งที่ตัวเองรับรู้และแยกไม่ออกว่าอะไรเป็นพลังของตัวเองอะไรเป็นของคนอื่น", "en": "When your energy drops, you may doubt what you sense and struggle to tell your own energy from other people’s."},
+    22: {"th": "เมื่อพลังตก คุณอาจรู้สึกหนักกับภาระและกลัวความรับผิดชอบในศักยภาพตัวเอง", "en": "When your energy drops, you may feel overwhelmed by responsibility and afraid of your own potential."},
+    33: {"th": "เมื่อพลังตก คุณอาจแบกความทุกข์คนอื่นมากไปและลืมว่าผู้เยียวยาก็ต้องได้รับการเยียวยา", "en": "When your energy drops, you may carry too much of others’ pain and forget that healers need healing too."},
+}
+
+LOVE_TEXT = {
+    1: {"th": "ในความรัก คุณต้องการคนที่เคารพตัวตน ไม่ใช่คนที่ทำให้คุณต้องเล็กลง", "en": "In love, you need someone who respects your identity rather than making you shrink."},
+    2: {"th": "ในความรัก คุณต้องการความมั่นคงทางใจและคนที่เห็นความละเอียดอ่อนของคุณอย่างจริงใจ", "en": "In love, you need emotional safety and someone who truly sees your sensitivity."},
+    3: {"th": "ในความรัก คุณต้องการการสื่อสารและความสดใส แต่ลึก ๆ ก็ต้องการคนที่ฟังโลกภายในของคุณด้วย", "en": "In love, you need communication and brightness, but deeply you also need someone who listens to your inner world."},
+    4: {"th": "ในความรัก คุณต้องการความชัดเจน ความมั่นคง และความไว้ใจที่พิสูจน์ได้จริง", "en": "In love, you need clarity, stability, and trust that can be felt in action."},
+    5: {"th": "ในความรัก คุณต้องการพื้นที่และความสดใหม่ แต่หัวใจก็ยังต้องการความจริงใจ ไม่ใช่แค่ความตื่นเต้น", "en": "In love, you need space and freshness, but your heart still needs sincerity rather than only excitement."},
+    6: {"th": "ในความรัก คุณต้องการความอบอุ่นและความสัมพันธ์ที่ให้ความรู้สึกเหมือนบ้าน", "en": "In love, you need warmth and a bond that feels like home."},
+    7: {"th": "ในความรัก คุณต้องการ connection ที่จริง ลึก และซื่อสัตย์ มากกว่าความหวือหวา", "en": "In love, you seek a connection that is real, deep, and honest more than dramatic."},
+    8: {"th": "ในความรัก คุณต้องการคนที่เคารพพลังและความจริงจังของคุณ", "en": "In love, you need someone who respects your strength and seriousness."},
+    9: {"th": "ในความรัก คุณต้องการความหมาย ความเข้าใจ และความสัมพันธ์ที่ไม่ตื้น", "en": "In love, you seek meaning, emotional understanding, and depth."},
+    11: {"th": "ในความรัก คุณต้องการความเชื่อมโยงระดับวิญญาณและคนที่มั่นคงพอจะอยู่กับความลึกของคุณได้", "en": "In love, you seek soul-level connection and someone stable enough to meet your depth."},
+    22: {"th": "ในความรัก คุณต้องการคนที่เดินเติบโตไปด้วยกันและไม่ดึงคุณออกจากภารกิจชีวิต", "en": "In love, you need someone who grows with you and does not pull you away from your mission."},
+    33: {"th": "ในความรัก คุณต้องการความสัมพันธ์ที่อบอุ่น ลึก และช่วยให้ทั้งสองคนเติบโต", "en": "In love, you seek warmth, depth, and a relationship that helps both people grow."},
+}
+
+CAREER_TEXT = {
+    1: {"th": "งานที่เหมาะกับคุณคือสิ่งที่ได้เริ่ม ได้ตัดสินใจ และได้สร้างบางอย่างด้วยวิธีของตัวเอง", "en": "Work suits you best when you can initiate, decide, and build in your own way."},
+    2: {"th": "คุณเหมาะกับงานที่ใช้การประสานคน รับฟัง ดูแลความสัมพันธ์ และสร้างพื้นที่ปลอดภัย", "en": "You suit work that involves connection, listening, care, and creating safe spaces."},
+    3: {"th": "คุณเหมาะกับงานสื่อสาร คอนเทนต์ การพูด การสอน หรือการสร้างแรงบันดาลใจ", "en": "You suit communication, content, speaking, teaching, and inspiration-led work."},
+    4: {"th": "คุณเหมาะกับงานระบบ งานวางแผน งานจัดการ หรือธุรกิจที่ต้องสร้างฐานให้มั่นคง", "en": "You suit systems, planning, management, and businesses that require a strong foundation."},
+    5: {"th": "คุณเหมาะกับงานที่ยืดหยุ่น การสื่อสาร การตลาด การเดินทาง หรือบทบาทที่มีความหลากหลาย", "en": "You suit flexible work, communication, marketing, travel, and varied roles."},
+    6: {"th": "คุณเหมาะกับงานดูแล บริการ ให้คำแนะนำ สุขภาวะ หรือสิ่งที่ช่วยยกระดับชีวิตคนอื่น", "en": "You suit care work, service, guidance, wellbeing, and anything that improves people’s lives."},
+    7: {"th": "คุณเหมาะกับงานที่ได้คิด วิเคราะห์ เขียน สอน วิจัย หรือถ่ายทอดสิ่งลึกให้คนเข้าใจง่ายขึ้น", "en": "You suit analysis, writing, teaching, research, or translating deep truths into something accessible."},
+    8: {"th": "คุณเหมาะกับงานบริหาร ธุรกิจ การเงิน การสร้างแบรนด์ หรือบทบาทที่ต้องรับผิดชอบภาพใหญ่", "en": "You suit business, management, finance, branding, and big-picture responsibility."},
+    9: {"th": "คุณเหมาะกับงานเยียวยา สอน ช่วยเหลือ สร้างแรงบันดาลใจ หรือสิ่งที่ส่งผลต่อผู้คนวงกว้าง", "en": "You suit healing, teaching, helping, inspiring, and work that impacts people more widely."},
+    11: {"th": "คุณเหมาะกับงานที่ผสานจิตวิญญาณกับการสื่อสาร การสอน การเยียวยา หรือการสร้างแรงบันดาลใจ", "en": "You suit work that bridges spirituality with communication, teaching, healing, and inspiration."},
+    22: {"th": "คุณเหมาะกับการสร้างธุรกิจ ระบบ แพลตฟอร์ม หรือสิ่งที่ส่งผลต่อผู้คนจำนวนมาก", "en": "You suit building businesses, systems, platforms, or anything that serves many people."},
+    33: {"th": "คุณเหมาะกับงานสอน เยียวยา โค้ช สื่อสารจากหัวใจ หรือธุรกิจที่เปลี่ยนชีวิตคน", "en": "You suit teaching, healing, coaching, heart-led communication, and transformative work."},
+}
+
+MONEY_TEXT = {
+    1: {"th": "การเงินของคุณดีขึ้นเมื่อคุณเชื่อในคุณค่าของตัวเองและกล้าตั้งราคากับสิ่งที่ทำ", "en": "Your financial flow improves when you believe in your value and dare to price what you create."},
+    2: {"th": "การเงินของคุณดีขึ้นเมื่อคุณหยุดมองว่าความอ่อนโยนไม่มีมูลค่า", "en": "Your money improves when you stop assuming softness has no value."},
+    3: {"th": "การเงินของคุณดีเมื่อคุณกล้าใช้เสียงของตัวเองและทำสิ่งที่มีเอกลักษณ์", "en": "Your finances improve when you use your voice and create through your uniqueness."},
+    4: {"th": "การเงินของคุณขึ้นกับวินัย การจัดระบบ และการตัดสินใจระยะยาว", "en": "Your finances depend on discipline, structure, and long-term decision-making."},
+    5: {"th": "การเงินของคุณดีขึ้นเมื่อคุณสร้างระบบรองรับอิสรภาพ ไม่ใช่ใช้ชีวิตตามอารมณ์อย่างเดียว", "en": "Your finances improve when you build systems to support freedom rather than living only by impulse."},
+    6: {"th": "เงินของคุณมักมาเมื่อคุณให้คุณค่ากับสิ่งที่คุณมอบ ไม่ใช่ทำไปเพราะใจดีอย่างเดียว", "en": "Money tends to come when you value what you offer rather than giving endlessly just because you care."},
+    7: {"th": "การเงินของคุณดีขึ้นเมื่อคุณหยุดแยกเรื่องจิตวิญญาณออกจากคุณค่าในโลกจริง", "en": "Your finances improve when you stop separating spirituality from real-world value."},
+    8: {"th": "การเงินเป็นหนึ่งในสนามพลังสำคัญของคุณ ยิ่งคุณจัดระบบและยืนในคุณค่า เงินยิ่งตอบสนอง", "en": "Money is one of your major energetic arenas. The more you build structure and stand in your value, the more it responds."},
+    9: {"th": "การเงินของคุณมั่นคงขึ้นเมื่อคุณเลิกคิดว่าจิตวิญญาณกับความอุดมสมบูรณ์ไปด้วยกันไม่ได้", "en": "Your finances steady when you stop believing spirituality and abundance cannot coexist."},
+    11: {"th": "การเงินของคุณดีขึ้นเมื่อคุณหยุดลดทอนของขวัญตัวเอง", "en": "Your finances improve when you stop minimizing your gifts."},
+    22: {"th": "การเงินของคุณมีศักยภาพสูงมากเมื่อคุณทำสิ่งที่ใหญ่พอจะรับพลังคุณได้", "en": "Your financial potential is high when you engage in work big enough to hold your energy."},
+    33: {"th": "การเงินของคุณไม่ควรถูกตัดออกจากภารกิจ คุณสามารถได้รับอย่างงดงามจากสิ่งที่ช่วยผู้คน", "en": "Your finances do not need to be separated from your mission. You can receive beautifully through work that helps people."},
+}
+
+HEALING_TEXT = {
+    1: {"th": "คุณไม่ได้เกิดมาเพื่อเดินตามทุกคน คุณเกิดมาเพื่อจำเสียงของตัวเองให้ได้อีกครั้ง", "en": "You were not born to follow every path around you. You were born to remember your own voice."},
+    2: {"th": "ความอ่อนไหวของคุณไม่ใช่จุดอ่อน แต่มันคือภาษาละเอียดของจิตวิญญาณ", "en": "Your sensitivity is not a weakness. It is one of the subtle languages of the soul."},
+    3: {"th": "เสียงของคุณไม่ได้มีไว้เพื่อทำให้คนพอใจอย่างเดียว แต่มันมีไว้เพื่อปลดล็อกบางอย่างในใจคนด้วย", "en": "Your voice is not only here to please people. It is here to unlock something in them too."},
+    4: {"th": "คุณไม่ได้ช้า คุณกำลังสร้างสิ่งที่อยู่ได้นานกว่า", "en": "You are not slow. You are building something designed to last."},
+    5: {"th": "อิสรภาพที่แท้จริง ไม่ใช่การหนีทุกอย่าง แต่มันคือการอยู่กับตัวเองได้โดยไม่ติดกรง", "en": "True freedom is not escaping everything. It is being able to stay with yourself without living in a cage."},
+    6: {"th": "การรักคนอื่นไม่จำเป็นต้องแลกกับการทิ้งตัวเองไว้ข้างหลัง", "en": "Loving others does not require leaving yourself behind."},
+    7: {"th": "ความลึกของคุณไม่ได้ทำให้คุณยากเกินจะรัก มันแค่หมายความว่าหัวใจคุณต้องการความจริงมากกว่าคนทั่วไป", "en": "Your depth does not make you too difficult to love. It simply means your heart requires more truth than most."},
+    8: {"th": "ความสำเร็จที่แท้จริง ไม่ใช่การพิสูจน์ว่าคุณเก่งพอ แต่มันคือการสร้างชีวิตที่ไม่ต้องหักหลังหัวใจตัวเอง", "en": "True success is not proving you are enough. It is building a life that does not betray your own heart."},
+    9: {"th": "สิ่งที่คุณต้องปล่อย ไม่ได้แปลว่าคุณรักน้อยลง แต่มันแปลว่าคุณเริ่มรักตัวเองด้วย", "en": "What you release does not mean you love less. It means you are finally including yourself in that love."},
+    11: {"th": "คุณไม่ได้แปลกเกินไป คุณแค่รับแสงได้มากเกินกว่าที่โลกทั่วไปสอนให้เข้าใจ", "en": "You are not too strange. You simply receive more light than the ordinary world knows how to explain."},
+    22: {"th": "อย่ากลัวศักยภาพของตัวเอง เพราะสิ่งที่ดูใหญ่ในใจคุณ อาจเป็นเหตุผลที่คุณมาเกิด", "en": "Do not fear your own potential. What feels huge inside you may be one of the reasons you came here."},
+    33: {"th": "การเป็นแสงให้คนอื่น ไม่จำเป็นต้องแผดเผาตัวเองจนหมดแรง", "en": "Being a light for others does not require burning yourself out."},
+}
+
+
 def detect_question_signal(question_text: str):
     text = (question_text or "").lower().strip()
     scores = {"love": 0, "career": 0, "money": 0, "emotion": 0}
@@ -1185,13 +634,21 @@ def detect_question_signal(question_text: str):
     return max(scores, key=scores.get) if max(scores.values()) > 0 else None
 
 
-def get_profile(life_number: int):
-    return safe_get(PROFILE_LIBRARY, life_number, PROFILE_LIBRARY[7])
+def get_profile_text(life_number: int, section: str, lang: str):
+    section_map = {
+        "core": BASE_CORE,
+        "shadow": BASE_SHADOW,
+        "love": LOVE_TEXT,
+        "career": CAREER_TEXT,
+        "money": MONEY_TEXT,
+        "healing": HEALING_TEXT,
+    }
+    library = section_map[section]
+    return safe_get(library, life_number, library[7])[lang]
 
 
 def life_intro(life_number: int, birth_energy: int, month_num: int, lang: str):
-    profile = get_profile(life_number)
-    core_text = paragraph(profile["core"][lang])
+    core_text = get_profile_text(life_number, "core", lang)
     birth_text = safe_get(BIRTH_DAY_LIBRARY, birth_energy, BIRTH_DAY_LIBRARY[7])[lang]
     month_text = safe_get(month_energy_meanings, month_num, month_energy_meanings[7])[lang]
     if lang == "th":
@@ -1200,22 +657,11 @@ def life_intro(life_number: int, birth_energy: int, month_num: int, lang: str):
 
 
 def category_reflection(category_key: str, life_number: int, lang: str):
-    profile = get_profile(life_number)
     if category_key == "love":
-        return paragraph(profile["love"][lang])
+        return get_profile_text(life_number, "love", lang)
     if category_key == "career":
-        return paragraph(profile["career"][lang])
-    return paragraph(profile["money"][lang])
-
-
-def shadow_reflection(life_number: int, lang: str):
-    profile = get_profile(life_number)
-    return paragraph(profile["shadow"][lang])
-
-
-def healing_message(life_number: int, lang: str):
-    profile = get_profile(life_number)
-    return paragraph(profile["healing"][lang])
+        return get_profile_text(life_number, "career", lang)
+    return get_profile_text(life_number, "money", lang)
 
 
 def current_focus_block(category_key: str, question_signal: str, life_number: int, lang: str):
@@ -1263,7 +709,7 @@ def generate_free_reflection(name: str, category_key: str, day_num: int, month_n
         f"🔮 Your Initial Energy Reflection: {name}"
     )
 
-    result = {
+    return {
         "title": title,
         "life_number": life_num,
         "birth_energy": birth_energy,
@@ -1272,13 +718,11 @@ def generate_free_reflection(name: str, category_key: str, day_num: int, month_n
         "focus_text": current_focus_block(category_key, q_signal, life_num, lang),
         "question_signal": q_signal
     }
-    return result
 
 
 def generate_premium_reflection(name: str, category_key: str, day_num: int, month_num: int, year_num: int, question_text: str, lang: str):
     life_num = life_path_number(day_num, month_num, year_num)
     birth_energy = birth_day_energy(day_num)
-    profile = get_profile(life_num)
 
     if lang == "th":
         premium_title = f"✨ พิมพ์เขียวพลังงานเชิงลึกของคุณ {name}"
@@ -1321,9 +765,9 @@ def generate_premium_reflection(name: str, category_key: str, day_num: int, mont
 
     return {
         "premium_title": premium_title,
-        "shadow": paragraph(profile["shadow"][lang]),
+        "shadow": get_profile_text(life_num, "shadow", lang),
         "soul_text": soul_text,
-        "healing": paragraph(profile["healing"][lang]),
+        "healing": get_profile_text(life_num, "healing", lang),
         "next_step": next_steps.get(category_key, next_steps["career"]),
         "caution": caution_map.get(category_key, caution_map["career"]),
         "unlock_note": unlock_note
@@ -1771,10 +1215,3 @@ st.markdown(
     f"<p style='text-align: center; font-size: 0.82rem; color: #888;'>© 2026 LUMINA SOUL | {tr('พื้นที่สะท้อนชีวิตและการตื่นรู้', 'A space for reflection and awakening')}</p>",
     unsafe_allow_html=True
 )
-''')
-
-path = "/mnt/data/app.py"
-with open(path, "w", encoding="utf-8") as f:
-    f.write(code)
-
-print(path)
