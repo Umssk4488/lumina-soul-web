@@ -1348,10 +1348,6 @@ if st.session_state.latest_result:
                 mark_code_used_via_api(code_clean)
                 st.rerun()
 
-            elif verify_code(code_clean):
-                st.session_state.premium_unlocked = True
-                st.session_state.used_code = code_clean
-                st.rerun()
 
             else:
                 st.error(
