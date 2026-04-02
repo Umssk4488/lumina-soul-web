@@ -705,18 +705,54 @@ LESSON_TEXT = {
 }
 
 NEXT_STEP_TEXT = {
-    1: {"th": "เริ่มจากตัดสินใจเรื่องเล็ก ๆ ให้ชัด และหยุดรอให้ทุกอย่างพร้อมก่อน", "en": "Start by making small clear decisions and stop waiting for perfect readiness."},
-    2: {"th": "เริ่มจากพูดความต้องการของตัวเองทีละนิด แม้จะยังกลัวอยู่", "en": "Start expressing your needs little by little, even if fear is still there."},
-    3: {"th": "เริ่มสื่อสารสิ่งที่คุณรู้สึกจริง แม้ยังไม่สมบูรณ์", "en": "Start expressing what you truly feel, even before it feels perfect."},
-    4: {"th": "เริ่มวางระบบที่ช่วยคุณ ไม่ใช่ระบบที่กดคุณ", "en": "Start building systems that support you, not systems that trap you."},
-    5: {"th": "เริ่มเลือกอิสระที่มีโครง ไม่ใช่แค่เลือกสิ่งที่ตื่นเต้น", "en": "Start choosing freedom with structure, not only what feels exciting."},
-    6: {"th": "เริ่มตั้งขอบเขตเล็ก ๆ กับสิ่งที่ทำให้คุณเหนื่อยซ้ำ", "en": "Start setting small boundaries around what repeatedly drains you."},
-    7: {"th": "เริ่มจากปล่อยให้คนที่ใช่เข้าถึงคุณทีละชั้น และให้สิ่งที่คุณรู้ลึก ๆ ถูกแปลออกมาเป็นงานหรือคำที่ส่งต่อได้", "en": "Start by letting the right people reach you layer by layer, and let what you know deeply become shareable work or words."},
-    8: {"th": "เริ่มจัดระบบความสำเร็จให้มีพื้นที่พัก พื้นที่รัก และพื้นที่เป็นมนุษย์", "en": "Start building success with room for rest, love, and humanity."},
-    9: {"th": "เริ่มปิดวงจรที่ค้างทีละเรื่อง ไม่ว่าจะเป็นคน ความหวัง หรือเรื่องในใจที่ค้างมานาน", "en": "Begin closing unfinished cycles one by one—whether they are people, hopes, or old emotional stories."},
-    11: {"th": "เริ่มเชื่อสิ่งที่คุณรับรู้มากขึ้น แต่ให้มันมีพื้นที่ลงมือจริงควบคู่ไปด้วย", "en": "Start trusting what you sense more, but give it real-world channels of expression."},
-    22: {"th": "เริ่มแบ่งวิสัยทัศน์ใหญ่ออกเป็นก้าวที่ทำจริงได้ทีละส่วน", "en": "Start breaking the larger vision into practical steps that can really be built."},
-    33: {"th": "เริ่มแยกให้ออกว่าอะไรคือการให้ด้วยหัวใจ และอะไรคือการให้เพราะกลัวจะไม่มีคุณค่า", "en": "Begin noticing the difference between giving from the heart and giving from fear of losing worth."},
+    1: {
+        "th": "เริ่มจากการเลือกสิ่งเล็ก ๆ ที่เป็นของคุณจริง ๆ ก่อน เช่น ตัดสินใจบางอย่างด้วยตัวเอง โดยไม่รอความเห็นจากใครทั้งหมด คุณไม่ต้องเปลี่ยนทั้งชีวิตวันนี้ แค่เริ่มกลับมาเลือกชีวิตของตัวเองทีละเรื่องก็พอ",
+        "en": "Start by making small decisions that truly belong to you, without waiting for everyone’s approval. You don’t need to change your whole life today—just begin choosing your own path, one step at a time."
+    },
+    2: {
+        "th": "ลองพูดสิ่งที่คุณรู้สึกจริงออกมา แม้มันจะไม่สมบูรณ์ หรือกลัวว่าจะทำให้อีกฝ่ายไม่พอใจ เพราะถ้าคุณไม่เริ่มพูด วันนี้คุณจะยังคงเป็นคนที่เข้าใจทุกคน…แต่ไม่มีใครเข้าใจคุณ",
+        "en": "Start expressing what you truly feel, even if it’s not perfect or you fear upsetting someone. If you don’t begin now, you’ll remain the one who understands everyone—but no one understands you."
+    },
+    3: {
+        "th": "เริ่มจากการพูดหรือเขียนสิ่งที่อยู่ในใจคุณออกมา โดยไม่ต้องรอให้มันสมบูรณ์ เพราะสิ่งที่คุณคิดว่าธรรมดา อาจเป็นสิ่งที่คนอื่นกำลังต้องการได้ยิน",
+        "en": "Start by expressing what’s inside you—through speaking or writing—without waiting for perfection. What you think is ordinary may be exactly what someone else needs to hear."
+    },
+    4: {
+        "th": "ลองหยุดแบกทุกอย่างไว้คนเดียว แล้วเริ่มแบ่งบางอย่างออกไปบ้าง ไม่ว่าจะเป็นงาน ความรับผิดชอบ หรือความคาดหวัง เพราะชีวิตคุณไม่ได้มีไว้เพื่อ “รับผิดชอบทุกอย่าง” คนเดียว",
+        "en": "Stop carrying everything alone. Begin sharing responsibilities, tasks, or expectations. Your life is not meant to be something you handle entirely on your own."
+    },
+    5: {
+        "th": "เริ่มถามตัวเองให้ชัดว่าอะไรคือสิ่งที่คุณ “อยากทำจริง” กับอะไรคือสิ่งที่คุณ “แค่ทน” แล้วค่อย ๆ ขยับออกจากสิ่งที่ไม่ใช่ทีละนิด คุณไม่ต้องหนีทันที แค่เริ่มขยับก็พอ",
+        "en": "Ask yourself what you truly want and what you are only tolerating. Then slowly move away from what isn’t right. You don’t need to escape everything at once—just start shifting."
+    },
+    6: {
+        "th": "ลองเริ่มดูแลตัวเองแบบเดียวกับที่คุณดูแลคนอื่น ตั้งขอบเขตเล็ก ๆ เช่น ไม่รับทุกอย่าง ไม่ตอบทุกคนทันที และให้เวลาตัวเองได้พักโดยไม่รู้สึกผิด",
+        "en": "Start treating yourself the way you treat others. Set small boundaries—don’t accept everything, don’t respond to everyone immediately, and allow yourself to rest without guilt."
+    },
+    7: {
+        "th": "เริ่มเปิดใจให้คนบางคนเข้ามาในโลกของคุณบ้าง ไม่ต้องทั้งหมด แค่คนที่คุณรู้สึกปลอดภัย เพราะคุณไม่จำเป็นต้องเข้าใจทุกอย่างคนเดียวตลอดไป",
+        "en": "Start letting a few people into your world—just those you feel safe with. You don’t have to understand everything alone forever."
+    },
+    8: {
+        "th": "ลองหยุดกดดันตัวเองให้ต้องสำเร็จตลอดเวลา แล้วเริ่มถามตัวเองว่า “ชีวิตแบบไหนที่คุณอยากใช้จริง ๆ” ไม่ใช่แค่ชีวิตที่ดูสำเร็จในสายตาคนอื่น",
+        "en": "Stop pressuring yourself to succeed all the time. Ask yourself what kind of life you truly want—not just what looks successful to others."
+    },
+    9: {
+        "th": "เริ่มยอมรับว่าสิ่งบางอย่างจบไปแล้ว และมันไม่ใช่ความผิดของคุณทั้งหมด คุณไม่จำเป็นต้องลืมทันที แต่คุณต้องเริ่มปล่อยทีละนิด เพื่อให้ชีวิตคุณเดินต่อได้",
+        "en": "Start accepting that some things have ended—and it’s not entirely your fault. You don’t have to forget instantly, but you do need to begin letting go little by little so your life can move forward."
+    },
+    11: {
+        "th": "เริ่มเชื่อสิ่งที่คุณรู้สึกข้างในมากขึ้น แต่ไม่ต้องเก็บไว้คนเดียว ลองแปลงมันออกมาเป็นคำพูด งาน หรือสิ่งที่คุณสร้าง เพราะสิ่งที่คุณรับรู้…มีค่ามากกว่าที่คุณคิด",
+        "en": "Start trusting what you feel inside, but don’t keep it to yourself. Turn it into words, creations, or something you can share—because what you sense is more valuable than you realize."
+    },
+    22: {
+        "th": "หยุดคิดใหญ่จนไม่กล้าเริ่ม แล้วเริ่มจากก้าวเล็ก ๆ ที่ทำได้จริงก่อน เพราะสิ่งใหญ่ที่คุณอยากสร้าง จะไม่มีวันเกิดขึ้น ถ้าคุณยังไม่เริ่มลงมือ",
+        "en": "Stop overthinking the big vision and begin with small, real steps. The big thing you want to build will never exist if you don’t start taking action."
+    },
+    33: {
+        "th": "เริ่มแยกให้ออกว่าอะไรคือการช่วยคนอื่นด้วยหัวใจ และอะไรคือการฝืนช่วยเพราะกลัวจะไม่มีคุณค่า เพราะคุณไม่จำเป็นต้องเหนื่อยเพื่อพิสูจน์ว่าคุณมีค่า",
+        "en": "Start noticing the difference between helping from your heart and helping out of fear of losing your worth. You don’t have to exhaust yourself just to prove you matter."
+    }
 }
 
 WARNING_TEXT = {
