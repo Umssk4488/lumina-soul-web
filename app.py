@@ -499,53 +499,53 @@ QUESTION_SIGNALS = {
 # -----------------------------
 BASE_CORE = {
     1: {
-        "th": "คุณมีพลังของผู้เริ่มต้นและผู้เปิดทาง หัวใจของคุณต้องการอิสระในการตัดสินใจ และต้องการเดินในเส้นทางที่ตัวเองเลือกจริง ๆ",
-        "en": "You carry the energy of an initiator and path opener. Your heart needs freedom in decision-making and a path that genuinely feels like your own."
+        "th": "คุณเป็นคนที่ไม่ชอบให้ใครมากำหนดชีวิตแทน ลึก ๆ แล้วคุณอยากเลือกทางของตัวเองทั้งหมด แต่ที่ผ่านมา คุณอาจต้องฝืนอยู่ในสิ่งที่ไม่ใช่ตัวเองอยู่บ่อยครั้ง",
+        "en": "You do not like other people deciding your life for you. Deep down, you want to choose your own path completely, but you may have often forced yourself to stay in places that do not truly fit you."
     },
     2: {
-        "th": "คุณมีพลังของผู้ประสานใจ รับรู้อารมณ์ละเอียด และเติบโตได้ดีเมื่ออยู่ในพื้นที่ที่อ่อนโยนและจริงใจ",
-        "en": "You carry the energy of a harmonizer, sensing emotional subtleties and growing best in spaces that feel gentle and sincere."
+        "th": "คุณเป็นคนที่แคร์ความรู้สึกคนอื่นมาก และมักพยายามรักษาความสัมพันธ์ให้ราบรื่นเสมอ แต่หลายครั้งคุณกลับเก็บความรู้สึกตัวเองไว้ จนสุดท้ายคนอื่นไม่รู้เลยว่าจริง ๆ แล้วคุณรู้สึกยังไง",
+        "en": "You care deeply about other people's feelings and often try to keep relationships peaceful. But many times, you hide your own feelings so well that others do not even know what you truly feel."
     },
     3: {
-        "th": "คุณมีพลังของการสื่อสารและความคิดสร้างสรรค์ ชีวิตมักเปิดเมื่อคุณยอมให้ตัวเองถูกมองเห็นมากขึ้น",
-        "en": "You carry the energy of expression and creativity. Life opens when you allow yourself to be seen more fully."
+        "th": "คุณเป็นคนที่มีอะไรอยู่ในใจเยอะ คิดเยอะ รู้สึกเยอะ และมีมุมที่อยากสื่อสารออกไปมากกว่าที่คนเห็น แต่ที่ผ่านมา คุณอาจชินกับการเก็บบางอย่างไว้ เพราะกลัวว่าพูดไปแล้วคนจะไม่เข้าใจ",
+        "en": "You hold a lot inside. You think deeply, feel deeply, and have more to express than people usually see. But you may have become used to holding parts of yourself back because you fear being misunderstood."
     },
     4: {
-        "th": "คุณมีพลังของผู้สร้างรากฐาน เด่นเรื่องความรับผิดชอบ ความจริงจัง และการทำสิ่งเล็กให้มั่นคงระยะยาว",
-        "en": "You carry builder energy with strong responsibility, seriousness, and the ability to turn small actions into long-term stability."
+        "th": "คุณเป็นคนที่พยายามทำให้ชีวิตมั่นคงอยู่เสมอ และมักเป็นคนที่รับผิดชอบหลายอย่างมากกว่าที่คนอื่นรู้ ลึก ๆ แล้วคุณไม่ได้อยากแบกทุกอย่างคนเดียว แต่คุณมักรู้สึกว่าถ้าไม่ทำเอง ทุกอย่างอาจไม่เป็นอย่างที่ควร",
+        "en": "You are someone who always tries to create stability in life and often carries more responsibility than people realize. Deep down, you do not truly want to carry everything alone, but you often feel that if you do not do it yourself, things may fall apart."
     },
     5: {
-        "th": "คุณมีพลังของการเปลี่ยนแปลง อิสรภาพ และการเรียนรู้ผ่านประสบการณ์ตรง ชีวิตของคุณเติบโตเมื่อได้ขยับและเปิดพื้นที่ให้ตัวเอง",
-        "en": "You carry the energy of change, freedom, and learning through lived experience. Your life expands when you move and give yourself space."
+        "th": "คุณเป็นคนที่ต้องการอิสระ ต้องการพื้นที่ของตัวเอง และไม่ชอบรู้สึกว่าชีวิตถูกบีบจนหายใจไม่ออก แต่ที่ผ่านมา ชีวิตอาจพาคุณไปอยู่ในสถานการณ์ที่ต้องทน ต้องฝืน หรืออยู่ในสิ่งที่ไม่เป็นตัวเอง",
+        "en": "You need freedom, space, and room to be yourself. You do not like feeling trapped or suffocated by life. But life may have often placed you in situations where you had to endure, force yourself, or stay in places that did not feel true to you."
     },
     6: {
-        "th": "คุณมีพลังของผู้ดูแลและผู้เยียวยา หัวใจของคุณต้องการทำสิ่งที่มีคุณค่าต่อผู้คนและสร้างพื้นที่ปลอดภัยให้คนรอบตัว",
-        "en": "You carry the energy of the nurturer and healer. Your heart wants to do meaningful work and create safety for people around you."
+        "th": "คุณเป็นคนที่ให้ความสำคัญกับคนที่รักมาก และมักทุ่มเทกับความสัมพันธ์หรือหน้าที่เกินกว่าที่คนอื่นเห็น ลึก ๆ แล้วคุณอยากให้ทุกอย่างอบอุ่นและลงตัว แต่บางครั้งคุณก็เผลอให้คนอื่นมากเกินไป จนตัวเองเริ่มเหนื่อยโดยไม่รู้ตัว",
+        "en": "You place great importance on the people you love and often give more to relationships or responsibilities than others realize. Deep down, you want life to feel warm and harmonious. But sometimes you give so much that you begin to drain yourself without noticing."
     },
     7: {
-        "th": "คุณมีพลังของนักค้นหาความจริง ไม่พอใจกับคำตอบผิวเผิน และเชื่อมกับโลกภายในได้ลึกกว่าที่ตัวเองยอมรับ",
-        "en": "You carry the energy of a truth seeker, rarely satisfied by surface answers and more deeply connected to your inner world than you may admit."
+        "th": "คุณเป็นคนที่คิดลึก รู้สึกลึก และมองเห็นอะไรบางอย่างที่คนอื่นอาจมองไม่เห็น คุณไม่ได้ต้องการแค่ใช้ชีวิตไปวัน ๆ แต่ต้องการเข้าใจว่าทั้งหมดนี้มีความหมายอะไร ลึก ๆ แล้วคุณอาจรู้สึกว่าตัวเองต่างจากคนอื่นอยู่เสมอ",
+        "en": "You think deeply, feel deeply, and notice things that other people may not see. You are not someone who wants to simply drift through life. You want to understand what all of this truly means. Deep down, you may often feel different from others."
     },
     8: {
-        "th": "คุณมีพลังของการบริหาร ความสำเร็จ และการทำให้สิ่งที่เห็นในหัวกลายเป็นผลลัพธ์ที่จับต้องได้",
-        "en": "You carry the energy of leadership, achievement, and turning vision into tangible outcomes."
+        "th": "คุณเป็นคนที่ดูเข้มแข็ง ดูเอาจริงเอาจัง และมักเป็นคนที่ผลักชีวิตให้เดินต่อ แม้ในวันที่เหนื่อยมาก ลึก ๆ แล้วคุณไม่ได้อยากแข็งแรงตลอดเวลา แต่ชีวิตมักสอนให้คุณต้องรับผิดชอบ ต้องเอาอยู่ และต้องไม่ล้มต่อหน้าคนอื่น",
+        "en": "You come across as strong, serious, and often the one who keeps life moving forward even on exhausting days. Deep down, you do not always want to be strong, but life has often taught you to take responsibility, hold things together, and avoid falling apart in front of others."
     },
     9: {
-        "th": "คุณมีพลังของผู้ให้ เมตตา เข้าใจมนุษย์ และมีสายเชื่อมกับบทเรียนเรื่องการปล่อยวางและความหมายของชีวิต",
-        "en": "You carry compassionate, humanitarian energy and a strong connection to lessons of release and deeper meaning."
+        "th": "คุณเป็นคนที่มีหัวใจลึก มีความรู้สึกมาก และมักผูกพันกับสิ่งที่ตัวเองรักจริง คุณไม่ได้ลืมอะไรง่าย ๆ โดยเฉพาะเรื่องที่เคยสำคัญกับใจ ลึก ๆ แล้วคุณเป็นคนที่ทั้งรักเป็นและเจ็บเป็น จึงปล่อยบางอย่างยากกว่าที่คนอื่นคิด",
+        "en": "You have a deep heart, strong emotions, and a powerful bond with what you truly love. You do not forget easily, especially when something once mattered to your heart. Deep down, you know how to love deeply and hurt deeply, which is why letting go can be harder for you than people realize."
     },
     11: {
-        "th": "คุณมีพลังของผู้ตื่นรู้ ญาณรู้ และการรับรู้สิ่งที่ลึกกว่าระดับผิว ชีวิตของคุณมักมีความไวต่อสัญญาณมากกว่าคนทั่วไป",
-        "en": "You carry awakened energy, intuition, and sensitivity to what lies beyond the surface. You often receive more signals than most people."
+        "th": "คุณเป็นคนที่รับรู้อะไรบางอย่างได้ไวและลึกกว่าคนทั่วไป บางครั้งคุณเองก็อธิบายไม่หมดว่าทำไมถึงรู้สึกแบบนั้น แต่หัวใจคุณมักจับบางอย่างได้ก่อนเสมอ ลึก ๆ แล้วคุณไม่ได้ต้องการชีวิตธรรมดา คุณต้องการชีวิตที่มีความหมายและมีบางอย่างเชื่อมถึงจิตวิญญาณจริง ๆ",
+        "en": "You sense things faster and more deeply than most people. At times, even you may not be able to fully explain why you feel what you feel, but your heart often notices something first. Deep down, you are not seeking an ordinary life. You want a life that feels meaningful and spiritually real."
     },
     22: {
-        "th": "คุณมีพลังของผู้สร้างสิ่งใหญ่ให้เป็นจริง มองภาพกว้างและมีศักยภาพสร้างผลกระทบระยะยาว",
-        "en": "You carry the energy of the master builder, seeing the bigger picture and holding potential for long-term impact."
+        "th": "คุณเป็นคนที่ไม่ได้คิดแค่เรื่องเล็ก ๆ ของตัวเอง แต่ลึก ๆ แล้วคุณมีภาพบางอย่างที่ใหญ่กว่านั้นอยู่ในใจ คุณอาจรู้สึกมาตลอดว่าตัวเองควรสร้างอะไรบางอย่างที่มีความหมายจริง แต่ในขณะเดียวกัน คุณก็แบกแรงกดดันของศักยภาพตัวเองไว้มากกว่าที่คนอื่นเห็น",
+        "en": "You do not think only about small personal matters. Deep down, there is a much bigger vision living inside you. You may have always felt that you are meant to build something truly meaningful. At the same time, you carry more pressure around your own potential than others can see."
     },
     33: {
-        "th": "คุณมีพลังของครูผู้เยียวยา เมตตา ลึก และมีแรงผลักดันที่จะส่งบางอย่างที่ช่วยผู้คนได้จริง",
-        "en": "You carry the energy of the healing teacher—compassionate, deep, and moved to offer something that genuinely helps others."
-    },
+        "th": "คุณเป็นคนที่มีหัวใจของผู้เยียวยา และมักรู้สึกอยากช่วย อยากปลอบ หรืออยากทำอะไรบางอย่างที่มีประโยชน์ต่อชีวิตคนอื่น ลึก ๆ แล้วคุณไม่ได้อยากมีชีวิตที่ว่างเปล่า คุณอยากให้สิ่งที่คุณผ่านมามีความหมาย และเปลี่ยนเป็นบางอย่างที่ช่วยคนได้จริง",
+        "en": "You carry the heart of a healer and often feel the urge to help, comfort, or offer something meaningful to others. Deep down, you do not want an empty life. You want what you have been through to mean something and to become something that can genuinely help people."
+    }
 }
 
 BASE_SHADOW = {
