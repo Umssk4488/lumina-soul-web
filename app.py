@@ -362,7 +362,6 @@ hr {
 # Existing links provided by user
 # -----------------------------
 GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbztgbRuGYMGMC41V8QHgNl2wnNTgJ5ZhRckVoiUXpVNTkSA-U75MFg-GRZNiCiIjrQeGg/exec"
-SOULCODES_API_URL = "https://script.google.com/macros/s/AKfycbzA6imHoORcO0VuNp1mncGac0T8CEf-R1Za_CyN-LI_UWxUQSj1vCwhiVMrjpzDgP6msw/exec"
 LINE_LINK = "https://lin.ee/uDDXuWN"
 LINE_ID = "@908bgzai"
 
@@ -410,62 +409,7 @@ def verify_code(code_input: str):
     if not code:
         return False
     return code in MANUAL_CODES
-def verify_code_via_api(code_input: str):
-    code = (code_input or "").strip().upper()
-    if not code:
-        return {"success": False, "valid": False}
 
-    try:
-        response = requests.post(
-            SOULCODES_API_URL,
-            json={
-                "action": "verify_code",
-                "code": code
-            },
-            timeout=10
-        )
-
-        data = response.json()
-
-        if data.get("success") and data.get("valid"):
-            return {
-                "success": True,
-                "valid": True,
-                "code": code
-            }
-
-        return {
-            "success": True,
-            "valid": False
-        }
-
-    except Exception:
-        return {
-            "success": False,
-            "valid": False
-        }
-
-
-def mark_code_used_via_api(code_input: str):
-    code = (code_input or "").strip().upper()
-    if not code:
-        return False
-
-    try:
-        response = requests.post(
-            SOULCODES_API_URL,
-            json={
-                "action": "mark_used",
-                "code": code
-            },
-            timeout=10
-        )
-
-        data = response.json()
-        return bool(data.get("success"))
-
-    except Exception:
-        return False
 
 def push_to_google_sheet(payload: dict):
     try:
@@ -1334,9 +1278,7 @@ if st.session_state.latest_result:
             unsafe_allow_html=True
         )
 
-        code_input = st.text_input(
-            tr("✨ ใส่ Soul Code ของคุณ", "✨ Enter your Soul Code")
-        )
+        code_input = st.text_input(tr("✨ ใส่ Soul Code ของคุณ", "✨ Enter your Soul Code"))
 
         if st.button(tr("🔓 ปลดล็อคคำอ่านฉบับเต็ม", "🔓 Unlock Full Reading")):
             code_clean = (code_input or "").strip().upper()
@@ -1347,6 +1289,7 @@ if st.session_state.latest_result:
                 st.session_state.used_code = code_clean
                 mark_code_used_via_api(code_clean)
                 st.rerun()
+
             else:
                 st.error(
                     tr(
