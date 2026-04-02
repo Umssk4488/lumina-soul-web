@@ -705,34 +705,106 @@ LESSON_TEXT = {
 }
 
 NEXT_STEP_TEXT = {
-    1: {"th": "เริ่มจากตัดสินใจเรื่องเล็ก ๆ ให้ชัด และหยุดรอให้ทุกอย่างพร้อมก่อน", "en": "Start by making small clear decisions and stop waiting for perfect readiness."},
-    2: {"th": "เริ่มจากพูดความต้องการของตัวเองทีละนิด แม้จะยังกลัวอยู่", "en": "Start expressing your needs little by little, even if fear is still there."},
-    3: {"th": "เริ่มสื่อสารสิ่งที่คุณรู้สึกจริง แม้ยังไม่สมบูรณ์", "en": "Start expressing what you truly feel, even before it feels perfect."},
-    4: {"th": "เริ่มวางระบบที่ช่วยคุณ ไม่ใช่ระบบที่กดคุณ", "en": "Start building systems that support you, not systems that trap you."},
-    5: {"th": "เริ่มเลือกอิสระที่มีโครง ไม่ใช่แค่เลือกสิ่งที่ตื่นเต้น", "en": "Start choosing freedom with structure, not only what feels exciting."},
-    6: {"th": "เริ่มตั้งขอบเขตเล็ก ๆ กับสิ่งที่ทำให้คุณเหนื่อยซ้ำ", "en": "Start setting small boundaries around what repeatedly drains you."},
-    7: {"th": "เริ่มจากปล่อยให้คนที่ใช่เข้าถึงคุณทีละชั้น และให้สิ่งที่คุณรู้ลึก ๆ ถูกแปลออกมาเป็นงานหรือคำที่ส่งต่อได้", "en": "Start by letting the right people reach you layer by layer, and let what you know deeply become shareable work or words."},
-    8: {"th": "เริ่มจัดระบบความสำเร็จให้มีพื้นที่พัก พื้นที่รัก และพื้นที่เป็นมนุษย์", "en": "Start building success with room for rest, love, and humanity."},
-    9: {"th": "เริ่มปิดวงจรที่ค้างทีละเรื่อง ไม่ว่าจะเป็นคน ความหวัง หรือเรื่องในใจที่ค้างมานาน", "en": "Begin closing unfinished cycles one by one—whether they are people, hopes, or old emotional stories."},
-    11: {"th": "เริ่มเชื่อสิ่งที่คุณรับรู้มากขึ้น แต่ให้มันมีพื้นที่ลงมือจริงควบคู่ไปด้วย", "en": "Start trusting what you sense more, but give it real-world channels of expression."},
-    22: {"th": "เริ่มแบ่งวิสัยทัศน์ใหญ่ออกเป็นก้าวที่ทำจริงได้ทีละส่วน", "en": "Start breaking the larger vision into practical steps that can really be built."},
-    33: {"th": "เริ่มแยกให้ออกว่าอะไรคือการให้ด้วยหัวใจ และอะไรคือการให้เพราะกลัวจะไม่มีคุณค่า", "en": "Begin noticing the difference between giving from the heart and giving from fear of losing worth."},
+    1: {
+        "th": "เริ่มจากการเลือกสิ่งเล็ก ๆ ที่เป็นของคุณจริง ๆ ก่อน เช่น ตัดสินใจบางอย่างด้วยตัวเอง โดยไม่รอความเห็นจากใครทั้งหมด คุณไม่ต้องเปลี่ยนทั้งชีวิตวันนี้ แค่เริ่มกลับมาเลือกชีวิตของตัวเองทีละเรื่องก็พอ",
+        "en": "Start by making small decisions that truly belong to you, without waiting for everyone’s approval. You don’t need to change your whole life today—just begin choosing your own path, one step at a time."
+    },
+    2: {
+        "th": "ลองพูดสิ่งที่คุณรู้สึกจริงออกมา แม้มันจะไม่สมบูรณ์ หรือกลัวว่าจะทำให้อีกฝ่ายไม่พอใจ เพราะถ้าคุณไม่เริ่มพูด วันนี้คุณจะยังคงเป็นคนที่เข้าใจทุกคน…แต่ไม่มีใครเข้าใจคุณ",
+        "en": "Start expressing what you truly feel, even if it’s not perfect or you fear upsetting someone. If you don’t begin now, you’ll remain the one who understands everyone—but no one understands you."
+    },
+    3: {
+        "th": "เริ่มจากการพูดหรือเขียนสิ่งที่อยู่ในใจคุณออกมา โดยไม่ต้องรอให้มันสมบูรณ์ เพราะสิ่งที่คุณคิดว่าธรรมดา อาจเป็นสิ่งที่คนอื่นกำลังต้องการได้ยิน",
+        "en": "Start by expressing what’s inside you—through speaking or writing—without waiting for perfection. What you think is ordinary may be exactly what someone else needs to hear."
+    },
+    4: {
+        "th": "ลองหยุดแบกทุกอย่างไว้คนเดียว แล้วเริ่มแบ่งบางอย่างออกไปบ้าง ไม่ว่าจะเป็นงาน ความรับผิดชอบ หรือความคาดหวัง เพราะชีวิตคุณไม่ได้มีไว้เพื่อ “รับผิดชอบทุกอย่าง” คนเดียว",
+        "en": "Stop carrying everything alone. Begin sharing responsibilities, tasks, or expectations. Your life is not meant to be something you handle entirely on your own."
+    },
+    5: {
+        "th": "เริ่มถามตัวเองให้ชัดว่าอะไรคือสิ่งที่คุณ “อยากทำจริง” กับอะไรคือสิ่งที่คุณ “แค่ทน” แล้วค่อย ๆ ขยับออกจากสิ่งที่ไม่ใช่ทีละนิด คุณไม่ต้องหนีทันที แค่เริ่มขยับก็พอ",
+        "en": "Ask yourself what you truly want and what you are only tolerating. Then slowly move away from what isn’t right. You don’t need to escape everything at once—just start shifting."
+    },
+    6: {
+        "th": "ลองเริ่มดูแลตัวเองแบบเดียวกับที่คุณดูแลคนอื่น ตั้งขอบเขตเล็ก ๆ เช่น ไม่รับทุกอย่าง ไม่ตอบทุกคนทันที และให้เวลาตัวเองได้พักโดยไม่รู้สึกผิด",
+        "en": "Start treating yourself the way you treat others. Set small boundaries—don’t accept everything, don’t respond to everyone immediately, and allow yourself to rest without guilt."
+    },
+    7: {
+        "th": "เริ่มเปิดใจให้คนบางคนเข้ามาในโลกของคุณบ้าง ไม่ต้องทั้งหมด แค่คนที่คุณรู้สึกปลอดภัย เพราะคุณไม่จำเป็นต้องเข้าใจทุกอย่างคนเดียวตลอดไป",
+        "en": "Start letting a few people into your world—just those you feel safe with. You don’t have to understand everything alone forever."
+    },
+    8: {
+        "th": "ลองหยุดกดดันตัวเองให้ต้องสำเร็จตลอดเวลา แล้วเริ่มถามตัวเองว่า “ชีวิตแบบไหนที่คุณอยากใช้จริง ๆ” ไม่ใช่แค่ชีวิตที่ดูสำเร็จในสายตาคนอื่น",
+        "en": "Stop pressuring yourself to succeed all the time. Ask yourself what kind of life you truly want—not just what looks successful to others."
+    },
+    9: {
+        "th": "เริ่มยอมรับว่าสิ่งบางอย่างจบไปแล้ว และมันไม่ใช่ความผิดของคุณทั้งหมด คุณไม่จำเป็นต้องลืมทันที แต่คุณต้องเริ่มปล่อยทีละนิด เพื่อให้ชีวิตคุณเดินต่อได้",
+        "en": "Start accepting that some things have ended—and it’s not entirely your fault. You don’t have to forget instantly, but you do need to begin letting go little by little so your life can move forward."
+    },
+    11: {
+        "th": "เริ่มเชื่อสิ่งที่คุณรู้สึกข้างในมากขึ้น แต่ไม่ต้องเก็บไว้คนเดียว ลองแปลงมันออกมาเป็นคำพูด งาน หรือสิ่งที่คุณสร้าง เพราะสิ่งที่คุณรับรู้…มีค่ามากกว่าที่คุณคิด",
+        "en": "Start trusting what you feel inside, but don’t keep it to yourself. Turn it into words, creations, or something you can share—because what you sense is more valuable than you realize."
+    },
+    22: {
+        "th": "หยุดคิดใหญ่จนไม่กล้าเริ่ม แล้วเริ่มจากก้าวเล็ก ๆ ที่ทำได้จริงก่อน เพราะสิ่งใหญ่ที่คุณอยากสร้าง จะไม่มีวันเกิดขึ้น ถ้าคุณยังไม่เริ่มลงมือ",
+        "en": "Stop overthinking the big vision and begin with small, real steps. The big thing you want to build will never exist if you don’t start taking action."
+    },
+    33: {
+        "th": "เริ่มแยกให้ออกว่าอะไรคือการช่วยคนอื่นด้วยหัวใจ และอะไรคือการฝืนช่วยเพราะกลัวจะไม่มีคุณค่า เพราะคุณไม่จำเป็นต้องเหนื่อยเพื่อพิสูจน์ว่าคุณมีค่า",
+        "en": "Start noticing the difference between helping from your heart and helping out of fear of losing your worth. You don’t have to exhaust yourself just to prove you matter."
+    }
+}
+WARNING_TEXT = {
+    1: {
+        "th": "ระวังการพยายามพิสูจน์ตัวเองตลอดเวลา จนชีวิตกลายเป็นการแข่งขันที่ไม่มีวันจบ เพราะสุดท้าย…คุณจะเหนื่อยกับการเป็นคนที่ต้องเก่งตลอด โดยที่ไม่เคยได้เป็นตัวเองจริง ๆ",
+        "en": "Be careful not to constantly prove yourself. Life can turn into an endless competition, leaving you exhausted from always needing to be strong—without ever being your true self."
+    },
+    2: {
+        "th": "ระวังการเก็บทุกอย่างไว้ในใจ เพื่อรักษาความสัมพันธ์ เพราะวันหนึ่งคุณจะกลายเป็นคนที่เข้าใจทุกคน…แต่ไม่มีใครเข้าใจคุณเลย",
+        "en": "Be careful not to keep everything inside just to maintain relationships. One day, you may become the one who understands everyone—but no one understands you."
+    },
+    3: {
+        "th": "ระวังการทำเป็นโอเค ทำเป็นตลก หรือทำให้ทุกอย่างดูเบา จนไม่มีใครรู้ว่าจริง ๆ แล้วคุณกำลังรู้สึกอะไรอยู่ลึก ๆ",
+        "en": "Be careful not to hide behind humor or pretend everything is okay. People may never realize what you truly feel deep inside."
+    },
+    4: {
+        "th": "ระวังการแบกทุกอย่างไว้คนเดียว เพราะคุณจะกลายเป็นคนที่เหนื่อยที่สุด…โดยที่ไม่มีใครรู้ว่าคุณต้องการความช่วยเหลือ",
+        "en": "Be careful not to carry everything alone. You may become the most exhausted person, while no one realizes you need help."
+    },
+    5: {
+        "th": "ระวังการอยู่ในสิ่งที่ไม่ใช่นานเกินไป เพราะยิ่งคุณทนมากเท่าไหร่ คุณจะยิ่งลืมไปว่า ‘ชีวิตที่เป็นตัวเองจริง ๆ’ มันรู้สึกยังไง",
+        "en": "Be careful not to stay too long in places that aren’t right for you. The longer you endure, the more you forget what it feels like to truly be yourself."
+    },
+    6: {
+        "th": "ระวังการให้คนอื่นมากเกินไป จนวันหนึ่งคุณไม่เหลือพลังให้ตัวเอง และเริ่มรู้สึกว่าชีวิตคุณมีไว้เพื่อคนอื่นเท่านั้น",
+        "en": "Be careful not to give too much to others. One day, you may have no energy left for yourself and feel like your life exists only for others."
+    },
+    7: {
+        "th": "ระวังการถอยออกจากโลก เพราะคิดว่าไม่มีใครเข้าใจคุณ เพราะยิ่งคุณเงียบ คุณจะยิ่งโดดเดี่ยว และไม่มีใครเข้าถึงคุณได้จริง",
+        "en": "Be careful not to withdraw from the world because you feel misunderstood. The more you stay silent, the more alone you become."
+    },
+    8: {
+        "th": "ระวังการทำตัวให้แข็งแรงตลอดเวลา จนไม่มีใครกล้าเข้ามาดูแลคุณ เพราะทุกคนคิดว่าคุณไม่ต้องการใคร",
+        "en": "Be careful not to appear strong all the time. People may assume you don’t need anyone, and no one will step in to support you."
+    },
+    9: {
+        "th": "ระวังการยึดติดกับอดีตหรือคนที่จบไปแล้ว เพราะมันจะทำให้คุณไม่สามารถเปิดรับสิ่งใหม่ที่กำลังเข้ามาในชีวิตได้",
+        "en": "Be careful not to stay attached to the past or people who are no longer in your life. It may block new opportunities from entering."
+    },
+    11: {
+        "th": "ระวังการเปิดรับพลังหรือความรู้สึกของคนอื่นมากเกินไป จนคุณสับสนและหมดแรง โดยที่ไม่รู้ว่าอะไรคือของคุณจริง ๆ",
+        "en": "Be careful not to absorb too much from others. It can leave you confused and drained, unable to tell what truly belongs to you."
+    },
+    22: {
+        "th": "ระวังการกดดันตัวเองด้วยความคาดหวังที่สูงเกินไป จนคุณไม่กล้าเริ่ม เพราะกลัวว่าจะทำได้ไม่ดีพอ",
+        "en": "Be careful not to pressure yourself with unrealistic expectations. You may end up not starting at all out of fear of not doing it perfectly."
+    },
+    33: {
+        "th": "ระวังการช่วยคนอื่นจนลืมตัวเอง เพราะสุดท้ายคุณจะเป็นคนที่เหนื่อยที่สุด แต่ไม่มีใครรู้ว่าคุณกำลังหมดแรง",
+        "en": "Be careful not to help others so much that you forget yourself. In the end, you may be the most exhausted person—and no one will even notice."
+    }
 }
 
-WARNING_TEXT = {
-    1: {"th": "ระวังการใช้ความสำเร็จเป็นตัววัดคุณค่าของหัวใจตัวเอง", "en": "Be careful not to use success as the only measure of your worth."},
-    2: {"th": "ระวังการเป็นคนรองรับทุกอย่างจนไม่มีใครรู้เลยว่าคุณเจ็บตรงไหน", "en": "Be careful not to hold everything for everyone until no one knows where you hurt."},
-    3: {"th": "ระวังการทำทุกอย่างให้ดูเบาจนหัวใจลึก ๆ ไม่เคยถูกได้ยิน", "en": "Be careful not to make everything look light until your deeper heart is never heard."},
-    4: {"th": "ระวังการติดกับโครงสร้างเดิมจนพลาดโอกาสใหม่ที่เหมาะกว่า", "en": "Be careful not to cling so tightly to old structures that you miss better opportunities."},
-    5: {"th": "ระวังการเปลี่ยนทุกอย่างเพียงเพราะรู้สึกอึดอัดชั่วคราว", "en": "Be careful not to change everything just because a temporary discomfort appears."},
-    6: {"th": "ระวังการให้เกินกว่าที่อีกฝ่ายร้องขอแล้วคาดหวังว่าจะถูกเห็นคุณค่าเอง", "en": "Be careful not to over-give and silently expect your worth to be recognized."},
-    7: {"th": "ระวังการใช้ความลึกเป็นข้ออ้างในการไม่เชื่อมต่อกับชีวิตจริง", "en": "Be careful not to use depth as an excuse to disconnect from real life."},
-    8: {"th": "ระวังการทำทุกอย่างให้ใหญ่จนหัวใจไม่เหลือพื้นที่หายใจ", "en": "Be careful not to make everything so large that your heart no longer has room to breathe."},
-    9: {"th": "ระวังการใช้เมตตาเป็นข้ออ้างในการอยู่ต่อในสิ่งที่ทำร้ายคุณ", "en": "Be careful not to use compassion as a reason to stay in what harms you."},
-    11: {"th": "ระวังการเปิดรับทุกอย่างจนตัวเองพร่าและหมดแรง", "en": "Be careful not to open yourself to everything until your energy becomes blurred and depleted."},
-    22: {"th": "ระวังการผลักตัวเองด้วยมาตรฐานที่หนักจนหมดแรงก่อนสิ่งใหญ่จะเป็นรูปเป็นร่าง", "en": "Be careful not to drive yourself so hard that you burn out before the vision takes shape."},
-    33: {"th": "ระวังการช่วยคนจนหลุดจากแกนตัวเอง", "en": "Be careful not to help others so much that you lose your own center."},
-}
 
 
 
