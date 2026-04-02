@@ -1,3 +1,5 @@
+3 เมษายน มีปุ่มบล็อคข้อความ
+
 import streamlit as st
 import requests
 from datetime import datetime
@@ -1452,7 +1454,6 @@ if st.session_state.latest_result:
         )
 
         st.info("💡 " + premium_result["unlock_note"])
-
         st.markdown(
             f"""
             <div class="cta-note">
@@ -1461,7 +1462,7 @@ if st.session_state.latest_result:
                 "If this reading truly resonates, then you are not only looking for a temporary answer. You are ready to understand your life more clearly. Your next step is the eBook or a deeper reading that helps you see what is blocking you, why it is happening, and how to move forward."
             )}
             </div>
-            """,
+        """,
             unsafe_allow_html=True
         )
 
