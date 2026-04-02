@@ -1255,7 +1255,7 @@ if st.session_state.latest_result:
         """,
         unsafe_allow_html=True
     )
-       st.markdown(
+    st.markdown(
         f"""
         <div class="lock-card">
             <h4 style="color:#8e24aa; margin-top:0;">
