@@ -1337,12 +1337,27 @@ if st.session_state.latest_result:
         code_input = st.text_input(tr("✨ ใส่ Soul Code ของคุณ", "✨ Enter your Soul Code"))
 
         if st.button(tr("🔓 ปลดล็อคคำอ่านฉบับเต็ม", "🔓 Unlock Full Reading")):
-            if verify_code(code_input):
+            code_clean = code_input.strip().upper()
+            api_result = verify_code_via_api(code_clean)
+
+            if api_result.get("success") and api_result.get("valid"):
                 st.session_state.premium_unlocked = True
-                st.session_state.used_code = code_input.strip().upper()
+                st.session_state.used_code = code_clean
+                mark_code_used_via_api(code_clean)
                 st.rerun()
+
+            elif verify_code(code_clean):
+                st.session_state.premium_unlocked = True
+                st.session_state.used_code = code_clean
+                st.rerun()
+
             else:
                 st.error(
+                    tr(
+                        "รหัสไม่ถูกต้อง ใช้ไปแล้ว หรือยังไม่ได้เปิดสิทธิ์ กรุณาตรวจสอบอีกครั้ง หรือทัก LINE เพื่อรับรหัส",
+                        "The code is invalid, already used, or has not been activated yet. Please check again or contact LINE to receive your code."
+                    )
+                )        
                     tr(
                         "รหัสไม่ถูกต้อง หรือยังไม่ได้เปิดสิทธิ์ กรุณาตรวจสอบอีกครั้ง หรือทัก LINE เพื่อรับรหัส",
                         "The code is invalid or has not been activated yet. Please check again or contact LINE to receive your code."
