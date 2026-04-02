@@ -1339,7 +1339,7 @@ if st.session_state.latest_result:
         )
 
         if st.button(tr("🔓 ปลดล็อคคำอ่านฉบับเต็ม", "🔓 Unlock Full Reading")):
-            code_clean = code_input.strip().upper()
+            code_clean = (code_input or "").strip().upper()
             api_result = verify_code_via_api(code_clean)
 
             if api_result.get("success") and api_result.get("valid"):
@@ -1347,8 +1347,6 @@ if st.session_state.latest_result:
                 st.session_state.used_code = code_clean
                 mark_code_used_via_api(code_clean)
                 st.rerun()
-
-
             else:
                 st.error(
                     tr(
@@ -1363,15 +1361,6 @@ if st.session_state.latest_result:
                 <a href="{LINE_LINK}" target="_blank">
                     ✳️👉 {tr("รับ Soul Code ผ่าน LINE", "Get your Soul Code via LINE")}
                 </a>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-
-        st.markdown(
-            f"""
-            <div class="cta-note">
-            {tr("LINE ID ของเรา:", "Our LINE ID:")} <b>{LINE_ID}</b>
             </div>
             """,
             unsafe_allow_html=True
