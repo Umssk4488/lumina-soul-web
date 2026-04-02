@@ -623,6 +623,82 @@ HEALING_TEXT = {
     33: {"th": "การเป็นแสงให้คนอื่น ไม่จำเป็นต้องแผดเผาตัวเองจนหมดแรง", "en": "Being a light for others does not require burning yourself out."},
 }
 
+WOUND_TEXT = {
+    1: {"th": "บาดแผลลึกของคุณคือความรู้สึกว่าต้องพิสูจน์ตัวเองตลอดเวลา", "en": "Your deeper wound is the feeling that you must constantly prove yourself."},
+    2: {"th": "บาดแผลของคุณคือความกลัวว่าถ้าพูดความจริงออกไป คนจะไม่พอใจหรือจากไป", "en": "Your wound is the fear that speaking your truth may upset people or make them leave."},
+    3: {"th": "บาดแผลของคุณคือความกลัวว่าถ้าคนเห็นตัวจริงแล้ว เขาอาจไม่ชอบ", "en": "Your wound is the fear that if people see the real you, they may not like it."},
+    4: {"th": "บาดแผลของคุณคือความรู้สึกว่าถ้าปล่อยมือ ทุกอย่างจะพัง", "en": "Your wound is the feeling that if you loosen your grip, everything will fall apart."},
+    5: {"th": "บาดแผลของคุณคือความกลัวว่าถ้าหยุดนิ่งหรือถูกผูกมัด คุณจะเสียตัวเองไป", "en": "Your wound is the fear that if you stay still or become tied down, you will lose yourself."},
+    6: {"th": "บาดแผลของคุณคือความรู้สึกว่าตัวเองจะมีค่าก็ต่อเมื่อกำลังดูแลหรือช่วยใครบางคน", "en": "Your wound is the feeling that you are valuable only when you are taking care of someone."},
+    7: {"th": "บาดแผลของคุณคือความรู้สึกว่าไม่มีใครเข้าใจสิ่งลึก ๆ ในตัวคุณจริง", "en": "Your wound is the feeling that no one truly understands the deeper layers of you."},
+    8: {"th": "บาดแผลของคุณคือการเชื่อว่าคุณจะปลอดภัยก็ต่อเมื่อทุกอย่างอยู่ภายใต้การควบคุม", "en": "Your wound is the belief that you are safe only when everything is under control."},
+    9: {"th": "บาดแผลของคุณคือการติดอยู่กับสิ่งที่หมดเวลาแล้วเพราะยังรักหรือยังรู้สึกผูกพัน", "en": "Your wound is staying attached to what has already ended because love or emotional attachment still remains."},
+    11: {"th": "บาดแผลของคุณคือความรู้สึกว่าโลกนี้อาจไม่เข้าใจความไวและความลึกของคุณ", "en": "Your wound is the feeling that this world may not understand your sensitivity and depth."},
+    22: {"th": "บาดแผลของคุณคือความรู้สึกว่าภารกิจในใจมันใหญ่เกินไปสำหรับชีวิตจริง", "en": "Your wound is the feeling that the mission inside you is too large for ordinary life to hold."},
+    33: {"th": "บาดแผลของคุณคือความรู้สึกว่าตัวเองต้องแบกรับหรือเยียวยาทุกอย่างให้คนอื่นถึงจะมีคุณค่า", "en": "Your wound is the feeling that you must carry or heal everything for others in order to have value."},
+}
+
+GIFT_TEXT = {
+    1: {"th": "ของขวัญของคุณคือพลังในการเริ่มต้นสิ่งใหม่และพาคนอื่นกล้าขยับตาม", "en": "Your gift is the power to begin something new and help others move with courage."},
+    2: {"th": "ของขวัญของคุณคือการรับรู้ใจคนอย่างลึกและทำให้บรรยากาศกลับมาสงบ", "en": "Your gift is feeling people deeply and restoring emotional harmony."},
+    3: {"th": "ของขวัญของคุณคือการทำให้สิ่งยากกลายเป็นสิ่งที่คนรู้สึกและเข้าใจได้", "en": "Your gift is making difficult things feel understandable and alive."},
+    4: {"th": "ของขวัญของคุณคือการเปลี่ยนความวุ่นวายให้กลายเป็นระบบที่พึ่งพาได้", "en": "Your gift is turning chaos into structure people can rely on."},
+    5: {"th": "ของขวัญของคุณคือการพาคนอื่นเห็นความเป็นไปได้ใหม่และกล้าขยับออกจากสิ่งเดิม", "en": "Your gift is helping others see new possibilities and move beyond old patterns."},
+    6: {"th": "ของขวัญของคุณคือการสร้างพื้นที่ที่คนรู้สึกอบอุ่น ปลอดภัย และกล้ากลับมาเป็นตัวเอง", "en": "Your gift is creating spaces where people feel warm, safe, and able to return to themselves."},
+    7: {"th": "ของขวัญของคุณคือการมองทะลุสิ่งที่ซ่อนอยู่และตั้งคำถามกับสิ่งที่คนอื่นยอมรับแบบไม่คิด", "en": "Your gift is seeing through what is hidden and questioning what others accept without thought."},
+    8: {"th": "ของขวัญของคุณคือพลังในการทำสิ่งใหญ่ให้เกิดขึ้นจริงและพาคนอื่นมองเห็นศักยภาพของตัวเอง", "en": "Your gift is the power to bring large visions into reality and help others recognize their own potential."},
+    9: {"th": "ของขวัญของคุณคือหัวใจที่มองเห็นมนุษย์อย่างลึกและสามารถเปลี่ยนความเจ็บให้กลายเป็นความหมาย", "en": "Your gift is a heart that sees humanity deeply and can turn pain into meaning."},
+    11: {"th": "ของขวัญของคุณคือการเห็นสัญญาณ เชื่อมสิ่งที่มองไม่เห็น และแปลมันออกมาให้ผู้คนเข้าใจได้", "en": "Your gift is perceiving signals, bridging the unseen, and translating it into something others can understand."},
+    22: {"th": "ของขวัญของคุณคือการเห็นทั้งภาพใหญ่และภาพลงมือจริงในเวลาเดียวกัน", "en": "Your gift is seeing both the larger vision and the practical steps at the same time."},
+    33: {"th": "ของขวัญของคุณคือการเปลี่ยนความเจ็บให้กลายเป็นปัญญาและส่งต่อแสงด้วยหัวใจจริง", "en": "Your gift is turning pain into wisdom and transmitting light through a sincere heart."},
+}
+
+LESSON_TEXT = {
+    1: {"th": "บทเรียนของคุณคือการเป็นผู้นำโดยไม่ต้องเปลี่ยนทุกอย่างให้กลายเป็นการต่อสู้", "en": "Your lesson is learning to lead without turning everything into a battle."},
+    2: {"th": "บทเรียนของคุณคือการอ่อนโยนกับคนอื่นโดยไม่ทอดทิ้งตัวเอง", "en": "Your lesson is to stay gentle with others without abandoning yourself."},
+    3: {"th": "บทเรียนของคุณคือการใช้เสียงเพื่อเปิดเผย ไม่ใช่เพื่อปกปิด", "en": "Your lesson is using your voice to reveal rather than hide."},
+    4: {"th": "บทเรียนของคุณคือการสร้างโดยไม่ต้องแข็งทื่อกับชีวิต", "en": "Your lesson is learning to build without becoming rigid."},
+    5: {"th": "บทเรียนของคุณคือการมีอิสระโดยไม่ทำให้ชีวิตกระจัดกระจาย", "en": "Your lesson is learning to be free without scattering your life-force."},
+    6: {"th": "บทเรียนของคุณคือการดูแลคนอื่นโดยไม่ละทิ้งตัวเอง", "en": "Your lesson is to care for others without abandoning yourself."},
+    7: {"th": "บทเรียนของคุณคือการใช้ความลึกเพื่อเชื่อม ไม่ใช่ใช้เพื่อแยกตัวออกจากโลก", "en": "Your lesson is to use depth to connect rather than isolate yourself from the world."},
+    8: {"th": "บทเรียนของคุณคือการเรียนรู้ว่าอำนาจที่แท้จริงไม่จำเป็นต้องมาพร้อมความแข็งตลอดเวลา", "en": "Your lesson is learning that true power does not require hardness at all times."},
+    9: {"th": "บทเรียนของคุณคือการปล่อยวางโดยไม่ต้องหยุดรัก", "en": "Your lesson is learning to release without needing to stop loving."},
+    11: {"th": "บทเรียนของคุณคือการทำให้สิ่งที่ลึกและละเอียดมีรากอยู่ในชีวิตจริง", "en": "Your lesson is grounding the subtle and profound into real life."},
+    22: {"th": "บทเรียนของคุณคือการสร้างใหญ่โดยไม่แบกทุกอย่างคนเดียว", "en": "Your lesson is to build big without carrying everything alone."},
+    33: {"th": "บทเรียนของคุณคือการรับใช้โดยไม่ใช้ชีวิตตัวเองเป็นเครื่องเผาไหม้", "en": "Your lesson is learning to serve without using your own life-force as fuel."},
+}
+
+NEXT_STEP_TEXT = {
+    1: {"th": "เริ่มจากตัดสินใจเรื่องเล็ก ๆ ให้ชัด และหยุดรอให้ทุกอย่างพร้อมก่อน", "en": "Start by making small clear decisions and stop waiting for perfect readiness."},
+    2: {"th": "เริ่มจากพูดความต้องการของตัวเองทีละนิด แม้จะยังกลัวอยู่", "en": "Start expressing your needs little by little, even if fear is still there."},
+    3: {"th": "เริ่มสื่อสารสิ่งที่คุณรู้สึกจริง แม้ยังไม่สมบูรณ์", "en": "Start expressing what you truly feel, even before it feels perfect."},
+    4: {"th": "เริ่มวางระบบที่ช่วยคุณ ไม่ใช่ระบบที่กดคุณ", "en": "Start building systems that support you, not systems that trap you."},
+    5: {"th": "เริ่มเลือกอิสระที่มีโครง ไม่ใช่แค่เลือกสิ่งที่ตื่นเต้น", "en": "Start choosing freedom with structure, not only what feels exciting."},
+    6: {"th": "เริ่มตั้งขอบเขตเล็ก ๆ กับสิ่งที่ทำให้คุณเหนื่อยซ้ำ", "en": "Start setting small boundaries around what repeatedly drains you."},
+    7: {"th": "เริ่มจากปล่อยให้คนที่ใช่เข้าถึงคุณทีละชั้น และให้สิ่งที่คุณรู้ลึก ๆ ถูกแปลออกมาเป็นงานหรือคำที่ส่งต่อได้", "en": "Start by letting the right people reach you layer by layer, and let what you know deeply become shareable work or words."},
+    8: {"th": "เริ่มจัดระบบความสำเร็จให้มีพื้นที่พัก พื้นที่รัก และพื้นที่เป็นมนุษย์", "en": "Start building success with room for rest, love, and humanity."},
+    9: {"th": "เริ่มปิดวงจรที่ค้างทีละเรื่อง ไม่ว่าจะเป็นคน ความหวัง หรือเรื่องในใจที่ค้างมานาน", "en": "Begin closing unfinished cycles one by one—whether they are people, hopes, or old emotional stories."},
+    11: {"th": "เริ่มเชื่อสิ่งที่คุณรับรู้มากขึ้น แต่ให้มันมีพื้นที่ลงมือจริงควบคู่ไปด้วย", "en": "Start trusting what you sense more, but give it real-world channels of expression."},
+    22: {"th": "เริ่มแบ่งวิสัยทัศน์ใหญ่ออกเป็นก้าวที่ทำจริงได้ทีละส่วน", "en": "Start breaking the larger vision into practical steps that can really be built."},
+    33: {"th": "เริ่มแยกให้ออกว่าอะไรคือการให้ด้วยหัวใจ และอะไรคือการให้เพราะกลัวจะไม่มีคุณค่า", "en": "Begin noticing the difference between giving from the heart and giving from fear of losing worth."},
+}
+
+WARNING_TEXT = {
+    1: {"th": "ระวังการใช้ความสำเร็จเป็นตัววัดคุณค่าของหัวใจตัวเอง", "en": "Be careful not to use success as the only measure of your worth."},
+    2: {"th": "ระวังการเป็นคนรองรับทุกอย่างจนไม่มีใครรู้เลยว่าคุณเจ็บตรงไหน", "en": "Be careful not to hold everything for everyone until no one knows where you hurt."},
+    3: {"th": "ระวังการทำทุกอย่างให้ดูเบาจนหัวใจลึก ๆ ไม่เคยถูกได้ยิน", "en": "Be careful not to make everything look light until your deeper heart is never heard."},
+    4: {"th": "ระวังการติดกับโครงสร้างเดิมจนพลาดโอกาสใหม่ที่เหมาะกว่า", "en": "Be careful not to cling so tightly to old structures that you miss better opportunities."},
+    5: {"th": "ระวังการเปลี่ยนทุกอย่างเพียงเพราะรู้สึกอึดอัดชั่วคราว", "en": "Be careful not to change everything just because a temporary discomfort appears."},
+    6: {"th": "ระวังการให้เกินกว่าที่อีกฝ่ายร้องขอแล้วคาดหวังว่าจะถูกเห็นคุณค่าเอง", "en": "Be careful not to over-give and silently expect your worth to be recognized."},
+    7: {"th": "ระวังการใช้ความลึกเป็นข้ออ้างในการไม่เชื่อมต่อกับชีวิตจริง", "en": "Be careful not to use depth as an excuse to disconnect from real life."},
+    8: {"th": "ระวังการทำทุกอย่างให้ใหญ่จนหัวใจไม่เหลือพื้นที่หายใจ", "en": "Be careful not to make everything so large that your heart no longer has room to breathe."},
+    9: {"th": "ระวังการใช้เมตตาเป็นข้ออ้างในการอยู่ต่อในสิ่งที่ทำร้ายคุณ", "en": "Be careful not to use compassion as a reason to stay in what harms you."},
+    11: {"th": "ระวังการเปิดรับทุกอย่างจนตัวเองพร่าและหมดแรง", "en": "Be careful not to open yourself to everything until your energy becomes blurred and depleted."},
+    22: {"th": "ระวังการผลักตัวเองด้วยมาตรฐานที่หนักจนหมดแรงก่อนสิ่งใหญ่จะเป็นรูปเป็นร่าง", "en": "Be careful not to drive yourself so hard that you burn out before the vision takes shape."},
+    33: {"th": "ระวังการช่วยคนจนหลุดจากแกนตัวเอง", "en": "Be careful not to help others so much that you lose your own center."},
+}
+
+
 
 def detect_question_signal(question_text: str):
     text = (question_text or "").lower().strip()
@@ -760,6 +836,7 @@ def generate_premium_reflection(name: str, category_key: str, day_num: int, mont
         "healing": get_profile_text(life_num, "healing", lang),
         "unlock_note": unlock_note
     }
+
 
 
 # -----------------------------
