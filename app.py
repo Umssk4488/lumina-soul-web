@@ -1255,6 +1255,52 @@ if st.session_state.latest_result:
         """,
         unsafe_allow_html=True
     )
+st.markdown(
+    f"""
+    <div class="lock-card">
+        <h4 style="color:#8e24aa;">
+        ✨ ถ้าคุณรู้สึกว่า ‘มันใช่’ นี่คือขั้นต่อไปของคุณ
+        </h4>
+
+        <p>สิ่งที่คุณอ่านไป เป็นแค่ภาพรวมเท่านั้นนะคะ</p>
+
+        <p>ของจริงจะเป็นการถอดพิมพ์เขียวแบบเฉพาะตัว ที่เจาะลึกลงไปว่า</p>
+
+        <p>• คุณกำลังติดอะไรอยู่ตอนนี้</p>
+        <p>• ทำไมชีวิตมันถึงเป็นแบบนี้</p>
+        <p>• และคุณต้องขยับยังไงต่อ</p>
+
+        <p style="margin-top:10px;">
+        มันไม่ใช่คำทำนาย แต่มันคือการสะท้อนชีวิตจริงของคุณ
+        </p>
+
+        <p style="font-weight:600; color:#7b1fa2;">
+        ถ้าคุณอ่านแล้วรู้สึกว่า ‘มันใช่’ อย่าหยุดแค่ตรงนี้
+        </p>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    f"""
+    <div class="premium-btn">
+        <a href="{LINE_LINK}" target="_blank">
+            ✨ ปลดล็อกพิมพ์เขียวชีวิตของฉัน
+        </a>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    """
+    <div class="cta-note">
+        นี่ไม่ใช่แค่คำอ่าน แต่มันคือคำตอบที่คุณตามหามานาน
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
     if not st.session_state.premium_unlocked:
         st.markdown(
