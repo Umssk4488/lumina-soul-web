@@ -362,6 +362,7 @@ hr {
 # Existing links provided by user
 # -----------------------------
 GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbztgbRuGYMGMC41V8QHgNl2wnNTgJ5ZhRckVoiUXpVNTkSA-U75MFg-GRZNiCiIjrQeGg/exec"
+SOULCODES_API_URL = "https://script.google.com/macros/s/AKfycbzA6imHoORcO0VuNp1mncGac0T8CEf-R1Za_CyN-LI_UWxUQSj1vCwhiVMrjpzDgP6msw/exec"
 LINE_LINK = "https://lin.ee/uDDXuWN"
 LINE_ID = "@908bgzai"
 
