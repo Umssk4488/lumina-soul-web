@@ -1087,8 +1087,18 @@ if st.session_state.latest_result:
                 <h4 style="color:#8e24aa; margin-top:0;">🔒 {tr("คำอ่านฉบับลึกยังไม่ถูกเปิด", "Your deeper reading is still locked")}</h4>
                 <p>
                 {tr(
-                    "สิ่งที่คุณอ่านไป คือเพียงชั้นแรกของพลังงานชีวิตคุณเท่านั้น ลึกลงไปกว่านั้น ยังมีเงา บทเรียน จุดระวัง และข้อความเฉพาะตัวที่ยังไม่ได้ถูกเปิดออก",
-                    "What you have read so far is only the first layer of your energetic blueprint. Deeper beneath it, there are shadow patterns, lessons, cautions, and a more personal soul message still waiting to be revealed."
+                    "สิ่งที่คุณเห็นตอนนี้…ยังไม่ใช่คำตอบของชีวิตคุณ  
+มันเป็นแค่ “ประตูบานแรก”
+
+คุณยังเห็นไม่หมด…  
+และสิ่งที่ยังไม่ถูกเปิด  
+คือสิ่งที่คุณกำลังตามหามาทั้งชีวิต",
+                    "What you’re seeing right now… is not the answer to your life.  
+It’s only the first door.
+
+You haven’t seen everything yet…  
+And what remains unopened  
+is what you’ve been searching for your entire life."
                 )}
                 </p>
                 <p>
