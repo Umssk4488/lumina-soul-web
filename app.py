@@ -1315,60 +1315,6 @@ if submitted:
         st.balloons()
 
 # -----------------------------
-# Soul Key helper
-# -----------------------------
-selected_month_for_key = month_options[birth_month_index]
-month_num_for_key = selected_month_for_key["num"]
-
-st.markdown("---")
-st.markdown(f"### {tr('🔑 รับ Soul Key ประจำตัว', '🔑 Get Your Personal Soul Key')}")
-st.caption(tr(
-    'ใช้ชื่อ + LINE ID + วันเกิดของคุณ เพื่อสร้างหรือดึง Soul Key เดิมของคุณกลับมา',
-    'Use your name, LINE ID, and birth date to create or retrieve your existing Soul Key.'
-))
-
-if st.button(tr('✨ สร้าง / ดึง Soul Key ของฉัน', '✨ Create / Get My Soul Key'), key='create_or_get_soul_key_btn'):
-    name_for_key = name.strip()
-    contact_for_key = contact.strip()
-
-    if len(name_for_key) < 2:
-        st.error(tr('กรุณากรอกชื่อ-นามสกุลให้ครบก่อนสร้าง Soul Key', 'Please enter your name before creating a Soul Key.'))
-    elif len(contact_for_key) < 3:
-        st.error(tr('กรุณากรอก LINE ID ให้ถูกต้องก่อนสร้าง Soul Key', 'Please enter a valid LINE ID before creating a Soul Key.'))
-    else:
-        profile_result = create_or_get_profile_via_api(
-            name_for_key,
-            contact_for_key,
-            int(birth_day),
-            int(month_num_for_key),
-            int(birth_year),
-            tr('สร้างจากหน้าเว็บ LUMINA SOUL', 'Created from LUMINA SOUL web')
-        )
-
-        if profile_result.get('success'):
-            soul_key = profile_result.get('soul_key', '')
-            st.session_state.latest_soul_key = soul_key
-            st.success(f"🔐 {tr('Soul Key ของคุณคือ', 'Your Soul Key is')}: {soul_key}")
-            st.info(tr(
-                'เก็บรหัสนี้ไว้ใช้กลับมาเปิดคำอ่านของตัวเองได้ตลอด โดยกรอกวันเกิดเดิมให้ตรงกับโปรไฟล์',
-                'Keep this key to reopen your reading anytime, using the same birth date linked to your profile.'
-            ))
-        else:
-            st.error(tr('ไม่สามารถสร้างหรือดึง Soul Key ได้ กรุณาลองใหม่อีกครั้ง', 'Unable to create or retrieve your Soul Key. Please try again.'))
-
-if st.session_state.latest_soul_key:
-    st.markdown(
-        f"""
-        <div class="glow-box">
-            <p style="margin:0; font-weight:700; color:#7b1fa2 !important;">🔑 {tr('Soul Key ล่าสุดของคุณ', 'Your latest Soul Key')}</p>
-            <p style="margin-top:8px; font-size:1.1rem; font-weight:700; color:#3f234f !important;">{st.session_state.latest_soul_key}</p>
-            <p class="soft-note" style="margin-bottom:0;">{tr('เก็บรหัสนี้ไว้เพื่อใช้เปิดอ่านซ้ำได้ในครั้งถัดไป', 'Save this key so you can reopen your reading next time.')}</p>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-# -----------------------------
 # Result rendering
 # -----------------------------
 if st.session_state.latest_result:
@@ -1475,6 +1421,54 @@ if st.session_state.latest_result:
                         "Your Soul Key is invalid or your birth date does not match this profile. Please check again or contact LINE to receive your personal key."
                     )
                 )
+
+        st.markdown("---")
+        st.markdown(f"### {tr('🔑 ยังไม่มี Soul Key?', '🔑 Don't have a Soul Key yet?')}")
+        st.caption(tr(
+            'ใช้ชื่อ + LINE ID + วันเกิดเดิมของคุณ เพื่อสร้าง Soul Key ใหม่ หรือดึง Soul Key เดิมกลับมา',
+            'Use your name, LINE ID, and the same birth date to create a new Soul Key or retrieve your existing one.'
+        ))
+
+        if st.button(tr('✨ สร้าง / ดึง Soul Key ของฉัน', '✨ Create / Get My Soul Key'), key='create_or_get_soul_key_btn_locked'):
+            name_for_key = name.strip()
+            contact_for_key = contact.strip()
+
+            if len(name_for_key) < 2:
+                st.error(tr('กรุณากรอกชื่อ-นามสกุลให้ครบก่อนสร้าง Soul Key', 'Please enter your name before creating a Soul Key.'))
+            elif len(contact_for_key) < 3:
+                st.error(tr('กรุณากรอก LINE ID ให้ถูกต้องก่อนสร้าง Soul Key', 'Please enter a valid LINE ID before creating a Soul Key.'))
+            else:
+                profile_result = create_or_get_profile_via_api(
+                    name_for_key,
+                    contact_for_key,
+                    int(data["birth_day"]),
+                    int(data["birth_month_num"]),
+                    int(data["birth_year"]),
+                    tr('สร้างจากหน้าเว็บ LUMINA SOUL', 'Created from LUMINA SOUL web')
+                )
+
+                if profile_result.get('success'):
+                    soul_key_created = profile_result.get('soul_key', '')
+                    st.session_state.latest_soul_key = soul_key_created
+                    st.success(f"🔐 {tr('Soul Key ของคุณคือ', 'Your Soul Key is')}: {soul_key_created}")
+                    st.info(tr(
+                        'เก็บรหัสนี้ไว้ใช้กลับมาเปิดคำอ่านของตัวเองได้ทุกครั้ง โดยกรอกวันเกิดเดิมให้ตรงกับโปรไฟล์',
+                        'Save this key to reopen your reading anytime using the same birth date linked to your profile.'
+                    ))
+                else:
+                    st.error(tr('ไม่สามารถสร้างหรือดึง Soul Key ได้ กรุณาลองใหม่อีกครั้ง', 'Unable to create or retrieve your Soul Key. Please try again.'))
+
+        if st.session_state.latest_soul_key:
+            st.markdown(
+                f"""
+                <div class="glow-box">
+                    <p style="margin:0; font-weight:700; color:#7b1fa2 !important;">🔑 {tr('Soul Key ล่าสุดของคุณ', 'Your latest Soul Key')}</p>
+                    <p style="margin-top:8px; font-size:1.1rem; font-weight:700; color:#3f234f !important;">{st.session_state.latest_soul_key}</p>
+                    <p class="soft-note" style="margin-bottom:0;">{tr('เก็บรหัสนี้ไว้เพื่อใช้เปิดอ่านซ้ำได้ในครั้งถัดไป', 'Save this key so you can reopen your reading next time.')}</p>
+                </div>
+                """,
+                unsafe_allow_html=True
+            )
 
         st.markdown(
             f"""
