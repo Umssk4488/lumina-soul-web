@@ -1404,13 +1404,13 @@ if st.session_state.latest_result:
                 </p>
                 <p>
                 {tr(
-                    "หากคุณมี Soul Key (รหัสเปิดคำอ่านของคุณ) แล้ว กรุณาใส่รหัสด้านล่างเพื่อกลับมาเปิดอ่านฉบับลึกของตัวเองได้ทันที",
+                    "✨หากคุณมี Soul Key (รหัสเปิดคำอ่านของคุณ) แล้ว กรุณาใส่รหัสด้านล่างเพื่อกลับมาเปิดอ่านฉบับลึกของตัวเองได้ทันที",
                     "If you already have your Soul Key, enter it below to reopen your full deeper reading instantly."
                 )}
                 </p>
                 <p>
                 {tr(
-                    "หากยังไม่มีรหัสประจำตัว กรุณาทัก LINE เพื่อรับ Soul Key และปลดล็อกคำอ่านฉบับลึกของคุณ",
+                    "✳️👉หากยังไม่มีรหัสประจำตัว กรุณาทัก LINE เพื่อรับ Soul Key และปลดล็อกคำอ่านฉบับลึกของคุณ",
                     "If you do not have your personal key yet, contact us on LINE to receive your Soul Key and unlock your deeper reading."
                 )}
                 </p>
