@@ -363,6 +363,7 @@ hr {
 # -----------------------------
 GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbztgbRuGYMGMC41V8QHgNl2wnNTgJ5ZhRckVoiUXpVNTkSA-U75MFg-GRZNiCiIjrQeGg/exec"
 SOULCODES_API_URL = "https://script.google.com/macros/s/AKfycbyBHg-JhN2YMWfpvf8zk28Yvv7yOqtrL5mTOl41lNRmreUF8c76B_J2fEpxHaj_b8SELA/exec"
+SOULPROFILES_API_URL = "https://script.google.com/macros/s/AKfycbxDoHX4soOKHxM2Jc7ajmCfkrDLhF1_ETDnXW7GgY1QBDsHDlXvbroSo5pfPKxReD_deg/exec"
 LINE_LINK = "https://lin.ee/uDDXuWN"
 LINE_ID = "@908bgzai"
 
@@ -464,6 +465,56 @@ def mark_code_used_via_api(code_input: str):
         data = response.json()
         return bool(data.get("success"))
 
+    except Exception:
+        return False
+
+
+def verify_profile_via_api(soul_key: str, birth_day: int, birth_month: int, birth_year: int):
+    key = (soul_key or "").strip().upper()
+    if not key:
+        return {"success": False, "valid": False}
+
+    try:
+        response = requests.post(
+            SOULPROFILES_API_URL,
+            json={
+                "action": "verify_profile",
+                "soul_key": key,
+                "birth_day": str(birth_day),
+                "birth_month": str(birth_month),
+                "birth_year": str(birth_year)
+            },
+            timeout=10
+        )
+        data = response.json()
+        return {
+            "success": bool(data.get("success")),
+            "valid": bool(data.get("valid")),
+            "soul_key": data.get("soul_key", key),
+            "owner_name": data.get("owner_name", ""),
+            "line_id": data.get("line_id", ""),
+            "message": data.get("message", "")
+        }
+    except Exception:
+        return {"success": False, "valid": False}
+
+
+def log_profile_login_via_api(soul_key: str):
+    key = (soul_key or "").strip().upper()
+    if not key:
+        return False
+
+    try:
+        response = requests.post(
+            SOULPROFILES_API_URL,
+            json={
+                "action": "log_login",
+                "soul_key": key
+            },
+            timeout=10
+        )
+        data = response.json()
+        return bool(data.get("success"))
     except Exception:
         return False
 
@@ -1325,8 +1376,14 @@ if st.session_state.latest_result:
                 </p>
                 <p>
                 {tr(
-                    "หากคุณได้รับ Soul Code จาก eBook หรือ LINE แล้ว สามารถใส่รหัสด้านล่างเพื่อปลดล็อคคำอ่านฉบับเต็มได้ทันที",
-                    "If you have already received a Soul Code from your eBook or LINE, enter it below to unlock your full reading."
+                    "หากคุณมี Soul Key ประจำตัวแล้ว กรุณาใส่รหัสด้านล่างเพื่อกลับมาเปิดอ่านพิมพ์เขียวของตัวเองได้ทุกครั้ง",
+                    "If you already have your personal Soul Key, enter it below to return and open your own blueprint anytime."
+                )}
+                </p>
+                <p>
+                {tr(
+                    "ระบบจะตรวจสอบจาก Soul Key + วันเดือนปีเกิดที่คุณกรอกไว้ในฟอร์มนี้",
+                    "The system will verify your Soul Key together with the birth date you entered in this form."
                 )}
                 </p>
             </div>
@@ -1334,26 +1391,31 @@ if st.session_state.latest_result:
             unsafe_allow_html=True
         )
 
-        code_input = st.text_input(
-            tr("✨ ใส่ Soul Code ของคุณ", "✨ Enter your Soul Code")
+        soul_key_input = st.text_input(
+            tr("✨ ใส่ Soul Key ของคุณ", "✨ Enter your Soul Key")
         )
 
-        if st.button(tr("🔓 ปลดล็อคคำอ่านฉบับเต็ม", "🔓 Unlock Full Reading")):
-            code_clean = code_input.strip().upper()
-            api_result = verify_code_via_api(code_clean)
+        if st.button(tr("🔓 เปิดอ่านด้วย Soul Key", "🔓 Unlock with Soul Key")):
+            key_clean = (soul_key_input or "").strip().upper()
+
+            api_result = verify_profile_via_api(
+                key_clean,
+                data["birth_day"],
+                data["birth_month_num"],
+                data["birth_year"]
+            )
 
             if api_result.get("success") and api_result.get("valid"):
                 st.session_state.premium_unlocked = True
-                st.session_state.used_code = code_clean
-                mark_code_used_via_api(code_clean)
+                st.session_state.used_code = key_clean
+                log_profile_login_via_api(key_clean)
                 st.rerun()
-
 
             else:
                 st.error(
                     tr(
-                        "รหัสไม่ถูกต้อง ใช้ไปแล้ว หรือยังไม่ได้เปิดสิทธิ์ กรุณาตรวจสอบอีกครั้ง หรือทัก LINE เพื่อรับรหัส",
-                        "The code is invalid, already used, or has not been activated yet. Please check again or contact LINE to receive your code."
+                        "Soul Key ไม่ถูกต้อง หรือวันเดือนปีเกิดไม่ตรงกับเจ้าของโปรไฟล์ กรุณาตรวจสอบอีกครั้ง หรือทัก LINE เพื่อรับรหัสประจำตัวของคุณ",
+                        "Your Soul Key is invalid or your birth date does not match this profile. Please check again or contact LINE to receive your personal key."
                     )
                 )
 
@@ -1361,7 +1423,7 @@ if st.session_state.latest_result:
             f"""
             <div class="premium-btn">
                 <a href="{LINE_LINK}" target="_blank">
-                    ✳️👉 {tr("รับ Soul Code ผ่าน LINE", "Get your Soul Code via LINE")}
+                    ✳️👉 {tr("รับ Soul Key ผ่าน LINE", "Get your Soul Key via LINE")}
                 </a>
             </div>
             """,
