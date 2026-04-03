@@ -1454,8 +1454,7 @@ if st.session_state.latest_result:
         st.markdown("---")
         st.markdown("### " + tr("🔑 ยังไม่มี Soul Key (รหัสเปิดคำอ่านของคุณ)?", "🔑 Don't have a Soul Key yet?"))
         st.caption(tr(
-            "Soul Key คือ ‘รหัสเฉพาะตัวของคุณ’ ใช้สำหรับเข้าสู่คำอ่านฉบับลึกของคุณโดยเฉพาะ
-✨ สร้างครั้งเดียว ใช้เปิดอ่านของคุณได้ทุกครั้ง",
+            "Soul Key คือ ‘รหัสเฉพาะตัวของคุณ’ ใช้สำหรับเข้าสู่คำอ่านฉบับลึกของคุณโดยเฉพาะ ✨ สร้างครั้งเดียว ใช้เปิดอ่านของคุณได้ทุกครั้ง",
             "Soul Key is your personal access key for your deeper reading. Create it once and use it to reopen your reading anytime."
         ))
 
