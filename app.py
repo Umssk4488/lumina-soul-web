@@ -1209,7 +1209,41 @@ with st.form("lumina_form_v2"):
             value=2535,
             step=1
         )
+import requests
 
+SOULPROFILES_API_URL = "https://script.google.com/macros/s/AKfycbxDoHX4soOKHxM2Jc7ajmCfkrDLhF1_ETDnXW7GgY1QBDsHDlXvbroSo5pfPKxReD_deg/exec"
+
+st.markdown("### 🔑 รับ Soul Key ประจำตัว")
+
+owner_name = st.text_input("ชื่อ / ชื่อเล่น")
+line_id = st.text_input("LINE ID")
+
+if st.button("✨ สร้าง / ดึง Soul Key ของฉัน"):
+    payload = {
+        "action": "create_profile",
+        "owner_name": owner_name,
+        "line_id": line_id,
+        "birth_day": birth_day,
+        "birth_month": birth_month_index + 1,
+        "birth_year": birth_year
+    }
+
+    try:
+        response = requests.post(SOULPROFILES_API_URL, json=payload, timeout=10)
+        result = response.json()
+
+        if result.get("success"):
+            soul_key = result.get("soul_key")
+
+            st.success(f"🔐 Soul Key ของคุณ: {soul_key}")
+            st.info("📌 เก็บรหัสนี้ไว้ใช้เปิดอ่านซ้ำได้")
+
+        else:
+            st.error("❌ สร้างรหัสไม่สำเร็จ")
+
+    except:
+        st.error("❌ ระบบเชื่อมต่อมีปัญหา")
+    
     category_index = st.selectbox(
         tr("ด้านที่คุณต้องการรับพลังงานนำทางในวันนี้:", "Which area would you like energetic guidance for today?"),
         range(len(categories)),
