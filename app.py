@@ -1395,7 +1395,7 @@ if st.session_state.latest_result:
         st.markdown(
             f"""
             <div class="lock-card">
-                <h4 style="color:#8e24aa; margin-top:0;">🔒 {tr("คำอ่านฉบับลึกยังไม่ถูกเปิด🔒", "Your deeper reading is still locked")}</h4>
+                <h4 style="color:#8e24aa; margin-top:0;">🔒 {tr("คำอ่านฉบับลึกยังไม่ถูกเปิด 🔒", "Your deeper reading is still locked")}</h4>
                 <p>
                 {tr(
                     "สิ่งที่คุณได้อ่าน…เป็นเพียงส่วนต้นของพลังงานชีวิตคุณเท่านั้น แต่สิ่งที่ยังไม่ถูกเปิดเผย คือความจริงที่คุณกำลังเผชิญอยู่ เหตุผลที่บางเรื่องยังติดค้าง และทิศทางที่เหมาะกับพลังงานของคุณจริง ๆ",
