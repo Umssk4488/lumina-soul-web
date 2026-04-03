@@ -1423,7 +1423,7 @@ if st.session_state.latest_result:
                 )
 
         st.markdown("---")
-        st.markdown(f"### {tr('🔑 ยังไม่มี Soul Key?', '🔑 Don't have a Soul Key yet?')}")
+        st.markdown("### " + tr("🔑 ยังไม่มี Soul Key?", "🔑 Don't have a Soul Key yet?"))
         st.caption(tr(
             'ใช้ชื่อ + LINE ID + วันเกิดเดิมของคุณ เพื่อสร้าง Soul Key ใหม่ หรือดึง Soul Key เดิมกลับมา',
             'Use your name, LINE ID, and the same birth date to create a new Soul Key or retrieve your existing one.'
