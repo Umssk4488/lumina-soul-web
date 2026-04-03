@@ -292,7 +292,7 @@ div[data-baseweb="select"] * {
     border-radius: 999px;
     font-weight: 700;
     font-size: 15px;
-    background: linear-gradient(135deg, #22c55e, #10b981 45%, #0f766e);
+    background: linear-gradient(135deg, #7c4dff, #c026d3 55%, #ec4899);
     color: white !important;
     box-shadow: 0 10px 24px rgba(16, 185, 129, 0.28);
     text-decoration: none;
@@ -1445,7 +1445,7 @@ if st.session_state.latest_result:
             f"""
             <div class="premium-btn">
                 <a href="{LINE_LINK}" target="_blank">
-                    💬👉 {tr("รับ Soul Key ผ่าน LINE เพื่อเปิดคำอ่านฉบับลึก", "Get your Soul Key on LINE to unlock your deeper reading")}
+                    💜👉 {tr("รับ Soul Key ผ่าน LINE เพื่อเปิดคำอ่านฉบับลึก", "Get your Soul Key on LINE to unlock your deeper reading")}
                 </a>
             </div>
             """,
@@ -1455,7 +1455,7 @@ if st.session_state.latest_result:
         st.markdown(
             f"""
             <div class="cta-note">
-            {tr("LINE ID ของเรา:", "Our LINE ID:")} <b>{LINE_ID}</b>
+            {tr("รับรหัสครั้งเดียว ใช้เปิดอ่านของคุณได้ทุกครั้ง | LINE ID:", "Receive your key once and use it to open your reading anytime | LINE ID:")} <b>{LINE_ID}</b>
             </div>
             """,
             unsafe_allow_html=True
