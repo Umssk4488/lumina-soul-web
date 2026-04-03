@@ -288,20 +288,20 @@ div[data-baseweb="select"] * {
 .premium-btn a {
     display: block;
     text-align: center;
-    padding: 14px 18px;
+    padding: 16px 18px;
     border-radius: 999px;
-    font-weight: 600;
-    font-size: 14px;
-    background: linear-gradient(135deg, #ff4d8d, #7b61ff);
+    font-weight: 700;
+    font-size: 15px;
+    background: linear-gradient(135deg, #22c55e, #10b981 45%, #0f766e);
     color: white !important;
-    box-shadow: 0 8px 20px rgba(123, 97, 255, 0.3);
+    box-shadow: 0 10px 24px rgba(16, 185, 129, 0.28);
     text-decoration: none;
-    transition: all 0.25s ease;
+    transition: all 0.22s ease;
 }
 
 .premium-btn a:hover {
-    transform: translateY(-2px) scale(1.02);
-    box-shadow: 0 12px 28px rgba(123, 97, 255, 0.4);
+    transform: translateY(-1px);
+    box-shadow: 0 14px 28px rgba(16, 185, 129, 0.34);
 }
 
 hr {
@@ -1439,17 +1439,13 @@ if st.session_state.latest_result:
                 )
 
         st.markdown("---")
-        st.markdown("### " + tr("🔑 ยังไม่มี Soul Key (รหัสเปิดคำอ่านของคุณ)?", "🔑 Don't have a Soul Key yet?"))
-        st.caption(tr(
-            "Soul Key คือ “รหัสเฉพาะตัวของคุณ” ใช้สำหรับเข้าสู่คำอ่านฉบับลึกของคุณโดยเฉพาะ ✨ สร้างครั้งเดียว ใช้เปิดอ่านของคุณได้ทุกครั้ง",
-            "Soul Key is your personal access key for your deeper reading. Create it once and use it to reopen your reading anytime."
-        ))
+        st.markdown("---")
 
         st.markdown(
             f"""
             <div class="premium-btn">
                 <a href="{LINE_LINK}" target="_blank">
-                    ✳️👉 {tr("รับ Soul Key ผ่าน LINE", "Get your Soul Key via LINE")}
+                    💬👉 {tr("รับ Soul Key ผ่าน LINE เพื่อเปิดคำอ่านฉบับลึก", "Get your Soul Key on LINE to unlock your deeper reading")}
                 </a>
             </div>
             """,
