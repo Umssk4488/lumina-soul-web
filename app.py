@@ -410,8 +410,6 @@ def verify_code(code_input: str):
     if not code:
         return False
     return code in MANUAL_CODES
-
-
 def verify_code_via_api(code_input: str):
     code = (code_input or "").strip().upper()
     if not code:
@@ -426,25 +424,26 @@ def verify_code_via_api(code_input: str):
             },
             timeout=10
         )
+
         data = response.json()
 
         if data.get("success") and data.get("valid"):
             return {
                 "success": True,
                 "valid": True,
-                "code": code,
-                "type": data.get("type", ""),
-                "owner_name": data.get("owner_name", ""),
-                "line_id": data.get("line_id", "")
+                "code": code
             }
 
         return {
             "success": True,
-            "valid": False,
-            "message": data.get("message", "invalid")
+            "valid": False
         }
+
     except Exception:
-        return {"success": False, "valid": False, "message": "api_error"}
+        return {
+            "success": False,
+            "valid": False
+        }
 
 
 def mark_code_used_via_api(code_input: str):
@@ -461,11 +460,12 @@ def mark_code_used_via_api(code_input: str):
             },
             timeout=10
         )
+
         data = response.json()
         return bool(data.get("success"))
+
     except Exception:
         return False
-
 
 def push_to_google_sheet(payload: dict):
     try:
@@ -1339,7 +1339,7 @@ if st.session_state.latest_result:
         )
 
         if st.button(tr("🔓 ปลดล็อคคำอ่านฉบับเต็ม", "🔓 Unlock Full Reading")):
-            code_clean = (code_input or "").strip().upper()
+            code_clean = code_input.strip().upper()
             api_result = verify_code_via_api(code_clean)
 
             if api_result.get("success") and api_result.get("valid"):
@@ -1347,6 +1347,7 @@ if st.session_state.latest_result:
                 st.session_state.used_code = code_clean
                 mark_code_used_via_api(code_clean)
                 st.rerun()
+
 
             else:
                 st.error(
