@@ -1395,25 +1395,12 @@ if st.session_state.latest_result:
         st.markdown(
             f"""
             <div class="lock-card">
-                <h4 style="color:#8e24aa; margin-top:0;">🔒 {tr("คำอ่านฉบับลึกยังไม่ถูกเปิด 🔒", "Your deeper reading is still locked")}</h4>
-                <p>
-                {tr(
-                    "สิ่งที่คุณได้อ่าน…เป็นเพียงส่วนต้นของพลังงานชีวิตคุณเท่านั้น แต่สิ่งที่ยังไม่ถูกเปิดเผย คือความจริงที่คุณกำลังเผชิญอยู่ เหตุผลที่บางเรื่องยังติดค้าง และทิศทางที่เหมาะกับพลังงานของคุณจริง ๆ",
-                    "What you have read so far is only the beginning of your life energy. What is still hidden is the deeper truth of what you are facing, why some things remain unresolved, and the direction that truly fits your energy."
-                )}
-                </p>
-                <p>
-                {tr(
-                    "✨หากคุณมี Soul Key (รหัสเปิดคำอ่านของคุณ) แล้ว กรุณาใส่รหัสด้านล่างเพื่อกลับมาเปิดอ่านฉบับลึกของตัวเองได้ทันที",
-                    "If you already have your Soul Key, enter it below to reopen your full deeper reading instantly."
-                )}
-                </p>
-                <p>
-                {tr(
-                    "✳️👉หากยังไม่มีรหัสประจำตัว กรุณาทัก LINE เพื่อรับ Soul Key และปลดล็อกคำอ่านฉบับลึกของคุณ",
-                    "If you do not have your personal key yet, contact us on LINE to receive your Soul Key and unlock your deeper reading."
-                )}
-                </p>
+                <h4 style="color:#8e24aa; margin-top:0;">🔒 {tr("คำอ่านฉบับลึกยังไม่ถูกเปิด", "Your deeper reading is still locked")}</h4>
+                <p>{tr("สิ่งที่คุณได้อ่าน…เป็นเพียง “ส่วนต้น” ของพลังงานชีวิตคุณเท่านั้น", "What you have read so far is only the beginning of your life energy.")}</p>
+                <p>{tr("แต่สิ่งที่ยังไม่ถูกเปิดเผยคือ:", "What remains hidden is:")}</p>
+                <p>{tr("• ความจริงที่คุณกำลังเผชิญอยู่ตอนนี้<br>• เหตุผลที่บางอย่างยังติดค้าง<br>• และทิศทางที่เหมาะกับพลังงานของคุณจริง ๆ", "• the truth of what you are facing now<br>• why some things still feel unresolved<br>• and the direction that truly fits your energy")}</p>
+                <p>{tr("คำอ่านฉบับเต็มนี้<br>จะทำให้คุณ “เข้าใจชีวิตตัวเองมากขึ้น”", "This full reading will help you understand your life more deeply.")}</p>
+                <p>{tr("✨ หากคุณต้องการอ่านคำอ่านแบบเจาะลึกของตัวเอง<br>กรุณารับ SOUL KEY (รหัสเปิดคำอ่านของคุณ) ผ่าน LINE", "✨ If you want to access your deeper reading, please receive your SOUL KEY through LINE.")}</p>
             </div>
             """,
             unsafe_allow_html=True
@@ -1454,7 +1441,7 @@ if st.session_state.latest_result:
         st.markdown("---")
         st.markdown("### " + tr("🔑 ยังไม่มี Soul Key (รหัสเปิดคำอ่านของคุณ)?", "🔑 Don't have a Soul Key yet?"))
         st.caption(tr(
-            "Soul Key คือ ‘รหัสเฉพาะตัวของคุณ’ ใช้สำหรับเข้าสู่คำอ่านฉบับลึกของคุณโดยเฉพาะ ✨ สร้างครั้งเดียว ใช้เปิดอ่านของคุณได้ทุกครั้ง",
+            "Soul Key คือ “รหัสเฉพาะตัวของคุณ” ใช้สำหรับเข้าสู่คำอ่านฉบับลึกของคุณโดยเฉพาะ ✨ สร้างครั้งเดียว ใช้เปิดอ่านของคุณได้ทุกครั้ง",
             "Soul Key is your personal access key for your deeper reading. Create it once and use it to reopen your reading anytime."
         ))
 
