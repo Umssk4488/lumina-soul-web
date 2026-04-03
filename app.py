@@ -39,6 +39,9 @@ if "used_code" not in st.session_state:
 if "latest_result" not in st.session_state:
     st.session_state.latest_result = {}
 
+if "latest_soul_key" not in st.session_state:
+    st.session_state.latest_soul_key = ""
+
 # -----------------------------
 # Translation helper
 # -----------------------------
@@ -1209,41 +1212,7 @@ with st.form("lumina_form_v2"):
             value=2535,
             step=1
         )
-import requests
 
-SOULPROFILES_API_URL = "https://script.google.com/macros/s/AKfycbxDoHX4soOKHxM2Jc7ajmCfkrDLhF1_ETDnXW7GgY1QBDsHDlXvbroSo5pfPKxReD_deg/exec"
-
-st.markdown("### 🔑 รับ Soul Key ประจำตัว")
-
-owner_name = st.text_input("ชื่อ / ชื่อเล่น")
-line_id = st.text_input("LINE ID")
-
-if st.button("✨ สร้าง / ดึง Soul Key ของฉัน"):
-    payload = {
-        "action": "create_profile",
-        "owner_name": owner_name,
-        "line_id": line_id,
-        "birth_day": birth_day,
-        "birth_month": birth_month_index + 1,
-        "birth_year": birth_year
-    }
-
-    try:
-        response = requests.post(SOULPROFILES_API_URL, json=payload, timeout=10)
-        result = response.json()
-
-        if result.get("success"):
-            soul_key = result.get("soul_key")
-
-            st.success(f"🔐 Soul Key ของคุณ: {soul_key}")
-            st.info("📌 เก็บรหัสนี้ไว้ใช้เปิดอ่านซ้ำได้")
-
-        else:
-            st.error("❌ สร้างรหัสไม่สำเร็จ")
-
-    except:
-        st.error("❌ ระบบเชื่อมต่อมีปัญหา")
-    
     category_index = st.selectbox(
         tr("ด้านที่คุณต้องการรับพลังงานนำทางในวันนี้:", "Which area would you like energetic guidance for today?"),
         range(len(categories)),
@@ -1344,6 +1313,60 @@ if submitted:
         st.session_state.premium_unlocked = False
         st.session_state.used_code = ""
         st.balloons()
+
+# -----------------------------
+# Soul Key helper
+# -----------------------------
+selected_month_for_key = month_options[birth_month_index]
+month_num_for_key = selected_month_for_key["num"]
+
+st.markdown("---")
+st.markdown(f"### {tr('🔑 รับ Soul Key ประจำตัว', '🔑 Get Your Personal Soul Key')}")
+st.caption(tr(
+    'ใช้ชื่อ + LINE ID + วันเกิดของคุณ เพื่อสร้างหรือดึง Soul Key เดิมของคุณกลับมา',
+    'Use your name, LINE ID, and birth date to create or retrieve your existing Soul Key.'
+))
+
+if st.button(tr('✨ สร้าง / ดึง Soul Key ของฉัน', '✨ Create / Get My Soul Key'), key='create_or_get_soul_key_btn'):
+    name_for_key = name.strip()
+    contact_for_key = contact.strip()
+
+    if len(name_for_key) < 2:
+        st.error(tr('กรุณากรอกชื่อ-นามสกุลให้ครบก่อนสร้าง Soul Key', 'Please enter your name before creating a Soul Key.'))
+    elif len(contact_for_key) < 3:
+        st.error(tr('กรุณากรอก LINE ID ให้ถูกต้องก่อนสร้าง Soul Key', 'Please enter a valid LINE ID before creating a Soul Key.'))
+    else:
+        profile_result = create_or_get_profile_via_api(
+            name_for_key,
+            contact_for_key,
+            int(birth_day),
+            int(month_num_for_key),
+            int(birth_year),
+            tr('สร้างจากหน้าเว็บ LUMINA SOUL', 'Created from LUMINA SOUL web')
+        )
+
+        if profile_result.get('success'):
+            soul_key = profile_result.get('soul_key', '')
+            st.session_state.latest_soul_key = soul_key
+            st.success(f"🔐 {tr('Soul Key ของคุณคือ', 'Your Soul Key is')}: {soul_key}")
+            st.info(tr(
+                'เก็บรหัสนี้ไว้ใช้กลับมาเปิดคำอ่านของตัวเองได้ตลอด โดยกรอกวันเกิดเดิมให้ตรงกับโปรไฟล์',
+                'Keep this key to reopen your reading anytime, using the same birth date linked to your profile.'
+            ))
+        else:
+            st.error(tr('ไม่สามารถสร้างหรือดึง Soul Key ได้ กรุณาลองใหม่อีกครั้ง', 'Unable to create or retrieve your Soul Key. Please try again.'))
+
+if st.session_state.latest_soul_key:
+    st.markdown(
+        f"""
+        <div class="glow-box">
+            <p style="margin:0; font-weight:700; color:#7b1fa2 !important;">🔑 {tr('Soul Key ล่าสุดของคุณ', 'Your latest Soul Key')}</p>
+            <p style="margin-top:8px; font-size:1.1rem; font-weight:700; color:#3f234f !important;">{st.session_state.latest_soul_key}</p>
+            <p class="soft-note" style="margin-bottom:0;">{tr('เก็บรหัสนี้ไว้เพื่อใช้เปิดอ่านซ้ำได้ในครั้งถัดไป', 'Save this key so you can reopen your reading next time.')}</p>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
 # -----------------------------
 # Result rendering
