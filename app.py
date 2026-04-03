@@ -295,9 +295,9 @@ div[data-baseweb="select"] * {
     border-radius: 999px;
     font-weight: 700;
     font-size: 15px;
-    background: linear-gradient(135deg, #ff5ea8, #7b61ff 58%, #6b4dff);
+    background: linear-gradient(135deg, #f7a8cf, #c9b5ff 58%, #aebeff);
     color: white !important;
-    box-shadow: 0 10px 24px rgba(123, 97, 255, 0.28);
+    box-shadow: 0 8px 22px rgba(180, 140, 255, 0.22);
     text-decoration: none;
     transition: all 0.22s ease;
 }
@@ -309,7 +309,7 @@ div[data-baseweb="select"] * {
 
 .premium-btn a:hover {
     transform: translateY(-1px);
-    box-shadow: 0 14px 28px rgba(16, 185, 129, 0.34);
+    box-shadow: 0 12px 24px rgba(180, 140, 255, 0.28);
 }
 
 hr {
