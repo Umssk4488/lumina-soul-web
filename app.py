@@ -1398,20 +1398,20 @@ if st.session_state.latest_result:
                 <h4 style="color:#8e24aa; margin-top:0;">🔒 {tr("คำอ่านฉบับลึกยังไม่ถูกเปิด", "Your deeper reading is still locked")}</h4>
                 <p>
                 {tr(
-                    "สิ่งที่คุณเพิ่งอ่าน…เป็นเพียงชั้นแรกของพลังงานชีวิตคุณ ลึกลงไปกว่านั้น ยังมีความจริงบางอย่างที่รอการถูกเปิดเผย",
-                    "What you have just read is only the first layer of your life energy. Deeper than this, there is a truth still waiting to be revealed."
+                    "สิ่งที่คุณได้อ่าน…เป็นเพียงส่วนต้นของพลังงานชีวิตคุณเท่านั้น แต่สิ่งที่ยังไม่ถูกเปิดเผย คือความจริงที่คุณกำลังเผชิญอยู่ เหตุผลที่บางเรื่องยังติดค้าง และทิศทางที่เหมาะกับพลังงานของคุณจริง ๆ",
+                    "What you have read so far is only the beginning of your life energy. What is still hidden is the deeper truth of what you are facing, why some things remain unresolved, and the direction that truly fits your energy."
                 )}
                 </p>
                 <p>
                 {tr(
-                    "หากคุณมี Soul Key ประจำตัวแล้ว กรุณาใส่รหัสด้านล่างเพื่อกลับมาเปิดอ่านพิมพ์เขียวของตัวเองได้ทุกครั้ง",
-                    "If you already have your personal Soul Key, enter it below to return and open your own blueprint anytime."
+                    "หากคุณมี Soul Key (รหัสเปิดคำอ่านของคุณ) แล้ว กรุณาใส่รหัสด้านล่างเพื่อกลับมาเปิดอ่านฉบับลึกของตัวเองได้ทันที",
+                    "If you already have your Soul Key, enter it below to reopen your full deeper reading instantly."
                 )}
                 </p>
                 <p>
                 {tr(
-                    "ระบบจะตรวจสอบจาก Soul Key + วันเดือนปีเกิดที่คุณกรอกไว้ในฟอร์มนี้",
-                    "The system will verify your Soul Key together with the birth date you entered in this form."
+                    "หากยังไม่มีรหัสประจำตัว กรุณาทัก LINE เพื่อรับ Soul Key และปลดล็อกคำอ่านฉบับลึกของคุณ",
+                    "If you do not have your personal key yet, contact us on LINE to receive your Soul Key and unlock your deeper reading."
                 )}
                 </p>
             </div>
@@ -1422,8 +1422,12 @@ if st.session_state.latest_result:
         soul_key_input = st.text_input(
             tr("✨ ใส่ Soul Key ของคุณ", "✨ Enter your Soul Key")
         )
+        st.caption(tr(
+            "ใส่รหัสเฉพาะตัวของคุณ เพื่อกลับมาเปิดอ่านคำอ่านฉบับลึกได้ทุกครั้ง",
+            "Enter your personal key to reopen your deeper reading anytime."
+        ))
 
-        if st.button(tr("🔓 เปิดอ่านด้วย Soul Key", "🔓 Unlock with Soul Key")):
+        if st.button(tr("🔓 เปิดคำอ่านฉบับเต็มด้วย Soul Key", "🔓 Unlock full reading with Soul Key")):
             key_clean = (soul_key_input or "").strip().upper()
 
             api_result = verify_profile_via_api(
@@ -1450,50 +1454,10 @@ if st.session_state.latest_result:
         st.markdown("---")
         st.markdown("### " + tr("🔑 ยังไม่มี Soul Key (รหัสเปิดคำอ่านของคุณ)?", "🔑 Don't have a Soul Key yet?"))
         st.caption(tr(
-            'Soul Key คือ “รหัสเฉพาะตัวของคุณ” ใช้สำหรับเข้าสู่คำอ่านฉบับลึกของคุณโดยเฉพาะ\n✨ สร้างครั้งเดียว ใช้เปิดอ่านของคุณได้ทุกครั้ง',
-            'Soul Key is your personal access key for your deeper reading. Create it once and use it to reopen your reading anytime.'
+            "Soul Key คือ ‘รหัสเฉพาะตัวของคุณ’ ใช้สำหรับเข้าสู่คำอ่านฉบับลึกของคุณโดยเฉพาะ
+✨ สร้างครั้งเดียว ใช้เปิดอ่านของคุณได้ทุกครั้ง",
+            "Soul Key is your personal access key for your deeper reading. Create it once and use it to reopen your reading anytime."
         ))
-
-        if st.button(tr('✨ สร้าง / ดึง Soul Key ของฉัน', '✨ Create / Get My Soul Key'), key='create_or_get_soul_key_btn_locked'):
-            name_for_key = name.strip()
-            contact_for_key = contact.strip()
-
-            if len(name_for_key) < 2:
-                st.error(tr('กรุณากรอกชื่อ-นามสกุลให้ครบก่อนสร้าง Soul Key', 'Please enter your name before creating a Soul Key.'))
-            elif len(contact_for_key) < 3:
-                st.error(tr('กรุณากรอก LINE ID ให้ถูกต้องก่อนสร้าง Soul Key', 'Please enter a valid LINE ID before creating a Soul Key.'))
-            else:
-                profile_result = create_or_get_profile_via_api(
-                    name_for_key,
-                    contact_for_key,
-                    int(data["birth_day"]),
-                    int(data["birth_month_num"]),
-                    int(data["birth_year"]),
-                    tr('สร้างจากหน้าเว็บ LUMINA SOUL', 'Created from LUMINA SOUL web')
-                )
-
-                if profile_result.get('success'):
-                    soul_key_created = profile_result.get('soul_key', '')
-                    st.session_state.latest_soul_key = soul_key_created
-                    st.success(f"🔐 {tr('Soul Key ของคุณคือ', 'Your Soul Key is')}: {soul_key_created}")
-                    st.info(tr(
-                        'เก็บรหัสนี้ไว้ใช้กลับมาเปิดคำอ่านของตัวเองได้ทุกครั้ง โดยกรอกวันเกิดเดิมให้ตรงกับโปรไฟล์',
-                        'Save this key to reopen your reading anytime using the same birth date linked to your profile.'
-                    ))
-                else:
-                    st.error(tr('ไม่สามารถสร้างหรือดึง Soul Key ได้ กรุณาลองใหม่อีกครั้ง', 'Unable to create or retrieve your Soul Key. Please try again.'))
-
-        if st.session_state.latest_soul_key:
-            st.markdown(
-                f"""
-                <div class="glow-box">
-                    <p style="margin:0; font-weight:700; color:#7b1fa2 !important;">🔑 {tr('Soul Key ล่าสุดของคุณ', 'Your latest Soul Key')}</p>
-                    <p style="margin-top:8px; font-size:1.1rem; font-weight:700; color:#3f234f !important;">{st.session_state.latest_soul_key}</p>
-                    <p class="soft-note" style="margin-bottom:0;">{tr('เก็บรหัสนี้ไว้เพื่อใช้เปิดอ่านซ้ำได้ในครั้งถัดไป', 'Save this key so you can reopen your reading next time.')}</p>
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
 
         st.markdown(
             f"""
