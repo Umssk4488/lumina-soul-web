@@ -286,17 +286,25 @@ div[data-baseweb="select"] * {
 }
 
 .premium-btn a {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
     text-align: center;
     padding: 16px 18px;
     border-radius: 999px;
     font-weight: 700;
     font-size: 15px;
-    background: linear-gradient(135deg, #7c4dff, #c026d3 55%, #ec4899);
+    background: linear-gradient(135deg, #ff5ea8, #7b61ff 58%, #6b4dff);
     color: white !important;
-    box-shadow: 0 10px 24px rgba(16, 185, 129, 0.28);
+    box-shadow: 0 10px 24px rgba(123, 97, 255, 0.28);
     text-decoration: none;
     transition: all 0.22s ease;
+}
+.premium-btn a img {
+    width: 22px;
+    height: 22px;
+    display: inline-block;
 }
 
 .premium-btn a:hover {
@@ -1445,7 +1453,8 @@ if st.session_state.latest_result:
             f"""
             <div class="premium-btn">
                 <a href="{LINE_LINK}" target="_blank">
-                    💜👉 {tr("รับ Soul Key ผ่าน LINE เพื่อเปิดคำอ่านฉบับลึก", "Get your Soul Key on LINE to unlock your deeper reading")}
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="LINE">
+                    <span>{tr("👉 รับ SOUL KEY แอด LINE เพื่อเปิดคำอ่านฉบับลึก (คลิ๊ก)", "👉 Get your SOUL KEY on LINE to unlock your deeper reading (Click)")}</span>
                 </a>
             </div>
             """,
@@ -1455,7 +1464,7 @@ if st.session_state.latest_result:
         st.markdown(
             f"""
             <div class="cta-note">
-            {tr("รับรหัสครั้งเดียว ใช้เปิดอ่านของคุณได้ทุกครั้ง | LINE ID:", "Receive your key once and use it to open your reading anytime | LINE ID:")} <b>{LINE_ID}</b>
+            {tr("รับรหัสผ่าน LINE เพื่อใช้เปิดอ่านของคุณได้ทุกครั้ง | LINE ID:", "Receive your key through LINE to open your reading anytime | LINE ID:")} <b>{LINE_ID}</b>
             </div>
             """,
             unsafe_allow_html=True
