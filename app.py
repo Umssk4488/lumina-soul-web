@@ -521,6 +521,31 @@ def log_profile_login_via_api(soul_key: str):
     except Exception:
         return False
 
+
+def create_or_get_profile_via_api(owner_name: str, line_id: str, birth_day: int, birth_month: int, birth_year: int, note: str = ""):
+    try:
+        payload = {
+            "action": "create_profile",
+            "owner_name": (owner_name or "").strip(),
+            "line_id": (line_id or "").strip(),
+            "birth_day": str(birth_day),
+            "birth_month": str(birth_month),
+            "birth_year": str(birth_year),
+            "note": note or ""
+        }
+        response = requests.post(SOULPROFILES_API_URL, json=payload, timeout=15)
+        data = response.json()
+        return {
+            "success": bool(data.get("success")),
+            "created": bool(data.get("created", False)),
+            "soul_key": data.get("soul_key", ""),
+            "owner_name": data.get("owner_name", ""),
+            "line_id": data.get("line_id", ""),
+            "message": data.get("message", "")
+        }
+    except Exception:
+        return {"success": False, "soul_key": "", "message": "api_error"}
+
 def push_to_google_sheet(payload: dict):
     try:
         requests.post(GOOGLE_SCRIPT_URL, json=payload, timeout=15)
@@ -1423,10 +1448,10 @@ if st.session_state.latest_result:
                 )
 
         st.markdown("---")
-        st.markdown("### " + tr("🔑 ยังไม่มี Soul Key?", "🔑 Don't have a Soul Key yet?"))
+        st.markdown("### " + tr("🔑 ยังไม่มี Soul Key (รหัสเปิดคำอ่านของคุณ)?", "🔑 Don't have a Soul Key yet?"))
         st.caption(tr(
-            'ใช้ชื่อ + LINE ID + วันเกิดเดิมของคุณ เพื่อสร้าง Soul Key ใหม่ หรือดึง Soul Key เดิมกลับมา',
-            'Use your name, LINE ID, and the same birth date to create a new Soul Key or retrieve your existing one.'
+            'Soul Key คือ “รหัสเฉพาะตัวของคุณ” ใช้สำหรับเข้าสู่คำอ่านฉบับลึกของคุณโดยเฉพาะ\n✨ สร้างครั้งเดียว ใช้เปิดอ่านของคุณได้ทุกครั้ง',
+            'Soul Key is your personal access key for your deeper reading. Create it once and use it to reopen your reading anytime.'
         ))
 
         if st.button(tr('✨ สร้าง / ดึง Soul Key ของฉัน', '✨ Create / Get My Soul Key'), key='create_or_get_soul_key_btn_locked'):
