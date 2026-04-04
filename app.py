@@ -372,7 +372,7 @@ hr {
 # -----------------------------
 # Existing links provided by user
 # -----------------------------
-GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzv6Pzr1fk3cgLyz1GM0Hf1il-a4LrW7S3q-77R8z1O9K0JbOog1_v36JFYSivokks2Yg/exec"
+GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz7LEEUiG9UJQLojS-JCxsSVvxYXExDlajazKxXEi26bGcqocUj_ou93O2EkCWtRaS47w/exec"
 SOULCODES_API_URL = "https://script.google.com/macros/s/AKfycbyBHg-JhN2YMWfpvf8zk28Yvv7yOqtrL5mTOl41lNRmreUF8c76B_J2fEpxHaj_b8SELA/exec"
 SOULPROFILES_API_URL = "https://script.google.com/macros/s/AKfycbxDoHX4soOKHxM2Jc7ajmCfkrDLhF1_ETDnXW7GgY1QBDsHDlXvbroSo5pfPKxReD_deg/exec"
 LINE_LINK = "https://lin.ee/uDDXuWN"
