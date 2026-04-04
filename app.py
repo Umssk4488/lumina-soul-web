@@ -416,6 +416,12 @@ def paragraph(lines):
         return " ".join([x.strip() for x in lines if x.strip()])
     return str(lines)
 
+def teaser_text(text_value, max_chars=180):
+    text_value = str(text_value or "").strip()
+    if len(text_value) <= max_chars:
+        return text_value
+    return text_value[:max_chars].rstrip() + "..."
+
 
 def verify_code(code_input: str):
     code = (code_input or "").strip().upper()
@@ -1182,7 +1188,7 @@ with c3:
         f"""
         <div class="stat-card">
             <div style="font-size:1.15rem; font-weight:700; color:#8e24aa;">{tr("⭐️ต่อยอดได้จริง", "Take It Further")}</div>
-            <div class="soft-note">{tr("หากรู้สึกว่าตรง คุณสามารถทัก LINE เพื่อรับคำอ่านเจาะลึกเฉพาะตัวได้ทันที", "If it resonates, you can contact LINE for a personalized deep reading right away")}</div>
+            <div class="soft-note">{tr("หากรู้สึกว่าตรง คุณสามารถปลดล็อคคำอ่านฉบับเต็มได้ทันที", "If it resonates, you can unlock the full reading immediately")}</div>
         </div>
         """,
         unsafe_allow_html=True
@@ -1399,52 +1405,21 @@ if st.session_state.latest_result:
         unsafe_allow_html=True
     )
 
+    teaser_soul = teaser_text(premium_result["soul_text"], 220)
+    teaser_wound = teaser_text(premium_result["wound"], 180)
+    teaser_next = teaser_text(premium_result["next_step"], 180)
+
     st.markdown(
         f"""
         <div class="lock-card">
-            <h4 style="color:#8e24aa; margin-top:0;">💫 {tr("ถ้าคำอ่านนี้ตรงกับชีวิตคุณ นี่คือแค่จุดเริ่มต้น", "If this reading resonates with your life, this is only the beginning")}</h4>
-            <p>{tr("สิ่งที่คุณได้อ่านตอนนี้ เป็นเพียงภาพสะท้อนเบื้องต้นของพลังงานชีวิตคุณ", "What you have read so far is only the initial reflection of your life energy.")}</p>
-            <p>{tr("แต่สิ่งที่ยังไม่ได้ถูกเปิดออกอย่างเต็มที่คือ:", "What has not yet been fully opened is:")}</p>
-            <p>{tr("• บาดแผลลึกที่ทำให้บางเรื่องยังวนซ้ำ<br>• ความจริงที่คุณอาจรู้อยู่ลึก ๆ แต่ยังไม่ได้ยอมรับ<br>• และทางออกที่เหมาะกับชีวิตคุณจริง ๆ ในตอนนี้", "• the deeper wound behind your repeating patterns<br>• the truth you may already feel but have not fully faced<br>• and the next path that truly fits your life right now")}</p>
-            <p>{tr("หากคุณอยากให้ฉันอ่านแบบเจาะลึกเฉพาะตัวให้คุณ", "If you want me to do a personalized deep reading for you")}</p>
-            <p>{tr("คุณสามารถทัก LINE เพื่อรับการสะท้อนพิมพ์เขียวชีวิตแบบส่วนตัวได้เลย", "you can message LINE to receive your private Soul Blueprint reflection.")}</p>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    st.markdown(
-        f"""
-        <div class="mini-card">
-            <h4 style="color:#8e24aa; margin-top:0;">{tr("🩹 ตัวอย่างสิ่งที่จะได้เห็นในคำอ่านลึก", "🩹 A glimpse of what your deep reading can reveal")}</h4>
-            <p>{premium_result["wound"]}</p>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    st.markdown(
-        f"""
-        <div class="mini-card">
-            <h4 style="color:#8e24aa; margin-top:0;">{tr("🪄 แนวทางที่เหมาะกับคุณจริง ๆ", "🪄 The next direction that truly fits you")}</h4>
-            <p>{premium_result["next_step"]}</p>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-    st.info("💡 " + tr(
-        "ถ้าคุณอ่านมาถึงตรงนี้และรู้สึกว่า ‘มันใช่’ คำอ่านเจาะลึกจะช่วยให้คุณเห็นภาพชีวิตชัดขึ้นกว่าที่คุณเห็นตอนนี้มาก",
-        "If you have read this far and it feels right, a deep reading will help you see your life far more clearly than what you can see now."
-    ))
-
-    st.markdown(
-        f"""
-        <div class="cta-note">
-        {tr(
-            "หากคุณอยากเข้าใจเรื่องความรัก งาน การเงิน หรือแพทเทิร์นชีวิตของตัวเองให้ลึกขึ้น คุณสามารถทัก LINE เพื่อรับคำอ่านเฉพาะตัวได้เลย",
-            "If you want deeper clarity around your love life, work, money, or repeating life patterns, you can contact LINE for a personalized reading."
-        )}
+            <h4 style="color:#8e24aa; margin-top:0;">🔒 {tr("คำอ่านเชิงลึกเฉพาะตัวของคุณยังไม่ถูกเปิดทั้งหมด", "Your personalized deep reading is not fully opened yet")}</h4>
+            <p>{tr("สิ่งที่คุณได้อ่านในหน้าเว็บ คือเพียง ‘ส่วนแรก’ ของพิมพ์เขียวชีวิตคุณเท่านั้น", "What you have read on this page is only the first layer of your life blueprint.")}</p>
+            <p>{tr("หลายคนจะเริ่มเห็นตัวเองจากผลฟรี แต่จุดที่เปลี่ยนชีวิตจริง ๆ มักอยู่ในส่วนลึกที่ยังไม่ได้ถูกเปิดออกทั้งหมด", "Many people begin to see themselves through the free result, but the part that truly changes things is often hidden in the deeper layer.")}</p>
+            <p><b>{tr("ตัวอย่างบางส่วนจากคำอ่านลึกของคุณ:", "A small glimpse from your deeper reading:")}</b></p>
+            <p>• {teaser_soul}</p>
+            <p>• {teaser_wound}</p>
+            <p>• {teaser_next}</p>
+            <p>{tr("ถ้าคุณรู้สึกว่า ‘มันตรง แต่ยังไม่สุด’ นั่นคือสัญญาณว่าคุณอาจต้องดูแบบเจาะลึกเฉพาะตัว", "If it feels accurate but still incomplete, that is usually a sign your deeper personalized reading is the next step.")}</p>
         </div>
         """,
         unsafe_allow_html=True
@@ -1455,7 +1430,7 @@ if st.session_state.latest_result:
         <div class="premium-btn">
             <a href="{LINE_LINK}" target="_blank">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="LINE">
-                <span>{tr("👉 ทัก LINE เพื่อรับคำอ่านเจาะลึกเฉพาะตัว", "👉 Message LINE for your personalized deep reading")}</span>
+                <span>{tr("👉 ทัก LINE เพื่อรับคำอ่านเจาะลึกเฉพาะตัว (คลิก)", "👉 Message on LINE for your personalized deep reading (Click)")}</span>
             </a>
         </div>
         """,
@@ -1465,11 +1440,117 @@ if st.session_state.latest_result:
     st.markdown(
         f"""
         <div class="cta-note">
-        {tr("พูดคุยทาง LINE ได้เลย | LINE ID:", "You can continue on LINE | LINE ID:")} <b>{LINE_ID}</b>
+        {tr("ผลฟรีในหน้าเว็บมีไว้เพื่อให้คุณเริ่มเห็นภาพชีวิตของตัวเอง แต่ถ้าคุณอยากเข้าใจ ‘รากของปัญหา’ และทางออกที่เหมาะกับพลังงานคุณจริง ๆ สามารถทัก LINE เพื่อดูแบบเจาะลึกได้ค่ะ | LINE ID:", "The free result is here to help you begin seeing your life more clearly. If you want to understand the root of the pattern and the direction that truly fits your energy, message on LINE for a deeper reading | LINE ID:")} <b>{LINE_ID}</b>
         </div>
         """,
         unsafe_allow_html=True
     )
+
+    if False and st.session_state.premium_unlocked:
+        st.markdown(
+            f"""
+            <div class="result-card">
+                <h4 style="color:#7b1fa2; margin-top:0;">{premium_result["premium_title"]}</h4>
+                <p>{premium_result["soul_text"]}</p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+        st.markdown(
+            f"""
+            <div class="mini-card">
+                <h4 style="color:#8e24aa; margin-top:0;">{tr("🌑 เงาพลังงานและบทเรียนลึก", "🌑 Shadow Pattern & Deeper Lesson")}</h4>
+                <p>{premium_result["shadow"]}</p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+        st.markdown(
+            f"""
+            <div class="mini-card">
+                <h4 style="color:#8e24aa; margin-top:0;">{tr("🩹 บาดแผลที่ชีวิตกำลังชี้ให้เห็น", "🩹 The Wound Life May Be Revealing")}</h4>
+                <p>{premium_result["wound"]}</p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+        st.markdown(
+            f"""
+            <div class="mini-card">
+                <h4 style="color:#8e24aa; margin-top:0;">{tr("💎 ของขวัญที่ซ่อนอยู่ในตัวคุณ", "💎 The Gift Hidden Within You")}</h4>
+                <p>{premium_result["gift"]}</p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+        st.markdown(
+            f"""
+            <div class="mini-card">
+                <h4 style="color:#8e24aa; margin-top:0;">{tr("📖 บทเรียนที่ชีวิตกำลังสอน", "📖 The Lesson Life Is Teaching You")}</h4>
+                <p>{premium_result["lesson"]}</p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+        st.markdown(
+            f"""
+            <div class="mini-card">
+                <h4 style="color:#8e24aa; margin-top:0;">{tr("🪄 แนวทางที่ควรโฟกัสต่อ", "🪄 Your Next Focus")}</h4>
+                <p>{premium_result["next_step"]}</p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+        st.markdown(
+            f"""
+            <div class="mini-card">
+                <h4 style="color:#8e24aa; margin-top:0;">{tr("⚠️ สิ่งที่ควรระวัง", "⚠️ What to Be Careful With")}</h4>
+                <p>{premium_result["warning"]}</p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+        st.markdown(
+            f"""
+            <div class="mini-card">
+                <h4 style="color:#6a1b9a; margin-top:0;">{tr("✨ ข้อความจาก Lumina Soul", "✨ A Message from Lumina Soul")}</h4>
+                <p>{premium_result["healing"]}</p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+        st.info("💡 " + premium_result["unlock_note"])
+
+        st.markdown(
+            f"""
+            <div class="cta-note">
+            {tr(
+                "หากคำอ่านนี้สะท้อนชีวิตคุณจริง ขั้นต่อไปคือ eBook หรือการอ่านเชิงลึกส่วนตัว เพื่อเชื่อมสิ่งที่คุณรู้สึกเข้ากับเส้นทางชีวิตจริง",
+                "If this reading deeply resonates, your next step is the eBook or a personalized deep reading to connect what you feel with your real life path."
+            )}
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+        st.markdown(
+            f"""
+            <div class="premium-btn">
+                <a href="{LINE_LINK}" target="_blank">
+                    ✳️👉 {tr("คุยกับที่ปรึกษา LUMINA SOUL", "Talk to a LUMINA SOUL guide")}
+                </a>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
 # -----------------------------
 # Footer
