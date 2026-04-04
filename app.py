@@ -1322,7 +1322,7 @@ if submitted:
             "birth_day": int(birth_day),
             "birth_month": selected_month["th"],
             "birth_month_en": selected_month["en"],
-            "birth_year_be": int(birth_year),
+            "birth_year": int(birth_year),
             "life_path_number": free_result["life_number"],
             "birth_day_energy": free_result["birth_energy"],
             "category": selected_category["th"],
