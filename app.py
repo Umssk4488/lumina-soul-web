@@ -372,7 +372,7 @@ hr {
 # -----------------------------
 # Existing links provided by user
 # -----------------------------
-GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz7LEEUiG9UJQLojS-JCxsSVvxYXExDlajazKxXEi26bGcqocUj_ou93O2EkCWtRaS47w/exec"
+GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbztgbRuGYMGMC41V8QHgNl2wnNTgJ5ZhRckVoiUXpVNTkSA-U75MFg-GRZNiCiIjrQeGg/exec"
 SOULCODES_API_URL = "https://script.google.com/macros/s/AKfycbyBHg-JhN2YMWfpvf8zk28Yvv7yOqtrL5mTOl41lNRmreUF8c76B_J2fEpxHaj_b8SELA/exec"
 SOULPROFILES_API_URL = "https://script.google.com/macros/s/AKfycbxDoHX4soOKHxM2Jc7ajmCfkrDLhF1_ETDnXW7GgY1QBDsHDlXvbroSo5pfPKxReD_deg/exec"
 LINE_LINK = "https://lin.ee/uDDXuWN"
@@ -415,12 +415,6 @@ def paragraph(lines):
     if isinstance(lines, list):
         return " ".join([x.strip() for x in lines if x.strip()])
     return str(lines)
-
-def teaser_text(text_value, max_chars=180):
-    text_value = str(text_value or "").strip()
-    if len(text_value) <= max_chars:
-        return text_value
-    return text_value[:max_chars].rstrip() + "..."
 
 
 def verify_code(code_input: str):
@@ -1328,7 +1322,7 @@ if submitted:
             "birth_day": int(birth_day),
             "birth_month": selected_month["th"],
             "birth_month_en": selected_month["en"],
-            "birth_year": int(birth_year),
+            "birth_year_be": int(birth_year),
             "life_path_number": free_result["life_number"],
             "birth_day_energy": free_result["birth_energy"],
             "category": selected_category["th"],
@@ -1405,48 +1399,78 @@ if st.session_state.latest_result:
         unsafe_allow_html=True
     )
 
-    teaser_soul = teaser_text(premium_result["soul_text"], 220)
-    teaser_wound = teaser_text(premium_result["wound"], 180)
-    teaser_next = teaser_text(premium_result["next_step"], 180)
+    if not st.session_state.premium_unlocked:
+        st.markdown(
+            f"""
+            <div class="lock-card">
+                <h4 style="color:#8e24aa; margin-top:0;">🔒 {tr("คำอ่านฉบับลึกยังไม่ถูกเปิด", "Your deeper reading is still locked")}</h4>
+                <p>{tr("สิ่งที่คุณได้อ่าน…เป็นเพียง “ส่วนต้น” ของพลังงานชีวิตคุณเท่านั้น", "What you have read so far is only the beginning of your life energy.")}</p>
+                <p>{tr("แต่สิ่งที่ยังไม่ถูกเปิดเผยคือ:", "What remains hidden is:")}</p>
+                <p>{tr("• ความจริงที่คุณกำลังเผชิญอยู่ตอนนี้<br>• เหตุผลที่บางอย่างยังติดค้าง<br>• และทิศทางที่เหมาะกับพลังงานของคุณจริง ๆ", "• the truth of what you are facing now<br>• why some things still feel unresolved<br>• and the direction that truly fits your energy")}</p>
+                <p>{tr("คำอ่านฉบับเต็มนี้<br>จะทำให้คุณ “เข้าใจชีวิตตัวเองมากขึ้น”", "This full reading will help you understand your life more deeply.")}</p>
+                <p>{tr("✨ หากคุณต้องการอ่านคำอ่านแบบเจาะลึกของตัวเอง<br>กรุณารับ SOUL KEY (รหัสเปิดคำอ่านของคุณ) ผ่าน LINE", "✨ If you want to access your deeper reading, please receive your SOUL KEY through LINE.")}</p>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
 
-    st.markdown(
-        f"""
-        <div class="lock-card">
-            <h4 style="color:#8e24aa; margin-top:0;">🔒 {tr("คำอ่านเชิงลึกเฉพาะตัวของคุณยังไม่ถูกเปิดทั้งหมด", "Your personalized deep reading is not fully opened yet")}</h4>
-            <p>{tr("สิ่งที่คุณได้อ่านในหน้าเว็บ คือเพียง ‘ส่วนแรก’ ของพิมพ์เขียวชีวิตคุณเท่านั้น", "What you have read on this page is only the first layer of your life blueprint.")}</p>
-            <p>{tr("หลายคนจะเริ่มเห็นตัวเองจากผลฟรี แต่จุดที่เปลี่ยนชีวิตจริง ๆ มักอยู่ในส่วนลึกที่ยังไม่ได้ถูกเปิดออกทั้งหมด", "Many people begin to see themselves through the free result, but the part that truly changes things is often hidden in the deeper layer.")}</p>
-            <p><b>{tr("ตัวอย่างบางส่วนจากคำอ่านลึกของคุณ:", "A small glimpse from your deeper reading:")}</b></p>
-            <p>• {teaser_soul}</p>
-            <p>• {teaser_wound}</p>
-            <p>• {teaser_next}</p>
-            <p>{tr("ถ้าคุณรู้สึกว่า ‘มันตรง แต่ยังไม่สุด’ นั่นคือสัญญาณว่าคุณอาจต้องดูแบบเจาะลึกเฉพาะตัว", "If it feels accurate but still incomplete, that is usually a sign your deeper personalized reading is the next step.")}</p>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+        soul_key_input = st.text_input(
+            tr("✨ ใส่ Soul Key ของคุณ", "✨ Enter your Soul Key")
+        )
+        st.caption(tr(
+            "ใส่รหัสเฉพาะตัวของคุณ เพื่อกลับมาเปิดอ่านคำอ่านฉบับลึกได้ทุกครั้ง",
+            "Enter your personal key to reopen your deeper reading anytime."
+        ))
 
-    st.markdown(
-        f"""
-        <div class="premium-btn">
-            <a href="{LINE_LINK}" target="_blank">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="LINE">
-                <span>{tr("👉 ทัก LINE เพื่อรับคำอ่านเจาะลึกเฉพาะตัว (คลิก)", "👉 Message on LINE for your personalized deep reading (Click)")}</span>
-            </a>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+        if st.button(tr("🔓 เปิดคำอ่านฉบับเต็มด้วย Soul Key", "🔓 Unlock full reading with Soul Key")):
+            key_clean = (soul_key_input or "").strip().upper()
 
-    st.markdown(
-        f"""
-        <div class="cta-note">
-        {tr("ผลฟรีในหน้าเว็บมีไว้เพื่อให้คุณเริ่มเห็นภาพชีวิตของตัวเอง แต่ถ้าคุณอยากเข้าใจ ‘รากของปัญหา’ และทางออกที่เหมาะกับพลังงานคุณจริง ๆ สามารถทัก LINE เพื่อดูแบบเจาะลึกได้ค่ะ | LINE ID:", "The free result is here to help you begin seeing your life more clearly. If you want to understand the root of the pattern and the direction that truly fits your energy, message on LINE for a deeper reading | LINE ID:")} <b>{LINE_ID}</b>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+            api_result = verify_profile_via_api(
+                key_clean,
+                data["birth_day"],
+                data["birth_month_num"],
+                data["birth_year"]
+            )
 
-    if False and st.session_state.premium_unlocked:
+            if api_result.get("success") and api_result.get("valid"):
+                st.session_state.premium_unlocked = True
+                st.session_state.used_code = key_clean
+                log_profile_login_via_api(key_clean)
+                st.rerun()
+
+            else:
+                st.error(
+                    tr(
+                        "Soul Key ไม่ถูกต้อง หรือวันเดือนปีเกิดไม่ตรงกับเจ้าของโปรไฟล์ กรุณาตรวจสอบอีกครั้ง หรือทัก LINE เพื่อรับรหัสประจำตัวของคุณ",
+                        "Your Soul Key is invalid or your birth date does not match this profile. Please check again or contact LINE to receive your personal key."
+                    )
+                )
+
+        st.markdown("---")
+        st.markdown("---")
+
+        st.markdown(
+            f"""
+            <div class="premium-btn">
+                <a href="{LINE_LINK}" target="_blank">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="LINE">
+                    <span>{tr("👉 รับ SOUL KEY แอด LINE เพื่อเปิดคำอ่านฉบับลึก (คลิ๊ก)", "👉 Get your SOUL KEY on LINE to unlock your deeper reading (Click)")}</span>
+                </a>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+        st.markdown(
+            f"""
+            <div class="cta-note">
+            {tr("รับรหัสผ่าน LINE เพื่อใช้เปิดอ่านของคุณได้ทุกครั้ง | LINE ID:", "Receive your key through LINE to open your reading anytime | LINE ID:")} <b>{LINE_ID}</b>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+    if st.session_state.premium_unlocked:
         st.markdown(
             f"""
             <div class="result-card">
