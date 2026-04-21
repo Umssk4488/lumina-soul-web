@@ -381,7 +381,7 @@ hr {
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:12px;
+    gap:14px;
     margin-bottom: 10px;
 }
 .brand-mini {
@@ -393,32 +393,56 @@ hr {
 .top-actions {
     display:flex;
     align-items:center;
-    gap:8px;
-    flex-wrap:wrap;
+    gap:10px;
+    flex-wrap:nowrap;
     justify-content:flex-end;
 }
 .top-link-chip {
     display:inline-flex;
     align-items:center;
     justify-content:center;
-    min-height: 34px;
-    padding: 0 14px;
+    min-height: 36px;
+    padding: 0 15px;
     border-radius: 999px;
     text-decoration:none !important;
     font-size: 12px;
     font-weight:700;
     box-shadow: 0 6px 18px rgba(186, 104, 200, 0.12);
-}
-.top-link-chip.ebook {
-    background: rgba(255,255,255,0.82);
-    color:#6f4a80 !important;
-    border:1px solid rgba(186,104,200,0.18);
+    white-space:nowrap;
 }
 .top-link-chip.line {
     background: linear-gradient(135deg, #22c55e, #06c755);
     color:#fff !important;
     border:none;
     box-shadow: 0 8px 22px rgba(34,197,94,0.25);
+}
+.lang-group {
+    display:inline-flex;
+    align-items:center;
+    background: rgba(255,255,255,0.88);
+    border:1px solid rgba(186,104,200,0.18);
+    border-radius:999px;
+    padding:4px;
+    gap:4px;
+    box-shadow: 0 6px 18px rgba(186, 104, 200, 0.10);
+}
+.lang-pill {
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    min-width:36px;
+    height:28px;
+    padding:0 10px;
+    border-radius:999px;
+    text-decoration:none !important;
+    color:#6f4a80 !important;
+    font-size:11px;
+    font-weight:800;
+}
+.lang-pill.active {
+    background: linear-gradient(135deg, #ba68c8, #f06292);
+    color:#fff !important;
+    box-shadow: 0 6px 14px rgba(186,104,200,0.24);
 }
 .hero-orb-wrap {
     display:flex;
@@ -613,7 +637,9 @@ hr {
 @media (max-width: 768px) {
     .nav-shell { align-items:flex-start; }
     .top-actions { gap:6px; }
-    .top-link-chip { min-height:30px; padding:0 10px; font-size:11px; }
+    .top-link-chip { min-height:32px; padding:0 12px; font-size:11px; }
+    .lang-group { padding:3px; gap:3px; }
+    .lang-pill { min-width:34px; height:26px; padding:0 8px; font-size:10px; }
     .hero-kicker { letter-spacing: 3.2px; font-size:0.72rem; }
     .hero-title-center { font-size: 2.7rem; }
     .hero-sub-center { font-size: 1.18rem; }
@@ -1460,14 +1486,11 @@ st.markdown(
     <div class="nav-shell">
         <div class="brand-mini">LUMINA SOUL</div>
         <div class="top-actions">
-            <a href="{get_page_link('ebook')}" class="top-link-chip ebook">📖 eBook</a>
             <a href="{LINE_LINK}" target="_blank" class="top-link-chip line">💬 LINE</a>
-        </div>
-    </div>
-    <div class="hero-header-box">
-        <div class="top-floating-lang">
-            <a href="?lang=th&page={st.session_state.page}" class="lang-chip {'active' if st.session_state.lang == 'th' else ''}">TH</a>
-            <a href="?lang=en&page={st.session_state.page}" class="lang-chip {'active' if st.session_state.lang == 'en' else ''}">EN</a>
+            <div class="lang-group">
+                <a href="?lang=th&page={st.session_state.page}" class="lang-pill {'active' if st.session_state.lang == 'th' else ''}">TH</a>
+                <a href="?lang=en&page={st.session_state.page}" class="lang-pill {'active' if st.session_state.lang == 'en' else ''}">EN</a>
+            </div>
         </div>
     </div>
     """,
@@ -1503,6 +1526,61 @@ for icon, title, desc in feature_cards:
     feature_html += f"<div class='feature-card'><div class='feature-icon'>{icon}</div><div><div class='feature-title'>{title}</div><div class='feature-text'>{desc}</div></div></div>"
 feature_html += '</div>'
 st.markdown(feature_html, unsafe_allow_html=True)
+
+
+# -----------------------------
+# Form
+# -----------------------------
+month_display_list = [m["th"] if st.session_state.lang == "th" else m["en"] for m in month_options]
+category_display_list = [c["th"] if st.session_state.lang == "th" else c["en"] for c in categories]
+
+st.markdown(f"<div class='section-kicker' style='margin-top:22px;'>{tr('เริ่มต้นการเดินทาง', 'BEGIN YOUR JOURNEY')}</div>", unsafe_allow_html=True)
+st.markdown(f"<p class='center-text soft-note' style='margin-top:-6px; margin-bottom:12px;'>{tr('กรอกข้อมูลเพื่อเริ่มอ่านพิมพ์เขียวชีวิตของคุณ', 'Fill in your details to begin decoding your life blueprint')}</p>", unsafe_allow_html=True)
+st.markdown("<div class='form-shell'>", unsafe_allow_html=True)
+
+with st.form("lumina_form_v2"):
+    name = st.text_input(tr("ชื่อ-นามสกุล", "Full Name"))
+    contact = st.text_input(
+        tr(
+            "ID Line (เพื่อรับผลสะท้อนพลังงานและสิทธิ์อ่านเชิงลึก)",
+            "Line ID (to receive your reflection and deeper reading access)"
+        )
+    )
+
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        birth_day = st.number_input(tr("วันที่เกิด", "Birth Day"), min_value=1, max_value=31, value=1, step=1)
+    with col2:
+        birth_month_index = st.selectbox(
+            tr("เดือนเกิด", "Birth Month"),
+            range(len(month_options)),
+            format_func=lambda i: month_display_list[i]
+        )
+    with col3:
+        birth_year = st.number_input(
+            tr("ปี พ.ศ. เกิด", "Birth Year (B.E.)"),
+            min_value=2450,
+            max_value=2600,
+            value=2535,
+            step=1
+        )
+
+    category_index = st.selectbox(
+        tr("ด้านที่คุณต้องการรับพลังงานนำทางในวันนี้:", "Which area would you like energetic guidance for today?"),
+        range(len(categories)),
+        format_func=lambda i: category_display_list[i]
+    )
+
+    st.markdown(f"**{tr('⭐️ เรื่องที่คุณกังวลใจที่สุดในตอนนี้คืออะไร?', '⭐️ What is your biggest concern right now?')}**")
+    question = st.text_area(
+        "",
+        placeholder=tr("แชร์รายละเอียดเรื่องที่ติดค้างในใจแบบสั้น ๆ", "Share a short description of what has been on your mind"),
+        height=120
+    )
+
+    submitted = st.form_submit_button(tr("🔮 ถอดรหัสพลังงานของฉัน", "🔮 Decode My Energy"))
+
+st.markdown("</div>", unsafe_allow_html=True)
 
 st.markdown(
     f"""
@@ -1576,59 +1654,6 @@ with r2:
         unsafe_allow_html=True
     )
 
-# -----------------------------
-# Form
-# -----------------------------
-month_display_list = [m["th"] if st.session_state.lang == "th" else m["en"] for m in month_options]
-category_display_list = [c["th"] if st.session_state.lang == "th" else c["en"] for c in categories]
-
-st.markdown(f"<div class='section-kicker' style='margin-top:22px;'>{tr('เริ่มต้นการเดินทาง', 'BEGIN YOUR JOURNEY')}</div>", unsafe_allow_html=True)
-st.markdown(f"<p class='center-text soft-note' style='margin-top:-6px; margin-bottom:12px;'>{tr('กรอกข้อมูลเพื่อเริ่มอ่านพิมพ์เขียวชีวิตของคุณ', 'Fill in your details to begin decoding your life blueprint')}</p>", unsafe_allow_html=True)
-st.markdown("<div class='form-shell'>", unsafe_allow_html=True)
-
-with st.form("lumina_form_v2"):
-    name = st.text_input(tr("ชื่อ-นามสกุล", "Full Name"))
-    contact = st.text_input(
-        tr(
-            "ID Line (เพื่อรับผลสะท้อนพลังงานและสิทธิ์อ่านเชิงลึก)",
-            "Line ID (to receive your reflection and deeper reading access)"
-        )
-    )
-
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        birth_day = st.number_input(tr("วันที่เกิด", "Birth Day"), min_value=1, max_value=31, value=1, step=1)
-    with col2:
-        birth_month_index = st.selectbox(
-            tr("เดือนเกิด", "Birth Month"),
-            range(len(month_options)),
-            format_func=lambda i: month_display_list[i]
-        )
-    with col3:
-        birth_year = st.number_input(
-            tr("ปี พ.ศ. เกิด", "Birth Year (B.E.)"),
-            min_value=2450,
-            max_value=2600,
-            value=2535,
-            step=1
-        )
-
-    category_index = st.selectbox(
-        tr("ด้านที่คุณต้องการรับพลังงานนำทางในวันนี้:", "Which area would you like energetic guidance for today?"),
-        range(len(categories)),
-        format_func=lambda i: category_display_list[i]
-    )
-
-    st.markdown(f"**{tr('⭐️ เรื่องที่คุณกังวลใจที่สุดในตอนนี้คืออะไร?', '⭐️ What is your biggest concern right now?')}**")
-    question = st.text_area(
-        "",
-        placeholder=tr("แชร์รายละเอียดเรื่องที่ติดค้างในใจแบบสั้น ๆ", "Share a short description of what has been on your mind"),
-        height=120
-    )
-
-    submitted = st.form_submit_button(tr("🔮 ถอดรหัสพลังงานของฉัน", "🔮 Decode My Energy"))
-
-st.markdown("</div>", unsafe_allow_html=True)
 
 # -----------------------------
 # Processing
@@ -1774,67 +1799,38 @@ if st.session_state.latest_result:
             f"""
             <div class="lock-card">
                 <h4 style="color:#8e24aa; margin-top:0;">🔒 {tr("คำอ่านฉบับลึกยังไม่ถูกเปิด", "Your deeper reading is still locked")}</h4>
-                <p>{tr("สิ่งที่คุณได้อ่าน…เป็นเพียง “ส่วนต้น” ของพลังงานชีวิตคุณเท่านั้น", "What you have read so far is only the beginning of your life energy.")}</p>
-                <p>{tr("แต่สิ่งที่ยังไม่ถูกเปิดเผยคือ:", "What remains hidden is:")}</p>
-                <p>{tr("• ความจริงที่คุณกำลังเผชิญอยู่ตอนนี้<br>• เหตุผลที่บางอย่างยังติดค้าง<br>• และทิศทางที่เหมาะกับพลังงานของคุณจริง ๆ", "• the truth of what you are facing now<br>• why some things still feel unresolved<br>• and the direction that truly fits your energy")}</p>
-                <p>{tr("คำอ่านฉบับเต็มนี้<br>จะทำให้คุณ “เข้าใจชีวิตตัวเองมากขึ้น”", "This full reading will help you understand your life more deeply.")}</p>
-                <p>{tr("✨ หากคุณต้องการอ่านคำอ่านแบบเจาะลึกของตัวเอง<br>กรุณารับ SOUL KEY (รหัสเปิดคำอ่านของคุณ) ผ่าน LINE", "✨ If you want to access your deeper reading, please receive your SOUL KEY through LINE.")}</p>
+                <p>{tr("สิ่งที่คุณได้อ่านในตอนนี้ คือคำสะท้อนชั้นแรกของพลังงานชีวิตคุณ", "What you have read so far is only the first layer of your life energy.")}</p>
+                <p>{tr("หากต้องการอ่านลึกต่อ คุณจะได้เห็นหัวข้อเหล่านี้แบบเฉพาะตัว:", "If you want to go deeper, these are the areas waiting to be revealed for you:")}</p>
             </div>
             """,
             unsafe_allow_html=True
         )
 
-        soul_key_input = st.text_input(
-            tr("✨ ใส่ Soul Key ของคุณ", "✨ Enter your Soul Key")
-        )
-        st.caption(tr(
-            "ใส่รหัสเฉพาะตัวของคุณ เพื่อกลับมาเปิดอ่านคำอ่านฉบับลึกได้ทุกครั้ง",
-            "Enter your personal key to reopen your deeper reading anytime."
-        ))
-
-        if st.button(tr("🔓 เปิดคำอ่านฉบับเต็มด้วย Soul Key", "🔓 Unlock full reading with Soul Key")):
-            key_clean = (soul_key_input or "").strip().upper()
-
-            api_result = verify_profile_via_api(
-                key_clean,
-                data["birth_day"],
-                data["birth_month_num"],
-                data["birth_year"]
-            )
-
-            if api_result.get("success") and api_result.get("valid"):
-                st.session_state.premium_unlocked = True
-                st.session_state.used_code = key_clean
-                log_profile_login_via_api(key_clean)
-                st.rerun()
-
-            else:
-                st.error(
-                    tr(
-                        "Soul Key ไม่ถูกต้อง หรือวันเดือนปีเกิดไม่ตรงกับเจ้าของโปรไฟล์ กรุณาตรวจสอบอีกครั้ง หรือทัก LINE เพื่อรับรหัสประจำตัวของคุณ",
-                        "Your Soul Key is invalid or your birth date does not match this profile. Please check again or contact LINE to receive your personal key."
-                    )
-                )
-
-        st.markdown("---")
-        st.markdown("---")
+        locked_items = [
+            ("🌌", tr("ภารกิจชีวิต", "Life mission"), tr("แนวทางที่พลังของคุณอยากพาไป", "The deeper path your energy wants to move toward")),
+            ("🔮", tr("นิสัยลึกที่ซ่อนอยู่", "Hidden inner traits"), tr("ด้านในที่คนรอบตัวอาจไม่เคยรู้", "The side of you others may never fully see")),
+            ("🌑", tr("เงาชีวิตและบทเรียน", "Shadow and lessons"), tr("สิ่งที่คุณต้องก้าวผ่านเพื่อโตขึ้น", "What life is asking you to move through")),
+            ("💼", tr("งานและเส้นทางที่ใช่", "Career alignment"), tr("พลังที่เหมาะกับงานและการสร้างตัว", "The work and direction that fit your energy")),
+            ("💞", tr("ความรักและความสัมพันธ์", "Love and relationships"), tr("รูปแบบความรักที่สะท้อนหัวใจคุณ", "How your heart tends to love and attach")),
+            ("💰", tr("กระแสการเงิน", "Financial flow"), tr("รูปแบบพลังงานด้านการรับและการสร้างคุณค่า", "How your energy relates to value and receiving")),
+            ("📅", tr("Timeline พลังงาน", "Energy timeline"), tr("ช่วงเวลาที่ควรฟังหัวใจตัวเองให้ชัด", "When to listen to yourself more clearly")),
+            ("🪄", tr("แนวทางต่อจากนี้", "Your next step"), tr("สิ่งที่ควรโฟกัสเพื่อให้ชีวิตขยับ", "What to focus on next so life can move")),
+        ]
+        lock_html = '<div class="feature-grid" style="margin-top:10px;">'
+        for icon, title, desc in locked_items:
+            lock_html += f"<div class='feature-card'><div class='feature-icon'>{icon}</div><div><div class='feature-title'>🔒 {title}</div><div class='feature-text'>{desc}</div></div></div>"
+        lock_html += '</div>'
+        st.markdown(lock_html, unsafe_allow_html=True)
 
         st.markdown(
             f"""
-            <div class="premium-btn">
-                <a href="{LINE_LINK}" target="_blank">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg" alt="LINE">
-                    <span>{tr("👉 รับ SOUL KEY แอด LINE เพื่อเปิดคำอ่านฉบับลึก (คลิ๊ก)", "👉 Get your SOUL KEY on LINE to unlock your deeper reading (Click)")}</span>
-                </a>
-            </div>
-            """,
-            unsafe_allow_html=True
-        )
-
-        st.markdown(
-            f"""
-            <div class="cta-note">
-            {tr("รับรหัสผ่าน LINE เพื่อใช้เปิดอ่านของคุณได้ทุกครั้ง | LINE ID:", "Receive your key through LINE to open your reading anytime | LINE ID:")} <b>{LINE_ID}</b>
+            <div class="result-next-card">
+                <h4 style="color:#8e24aa; margin-top:0; text-align:center;">{tr('อยากอ่านพิมพ์เขียวชีวิตฉบับลึกไหม', 'Want your deeper life blueprint?')}</h4>
+                <p class="center-text">{tr('หากคำอ่านนี้ตรงกับใจคุณ คำอ่านฉบับเต็มจะช่วยให้คุณเห็นทั้งแพทเทิร์นชีวิต จุดติดค้าง และทิศทางที่เหมาะกับพลังงานของคุณจริง ๆ', 'If this resonates, the full reading helps you see your deeper patterns, what still feels unresolved, and the direction that truly fits your energy.')}</p>
+                <p class="center-text soft-note" style="margin-top:-6px;">{tr('คำอ่านเชิงลึกเฉพาะคุณ · ราคา 1,111 บาท · ติดต่อผ่าน LINE', 'Personal deep reading · 1,111 THB · contact via LINE')}</p>
+                <div class="cta-button-row">
+                    <a href="{LINE_LINK}" target="_blank" class="center-button-link line">💬 {tr('ติดต่อ LINE เพื่ออ่านลึก', 'Contact LINE for deep reading')}</a>
+                </div>
             </div>
             """,
             unsafe_allow_html=True
@@ -1951,11 +1947,12 @@ if st.session_state.latest_result:
     st.markdown(
         f"""
         <div class="result-next-card">
-            <h4 style="color:#8e24aa; margin-top:0; text-align:center;">{tr('อยากไปต่ออีกขั้นหลังอ่านคำถอดรหัสนี้ไหม', 'Want to continue after this reading?')}</h4>
-            <p class="center-text" style="margin-bottom:10px;">{tr('ถ้าคำอ่านนี้สะท้อนใจคุณจริง หน้าถัดไปของ LUMINA SOUL คือ eBook ที่ช่วยโอบประคองหัวใจและค่อย ๆ พาคุณกลับมาเจอตัวเอง', 'If this reading resonates deeply, the next step in LUMINA SOUL is the eBook that gently helps you return to yourself.')}</p>
+            <h4 style="color:#8e24aa; margin-top:0; text-align:center;">📖 {tr('eBook สำหรับคนที่อยากค่อย ๆ กลับมาเจอตัวเอง', 'An eBook for gently returning to yourself')}</h4>
+            <p class="center-text" style="margin-bottom:14px;">{tr('ถ้าคำอ่านนี้สะท้อนใจคุณจริง eBook ของ LUMINA SOUL จะช่วยโอบประคองหัวใจ และค่อย ๆ พาคุณผ่านช่วงชีวิตที่กำลังสั่นไหวอยู่ตอนนี้', 'If this reading resonates, the LUMINA SOUL eBook gently supports your heart and helps you move through the season you are in.')}</p>
+            <img src="{get_cover_data_uri()}" class="ebook-cover" alt="LUMINA SOUL eBook cover" style="width:min(220px,70vw); margin-bottom:14px;">
             <div class="cta-button-row">
-                <a href="{get_page_link('ebook')}" class="center-button-link soft">📖 {tr('ไปหน้า eBook', 'Go to eBook page')}</a>
-                <a href="{LINE_LINK}" target="_blank" class="center-button-link line">💬 {tr('คุยต่อใน LINE', 'Continue on LINE')}</a>
+                <a href="{get_page_link('ebook')}" class="center-button-link soft">📖 {tr('ดูรายละเอียด eBook', 'See eBook details')}</a>
+                <a href="{LINE_LINK}" target="_blank" class="center-button-link line">💬 {tr('สั่งซื้อผ่าน LINE', 'Order via LINE')}</a>
             </div>
         </div>
         """,
